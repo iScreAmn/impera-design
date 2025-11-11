@@ -1,5 +1,5 @@
 // Logo
-export { default as logo } from './impera-temp.png';
+export { default as logo } from './logo.webp';
 
 // Background
 export { default as background } from './main.jpg';
