@@ -1,0 +1,368 @@
+import { useMemo, useState } from 'react';
+import './Calculator.css';
+
+const Calculator = ({
+  title,
+  titleAccent,
+  steps,
+  contactMethods,
+  consultant,
+  bonuses,
+  placeholders,
+  buttons,
+  contactConsent,
+  progressTexts,
+  contactQuestion,
+  thankYouImage,
+  thankYouAlt
+}) => {
+  const totalSteps = steps.length;
+  const [currentStep, setCurrentStep] = useState(1);
+
+  const createInitialAnswers = () =>
+    steps.reduce((acc, step) => {
+      acc[step.field] = step.multiple ? [] : '';
+      return acc;
+    }, {});
+
+  const createInitialFormData = () => ({
+    name: '',
+    phone: '',
+    email: '',
+    contactMethod: contactMethods[0]?.id || '',
+    consent: false
+  });
+
+  const [answers, setAnswers] = useState(createInitialAnswers);
+  
+  const [formData, setFormData] = useState(createInitialFormData);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleOptionClick = (option) => {
+    if (currentStep > totalSteps) return;
+
+    const step = steps[currentStep - 1];
+    if (!step) return;
+    
+    if (step.multiple) {
+      const current = answers[step.field];
+      if (current.includes(option)) {
+        setAnswers({
+          ...answers,
+          [step.field]: current.filter(item => item !== option)
+        });
+      } else {
+        setAnswers({
+          ...answers,
+          [step.field]: [...current, option]
+        });
+      }
+    } else {
+      setAnswers({
+        ...answers,
+        [step.field]: option
+      });
+    }
+  };
+
+  const handleNext = () => {
+    const step = steps[currentStep - 1];
+    if (!step) return;
+
+    const hasAnswer = step.multiple 
+      ? answers[step.field].length > 0 
+      : answers[step.field] !== '';
+    
+    if (hasAnswer) {
+      if (currentStep < totalSteps) {
+        setCurrentStep(currentStep + 1);
+      } else {
+        setCurrentStep(6);
+      }
+    }
+  };
+
+  const canGoNext = () => {
+    if (currentStep > totalSteps) return false;
+    const step = steps[currentStep - 1];
+    if (!step) return false;
+    return step.multiple 
+      ? answers[step.field].length > 0 
+      : answers[step.field] !== '';
+  };
+
+  const handleBack = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === 'checkbox' ? checked : value
+    });
+  };
+
+  const handleContactMethodClick = (method) => {
+    setFormData({
+      ...formData,
+      contactMethod: method
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    const result = {
+      answers,
+      contact: formData
+    };
+    
+    console.log('Результаты калькулятора:', result);
+    setIsSubmitted(true);
+  };
+
+  const canSubmit = formData.name && formData.phone && formData.email && formData.consent;
+
+  const progress = Math.min(100, ((currentStep - 1) / totalSteps) * 100);
+
+  const rightPanelMessage = currentStep <= totalSteps
+    ? consultant.messages.default
+    : consultant.messages.final;
+
+  const currentStepData = useMemo(
+    () => (currentStep <= totalSteps ? steps[currentStep - 1] : null),
+    [currentStep, steps, totalSteps]
+  );
+
+  const handleRepeat = () => {
+    setAnswers(createInitialAnswers());
+    setFormData(createInitialFormData());
+    setCurrentStep(1);
+    setIsSubmitted(false);
+  };
+
+  return (
+    <div className="calculator">
+      <div className="calculator__header">
+        <h2 className="calculator__title">
+          {title} <span>{titleAccent}</span>
+        </h2>
+      </div>
+
+      <div className="calculator__content">
+        <div className="calculator__left">
+          {currentStep <= totalSteps ? (
+            <>
+              {currentStep > 1 && (
+                <div className="calculator__progress">
+                  <div className="calculator__progress-text">{progressTexts.prefix} {Math.round(progress)}%</div>
+                  <div className="calculator__progress-track">
+                    <div
+                      className="calculator__progress-bar"
+                      style={{ width: `${progress}%` }}
+                    />
+                  </div>
+                </div>
+              )}
+
+              <div className="calculator__step calculator__step--active">
+                <h3 className="calculator__question">{currentStepData?.question}</h3>
+                
+                {currentStepData?.subtitle && (
+                  <p className="calculator__subtitle">{currentStepData.subtitle}</p>
+                )}
+
+                <div className="calculator__options">
+                  {currentStepData?.options.map((option, index) => {
+                    const isSelected = currentStepData.multiple 
+                      ? answers[currentStepData.field].includes(option)
+                      : answers[currentStepData.field] === option;
+
+                    return (
+                      <button
+                        key={index}
+                        className={`calculator__option ${isSelected ? 'calculator__option--selected' : ''}`}
+                        onClick={() => handleOptionClick(option)}
+                      >
+                        {currentStepData.multiple && (
+                          <span className={`calculator__checkbox ${isSelected ? 'calculator__checkbox--checked' : ''}`} />
+                        )}
+                        {option}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <div className="calculator__navigation">
+                  {currentStep > 1 && (
+                    <button className="calculator__nav-btn calculator__nav-btn--back" onClick={handleBack}>
+                      {buttons.back}
+                    </button>
+                  )}
+                  
+                  <button 
+                    className={`calculator__nav-btn calculator__nav-btn--next ${!canGoNext() ? 'calculator__nav-btn--disabled' : ''}`}
+                    onClick={handleNext}
+                    disabled={!canGoNext()}
+                  >
+                    {buttons.next}
+                  </button>
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="calculator__final-content">
+              <div className="calculator__progress-info">
+                <div className="calculator__progress-text">{progressTexts.finalLabel}</div>
+                <div className="calculator__progress-number">{Math.round(progress)}%</div>
+              </div>
+              <div className="calculator__progress-track calculator__progress-track--final">
+                <div
+                  className="calculator__progress-bar calculator__progress-bar--final"
+                  style={{ width: '100%' }}
+                />
+              </div>
+
+              {isSubmitted ? (
+                <>
+                  <h3 className="calculator__final-title">{progressTexts.submittedHeading}</h3>
+                  <p className="calculator__final-subtitle">{progressTexts.submittedSubtitle}</p>
+                </>
+              ) : (
+                <>
+                  <h3 className="calculator__final-title">{progressTexts.finalHeading}</h3>
+                  <p className="calculator__final-subtitle">
+                    {progressTexts.finalSubtitle}
+                  </p>
+                </>
+              )}
+
+              {isSubmitted ? (
+                <div className="calculator__thankyou">
+                  <img src={thankYouImage} alt={thankYouAlt} className="calculator__thankyou-image" />
+                  <button type="button" className="calculator__repeat" onClick={handleRepeat}>
+                    {buttons.repeat}
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <p className="calculator__final-method">{contactQuestion}</p>
+
+                  <div className="calculator__contact-methods">
+                    {contactMethods.map((method) => {
+                      const MethodIcon = method.icon;
+                      return (
+                        <button
+                          key={method.id}
+                          className={`calculator__contact-btn calculator__contact-btn--${method.id} ${formData.contactMethod === method.id ? 'calculator__contact-btn--active' : ''}`}
+                          onClick={() => handleContactMethodClick(method.id)}
+                          type="button"
+                        >
+                          {MethodIcon && <MethodIcon className="calculator__contact-icon" />}
+                          {method.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  <form className="calculator__form" onSubmit={handleSubmit}>
+                    <input
+                      type="text"
+                      name="phone"
+                      className="calculator__input"
+                      placeholder={placeholders.phone}
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      required
+                    />
+                    <input
+                      type="email"
+                      name="email"
+                      className="calculator__input"
+                      placeholder={placeholders.email}
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                    />
+                    <input
+                      type="text"
+                      name="name"
+                      className="calculator__input"
+                      placeholder={placeholders.name}
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
+                    />
+
+                    <button
+                      type="submit"
+                      className={`calculator__submit ${!canSubmit ? 'calculator__submit--disabled' : ''}`}
+                      disabled={!canSubmit}
+                    >
+                      {buttons.submit}
+                    </button>
+
+                    <label className="calculator__checkbox-label">
+                      <input
+                        type="checkbox"
+                        name="consent"
+                        checked={formData.consent}
+                        onChange={handleInputChange}
+                        className="calculator__checkbox-input"
+                      />
+                      <span className="calculator__checkbox-custom" />
+                      {contactConsent.text}{' '}
+                      <a href={contactConsent.href} className="calculator__link">{contactConsent.linkText}</a>
+                    </label>
+                  </form>
+                </>
+              )}
+            </div>
+          )}
+        </div>
+
+        <div className="calculator__right">
+          <div className="calculator__consultant">
+            <img 
+              src={consultant.photo} 
+              alt={consultant.name} 
+              className="calculator__consultant-photo"
+            />
+            <div className="calculator__consultant-info">
+              <h4 className="calculator__consultant-name">{consultant.name}</h4>
+              <p className="calculator__consultant-role">
+                {consultant.role}
+              </p>
+            </div>
+          </div>
+
+          <div className="calculator__consultant-message">
+            <p>{rightPanelMessage}</p>
+          </div>
+
+          <div className="calculator__bonuses">
+            <h4 className="calculator__bonuses-title">В конце вы получите:</h4>
+            <div className="calculator__bonus-items">
+              {bonuses.map((bonus, index) => {
+                const BonusIcon = bonus.icon;
+                return (
+                  <div className="calculator__bonus-item" key={index}>
+                    {BonusIcon && <BonusIcon className="calculator__bonus-icon" />}
+                    <span className="calculator__bonus-text">{bonus.text}</span>
+                    <img src={bonus.image} alt={`Бонус ${index + 1}`} className="calculator__bonus-preview" />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Calculator;
+
