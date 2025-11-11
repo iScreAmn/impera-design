@@ -1,0 +1,369 @@
+.project-page {
+  min-height: 100vh;
+  background-color: #f5f5f0;
+}
+
+.project-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 120px 40px 80px;
+}
+
+.project-header {
+  margin-bottom: 40px;
+}
+
+.project-back {
+  background: #8b7355;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.project-back:hover {
+  background: #725d45;
+}
+
+.project {
+  position: relative;
+}
+
+.project__content {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.project__info {
+  position: sticky;
+  top: 120px;
+  background: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.project__title {
+  font-family: 'Cormorant', serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2c2c2c;
+  line-height: 1.3;
+  margin-bottom: 24px;
+}
+
+.project__description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #4a4a4a;
+  margin-bottom: 32px;
+}
+
+.project__characteristics {
+  border-top: 1px solid #e0e0e0;
+  padding-top: 24px;
+}
+
+.project__subtitle {
+  font-family: 'Cormorant', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2c2c2c;
+  margin-bottom: 16px;
+}
+
+.project__list,
+.project__features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+}
+
+.project__list li {
+  padding: 8px 0;
+  color: #4a4a4a;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.project__list li strong {
+  color: #2c2c2c;
+  font-weight: 600;
+}
+
+.project__features li {
+  padding: 8px 0 8px 24px;
+  color: #4a4a4a;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  position: relative;
+}
+
+.project__features li::before {
+  content: '•';
+  position: absolute;
+  left: 8px;
+  color: #8b7355;
+  font-weight: bold;
+}
+
+.project__gallery-wrapper {
+  position: relative;
+}
+
+.project__gallery-wrapper::after {
+  content: '';
+  display: block;
+  position: sticky;
+  top: 3.6458vw;
+  right: 0;
+  width: 28.8542vw;
+  height: 30.9896vw;
+  max-width: 400px;
+  max-height: 430px;
+  background: url('/logo.webp') no-repeat center / contain;
+  opacity: 0.15;
+  z-index: 10;
+  pointer-events: none;
+  float: right;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.project__gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.project-gallery__item {
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-gallery__item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+.project-gallery__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.project-gallery__item:hover .project-gallery__img {
+  transform: scale(1.05);
+}
+
+.project-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.project-modal__img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  animation: scaleIn 0.3s ease;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.project-modal__close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.project-modal__close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: rotate(90deg);
+}
+
+.project-modal__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.project-modal__nav:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.project-modal__nav--prev {
+  left: 30px;
+}
+
+.project-modal__nav--next {
+  right: 30px;
+}
+
+.project-modal__counter {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.project-not-found {
+  max-width: 600px;
+  margin: 120px auto;
+  text-align: center;
+  padding: 40px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.project-not-found h2 {
+  font-family: 'Cormorant', serif;
+  font-size: 2rem;
+  color: #2c2c2c;
+  margin-bottom: 20px;
+}
+
+.project-not-found button {
+  background: #8b7355;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.project-not-found button:hover {
+  background: #725d45;
+}
+
+@media (max-width: 1200px) {
+  .project__content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .project__info {
+    position: relative;
+    top: 0;
+  }
+
+  .project__gallery-wrapper::after {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-container {
+    padding: 100px 20px 60px;
+  }
+
+  .project__info {
+    padding: 24px;
+  }
+
+  .project__title {
+    font-size: 1.5rem;
+  }
+
+  .project-modal__close {
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .project-modal__nav {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+
+  .project-modal__nav--prev {
+    left: 15px;
+  }
+
+  .project-modal__nav--next {
+    right: 15px;
+  }
+
+  .project-modal__counter {
+    bottom: 15px;
+    font-size: 0.85rem;
+    padding: 8px 16px;
+  }
+}
+
