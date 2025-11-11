@@ -1,0 +1,16 @@
+.projects-page {
+  min-height: 100vh;
+  background-color: #1a1a1a;
+}
+
+.projects-content {
+  padding: 80px 40px;
+  text-align: center;
+  color: #fff;
+}
+
+.projects-logo {
+  height: 100px;
+  margin-bottom: 20px;
+}
+
