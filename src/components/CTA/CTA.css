@@ -1,0 +1,362 @@
+.cta {
+  position: relative;
+  padding: 80px 0;
+  min-height: 600px;
+  overflow: hidden;
+}
+
+.cta__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 85%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.cta__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.cta__container {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  z-index: 2;
+}
+
+.cta__left {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.cta__checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cta__title {
+  font-family: 'Square721', sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.cta__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cta__list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-family: 'Mulish Medium', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+.cta__check {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  background-color: #B89968;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.cta__person {
+  position: relative;
+  height: 400px;
+}
+
+.cta__person-img {
+  position: absolute;
+  bottom: 78px;
+  left: 22%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  object-position: top center;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.5));
+  z-index: 1;
+}
+
+.cta__person-info {
+  position: absolute;
+  bottom: 122px;
+  left: 28%;
+  transform: translateX(20%);
+  background-color: #2C2C2C;
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 2;
+}
+
+.cta__person-name {
+  font-family: 'Mulish Medium', system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.cta__person-title {
+  font-family: 'Mulish Medium', system-ui, sans-serif;
+  font-size: 14px;
+  color: #B89968;
+}
+
+.cta__content {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cta__form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cta__form-title {
+  font-family: 'Mulish Medium', system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+}
+
+.cta__form-subtitle {
+  font-weight: 400;
+  display: block;
+  margin-top: 4px;
+}
+
+.cta__form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cta__label {
+  font-family: 'Mulish Medium', system-ui, sans-serif;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.cta__required {
+  color: #ff6b6b;
+}
+
+.cta__input {
+  width: 100%;
+  padding: 14px 16px;
+  font-family: 'Mulish Medium', system-ui, sans-serif;
+  font-size: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.cta__input::placeholder {
+  color: #999;
+}
+
+.cta__input:focus {
+  border-color: #B89968;
+  background-color: #ffffff;
+}
+
+.cta__button {
+  width: 100%;
+  padding: 16px 32px;
+  font-family: 'Mulish Medium', system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #B89968;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: none;
+}
+
+.cta__button:hover:not(:disabled) {
+  background-color: #a67f4f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(184, 153, 104, 0.4);
+}
+
+.cta__button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cta__checkbox-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.cta__checkbox {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  cursor: pointer;
+  accent-color: #B89968;
+}
+
+.cta__checkbox-label {
+  font-family: 'Mulish Medium', system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .cta__container {
+    gap: 40px;
+    padding: 0 30px;
+  }
+
+  .cta__title {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cta {
+    padding: 60px 0;
+    min-height: auto;
+  }
+
+  .cta__container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 20px;
+  }
+
+  .cta__title {
+    font-size: 32px;
+  }
+
+  .cta__list-item {
+    font-size: 15px;
+  }
+
+  .cta__person {
+    height: 350px;
+  }
+
+  .cta__person-img {
+    width: 350px;
+    height: 350px;
+  }
+
+  .cta__content {
+    padding: 30px 24px;
+  }
+
+  .cta__form-title {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 576px) {
+  .cta {
+    padding: 40px 0;
+  }
+
+  .cta__container {
+    padding: 0 16px;
+  }
+
+  .cta__title {
+    font-size: 28px;
+  }
+
+  .cta__list-item {
+    font-size: 14px;
+  }
+
+  .cta__person {
+    height: 280px;
+  }
+
+  .cta__person-img {
+    width: 280px;
+    height: 280px;
+  }
+
+  .cta__person-info {
+    padding: 12px 20px;
+    bottom: 40px;
+  }
+
+  .cta__person-name {
+    font-size: 16px;
+  }
+
+  .cta__person-title {
+    font-size: 13px;
+  }
+
+  .cta__content {
+    padding: 24px 20px;
+  }
+
+  .cta__form-title {
+    font-size: 16px;
+  }
+
+  .cta__input {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .cta__button {
+    padding: 14px 28px;
+    font-size: 15px;
+  }
+}
+
