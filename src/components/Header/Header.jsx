@@ -1,5 +1,8 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { headerData } from '../../data/headerData';
+import Modal from '../widgets/Modals/Modal';
+import useModal from '../../utils/useModal';
 import './Header.css';
 
 function Header() {
@@ -11,6 +14,22 @@ function Header() {
     ctaLabel,
     socials,
   } = headerData;
+
+  const { isOpen, openModal, closeModal } = useModal();
+  const [formData, setFormData] = useState({ name: '', email: '', question: '' });
+
+  const isFormValid = formData.name.trim() && formData.email.trim() && formData.question.trim();
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // TODO: Отправка формы
+    setFormData({ name: '', email: '', question: '' });
+    closeModal();
+  };
 
   return (
     <header className="header">
@@ -39,7 +58,7 @@ function Header() {
         </div>
 
         <div className="header__actions">
-          <button className="header__button" type="button">
+          <button className="header__button" type="button" onClick={openModal}>
             {ctaLabel}
           </button>
           <div className="header__social">
@@ -59,6 +78,50 @@ function Header() {
           </div>
         </div>
       </div>
+
+      <Modal 
+        isOpen={isOpen} 
+        onClose={closeModal}
+        title="Задать вопрос"
+        className="question-modal"
+      >
+        <p className="question-modal__subtitle">
+          Задайте ваш вопрос, и мы ответим в ближайшее время
+        </p>
+        <form className="question-modal__form" onSubmit={handleSubmit}>
+          <input 
+            type="text" 
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Ваше имя"
+            className="question-modal__input"
+          />
+          <input 
+            type="email" 
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Email для ответа"
+            className="question-modal__input"
+          />
+          <textarea 
+            name="question"
+            value={formData.question}
+            onChange={handleChange}
+            placeholder="Ваш вопрос..."
+            className="question-modal__textarea"
+            rows="4"
+          />
+          <button 
+            type="submit" 
+            className="question-modal__submit"
+            disabled={!isFormValid}
+          >
+            Отправить
+          </button>
+        </form>
+      </Modal>
     </header>
   );
 }
