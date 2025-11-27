@@ -1,5 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import StickyHeader from '../../components/StickyHeader/StickyHeader';
+import Modal from '../../components/widgets/Modals/Modal';
+import useModal from '../../utils/useModal';
 import { contactsData, socialLinks, infoCards, texts } from '../../data/contactsData';
 import './Contacts.css';
 
@@ -122,7 +124,14 @@ function YandexMap() {
 }
 
 function Contacts() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isOpen, openModal, closeModal } = useModal();
+  const { phone } = contactsData;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // TODO: Отправка формы
+    closeModal();
+  };
 
   return (
     <div className="contacts">
@@ -157,7 +166,7 @@ function Contacts() {
 
           <button 
             className="contacts__cta-btn"
-            onClick={() => setIsModalOpen(true)}
+            onClick={openModal}
           >
             {texts.ctaBtn}
           </button>
@@ -168,40 +177,51 @@ function Contacts() {
         <YandexMap />
       </section>
 
-      {isModalOpen && (
-        <div className="contacts__modal-overlay" onClick={() => setIsModalOpen(false)}>
-          <div className="contacts__modal" onClick={(e) => e.stopPropagation()}>
-            <button 
-              className="contacts__modal-close" 
-              onClick={() => setIsModalOpen(false)}
-              aria-label="Закрыть"
-            >
-              ×
-            </button>
-            <h2 className="contacts__modal-title">{texts.modal.title}</h2>
-            <form className="contacts__modal-form" onSubmit={(e) => {
-              e.preventDefault();
-              setIsModalOpen(false);
-            }}>
-              <input 
-                type="text" 
-                placeholder={texts.modal.namePlaceholder}
-                className="contacts__modal-input"
-                required
+      <Modal 
+        isOpen={isOpen} 
+        onClose={closeModal}
+        title={texts.modal.title}
+        className="callback-modal"
+      >
+        <form className="callback-modal__form" onSubmit={handleSubmit}>
+          <input 
+            type="text" 
+            placeholder={texts.modal.namePlaceholder}
+            className="callback-modal__input"
+            required
+          />
+          <input 
+            type="tel" 
+            placeholder={texts.modal.phonePlaceholder}
+            className="callback-modal__input"
+            required
+          />
+          <textarea 
+            placeholder="Сообщение (необязательно)"
+            className="callback-modal__textarea"
+            rows="3"
+          />
+          <button type="submit" className="callback-modal__submit">
+            {texts.modal.submitBtn}
+          </button>
+        </form>
+
+        <div className="callback-modal__phone-section">
+          <p className="callback-modal__phone-label">Или позвоните нам:</p>
+          <a href={phone.link} className="callback-modal__phone-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path 
+                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
               />
-              <input 
-                type="tel" 
-                placeholder={texts.modal.phonePlaceholder}
-                className="contacts__modal-input"
-                required
-              />
-              <button type="submit" className="contacts__modal-submit">
-                {texts.modal.submitBtn}
-              </button>
-            </form>
-          </div>
+            </svg>
+            {phone.value}
+          </a>
         </div>
-      )}
+      </Modal>
     </div>
   );
 }

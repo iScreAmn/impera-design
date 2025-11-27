@@ -20,7 +20,7 @@ export const contactsData = {
   phone: {
     value: '+7 (991) 776-15-59',
     link: 'tel:+79917761559',
-    label: 'Пн-Пт: 10:00-19:00',
+    label: 'Ежедневно на связи',
   },
   email: {
     value: 'studio-lafee@yandex.ru',
@@ -28,7 +28,7 @@ export const contactsData = {
     label: 'Служба поддержки',
   },
   workingHours: {
-    value: 'Пн-Пт: 10:00-19:00',
+    value: 'Пн-Пт: 09:00-19:00',
     label: 'Режим работы',
   },
   address: {
