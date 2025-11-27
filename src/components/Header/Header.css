@@ -1,9 +1,6 @@
 .header {
   background-color: rgba(26, 26, 26, 0.95);
   padding: 15px 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
 }
 
 .header__container {

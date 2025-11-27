@@ -4,7 +4,7 @@ import { FaCheck } from "react-icons/fa6";
 export const heroData = {
   backgroundImage: background,
   backgroundAlt: 'Интерьер современного пространства',
-  title: 'Студия комерческого дизайна',
+  title: 'Студия коммерческого дизайна',
   emphasis: 'ПОЛНОГО ЦИКЛА',
   subtitle: 'Создаём интерьеры, которые вдохновляют и приносят доход',
   ctaLabel: 'Узнать стоимость',

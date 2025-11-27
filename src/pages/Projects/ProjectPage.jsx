@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import Header from '../../components/Header/Header';
-import Navigation from '../../components/Navigation/Navigation';
+import StickyHeader from '../../components/StickyHeader/StickyHeader';
 import { projectsData } from '../../data/projectsData';
 import './ProjectPage.css';
 
@@ -16,8 +15,7 @@ function ProjectPage() {
   if (!project) {
     return (
       <div className="project-page">
-        <Header />
-        <Navigation />
+        <StickyHeader />
         <div className="project-not-found">
           <h2>Проект не найден</h2>
           <button onClick={() => navigate('/projects')}>Вернуться к проектам</button>
@@ -57,8 +55,7 @@ function ProjectPage() {
 
   return (
     <div className="project-page">
-      <Header />
-      <Navigation />
+      <StickyHeader />
       
       <div className="project-container">
         <div className="project-header">

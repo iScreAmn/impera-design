@@ -1,5 +1,4 @@
-import Header from '../Header/Header';
-import Navigation from '../Navigation/Navigation';
+import StickyHeader from '../StickyHeader/StickyHeader';
 import Hero from '../Hero/Hero';
 import Calculator from '../Calculator/Calculator';
 import ProjectsCollage from '../ProjectsCollage/ProjectsCollage';
@@ -15,8 +14,7 @@ import './Home.css';
 function Home() {
   return (
     <div className="home">
-      <Header />
-      <Navigation />
+      <StickyHeader />
       <Hero />
       <Calculator {...calculatorData} />
       <section className="home__projects">

@@ -11,8 +11,8 @@ export const ctaData = {
   ],
   person: {
     image: photo3,
-    name: 'Екатерина',
-    title: 'Дизайнер-архитектор'
+    name: 'Анастасия',
+    title: 'дизайнер'
   },
   form: {
     title: 'Оставьте заявку,',

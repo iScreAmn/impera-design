@@ -1,5 +1,4 @@
-import Header from '../../components/Header/Header';
-import Navigation from '../../components/Navigation/Navigation';
+import StickyHeader from '../../components/StickyHeader/StickyHeader';
 import { logo } from '../../assets/images';
 import ProjectsCollage from '../../components/ProjectsCollage/ProjectsCollage';
 import './Projects.css';
@@ -7,8 +6,7 @@ import './Projects.css';
 function Projects() {
   return (
     <div className="projects-page">
-      <Header />
-      <Navigation />
+      <StickyHeader />
       <div className="projects-content">
         <img src={logo} alt="KPI Studios" className="projects-logo" />
         <h1 className="projects-title">Реализованные проекты Impera Studio</h1>

@@ -2,9 +2,6 @@
   font-family: 'Mulish Medium';
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(10px);
-  position: sticky;
-  top: 0;
-  z-index: 99;
 }
 
 .navigation__container {
@@ -32,8 +29,8 @@
   color: #fff;
   text-decoration: none;
   text-transform: uppercase;
-  padding: 18px 12px;
-  font-size: 14px;
+  padding: 10px 12px;
+  font-size: 12px;
   font-weight: 500;
   transition: all 0.3s ease;
   position: relative;
