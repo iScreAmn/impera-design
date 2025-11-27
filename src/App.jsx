@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ScrollToTop from './components/widgets/ScrollToTop/ScrollToTop';
 import Home from './components/Home/Home';
 import About from './pages/About/About';
 import Services from './pages/Services/Services';
@@ -23,6 +24,7 @@ function App() {
         <Route path="/stages" element={<Stages />} />
         <Route path="/contacts" element={<Contacts />} />
       </Routes>
+      <ScrollToTop />
     </Router>
   );
 }
