@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import StickyHeader from '../../components/StickyHeader/StickyHeader';
 import Modal from '../../components/widgets/Modals/Modal';
 import useModal from '../../utils/useModal';
@@ -126,10 +126,18 @@ function YandexMap() {
 function Contacts() {
   const { isOpen, openModal, closeModal } = useModal();
   const { phone } = contactsData;
+  const [formData, setFormData] = useState({ name: '', phone: '' });
+
+  const isFormValid = formData.name.trim() && formData.phone.trim();
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // TODO: Отправка формы
+    setFormData({ name: '', phone: '' });
     closeModal();
   };
 
@@ -186,22 +194,30 @@ function Contacts() {
         <form className="callback-modal__form" onSubmit={handleSubmit}>
           <input 
             type="text" 
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
             placeholder={texts.modal.namePlaceholder}
             className="callback-modal__input"
-            required
           />
           <input 
             type="tel" 
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
             placeholder={texts.modal.phonePlaceholder}
             className="callback-modal__input"
-            required
           />
           <textarea 
             placeholder="Сообщение (необязательно)"
             className="callback-modal__textarea"
             rows="3"
           />
-          <button type="submit" className="callback-modal__submit">
+          <button 
+            type="submit" 
+            className="callback-modal__submit"
+            disabled={!isFormValid}
+          >
             {texts.modal.submitBtn}
           </button>
         </form>
