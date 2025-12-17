@@ -161,7 +161,7 @@
 
 .footer__nav-link:hover {
   color: #fff;
-  transform: translateX(8px);
+  /* transform: translateX(8px); */
 }
 
 .footer__nav-link:hover::before {
