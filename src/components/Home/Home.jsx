@@ -6,6 +6,7 @@ import ServicesSection from '../ServicesSection/ServicesSection';
 import Advantage from '../Advantage/Advantage';
 import Creator from '../Creator/Creator';
 import CTA from '../CTA/CTA';
+import Footer from '../Footer/Footer';
 import { calculatorData } from '../../data/calculatorData';
 import { aboutData } from '../../data/aboutData';
 import { ctaData } from '../../data/ctaData';
@@ -28,6 +29,7 @@ function Home() {
       <Advantage />
       <Creator {...aboutData} />
       <CTA {...ctaData} />
+      <Footer />
     </div>
   );
 }
