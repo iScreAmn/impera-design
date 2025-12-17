@@ -21,6 +21,8 @@ export { default as checklist } from './art/checklist.png';
 export { default as photo1 } from './photos/olga.jpeg';
 export { default as photo2 } from './photos/olga-2.webp';
 export { default as photo3 } from './photos/anastasia.png';
+export { default as photo4 } from './photos/olga-3.jpg';
+export { default as photo5 } from './photos/olga-4.jpg';
 
 // Projects
 // Boss-Lounge
@@ -34,3 +36,13 @@ export { default as lesnoiPark1 } from './projects/lesnoi/lesnoi1.webp';
 export { default as lesnoiPark2 } from './projects/lesnoi/lesnoi2.webp';
 export { default as lesnoiPark3 } from './projects/lesnoi/lesnoi3.webp';
 export { default as lesnoiPark4 } from './projects/lesnoi/lesnoi4.webp';
+
+// Partners
+export { default as partner1 } from './partners/drev-uiut-black22.png';
+export { default as partner2 } from './partners/eco-carcas.png';
+export { default as partner3 } from './partners/isstroi.png';
+export { default as partner4 } from './partners/kuxni.com2.png';
+export { default as partner5 } from './partners/lightproof.png';
+export { default as partner6 } from './partners/stroim.png';
+export { default as partner7 } from './partners/location.png';
+
