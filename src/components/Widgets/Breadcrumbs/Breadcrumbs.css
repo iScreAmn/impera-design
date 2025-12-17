@@ -1,0 +1,152 @@
+.breadcrumbs {
+  padding: 16px 0;
+  width: 100%;
+}
+
+.breadcrumbs__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumbs__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.breadcrumbs__link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #5e5e5e;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+/* .breadcrumbs__link:hover {
+  color: #1a1a1a;
+  opacity: 0.8;
+} */
+
+.breadcrumbs__link--home {
+  font-weight: 500;
+}
+
+.breadcrumbs__icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  stroke-width: 1.5;
+}
+
+.breadcrumbs__text {
+  white-space: nowrap;
+}
+
+.breadcrumbs__separator {
+  color: #adadad;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  margin: 0 4px;
+}
+
+.breadcrumbs__current {
+  color: #888888;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 300px;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .breadcrumbs {
+    padding: 14px 0;
+  }
+
+  .breadcrumbs__link,
+  .breadcrumbs__current {
+    font-size: 16px;
+  }
+
+  .breadcrumbs__icon,
+  .breadcrumbs__separator {
+    width: 20px;
+    height: 20px;
+  }
+
+  .breadcrumbs__current {
+    max-width: 250px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .breadcrumbs {
+    padding: 12px 0;
+  }
+
+  .breadcrumbs__list {
+    gap: 4px;
+  }
+
+  .breadcrumbs__item {
+    gap: 4px;
+  }
+
+  .breadcrumbs__link,
+  .breadcrumbs__current {
+    font-size: 14px;
+  }
+
+  .breadcrumbs__icon,
+  .breadcrumbs__separator {
+    width: 18px;
+    height: 18px;
+  }
+
+  .breadcrumbs__current {
+    max-width: 180px;
+  }
+}
+
+/* Small Mobile - скрытие промежуточных элементов */
+@media (max-width: 480px) {
+  .breadcrumbs__list {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 4px;
+  }
+
+  .breadcrumbs__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .breadcrumbs__text {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .breadcrumbs__current {
+    max-width: 120px;
+  }
+
+  /* Скрытие промежуточных элементов при недостатке места */
+  .breadcrumbs__item:not(:first-child):not(:last-child) .breadcrumbs__text {
+    max-width: 80px;
+  }
+}
+
