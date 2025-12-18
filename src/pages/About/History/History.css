@@ -1,0 +1,280 @@
+.history {
+  background-color: #1a1a1a;
+  color: #fff;
+  padding: 120px 0;
+}
+
+.history__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 0 0;
+}
+
+.history__left {
+  position: sticky;
+  top: 120px;
+  padding-right: 40px;
+}
+
+.history__title {
+  font-family: var(--font-heading);
+  font-size: 52px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 32px;
+  letter-spacing: -0.02em;
+}
+
+.history__title-accent {
+  display: block;
+}
+
+.history__text {
+  font-family: 'Mulish Medium', sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #b8b8b8;
+  font-weight: 400;
+}
+
+.history__right {
+  display: flex;
+  flex-direction: column;
+  gap: 130px;
+  position: relative;
+}
+
+.history__right::before {
+  content: '';
+  position: absolute;
+  left: 28px;
+  top: 55px;
+  bottom: 70px;
+  width: 1px;
+  background-color: #9b7e5d;
+  z-index: 1;
+}
+
+.history__item {
+  display: flex;
+  gap: 24px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: history-fade-in 0.6s ease forwards;
+  position: relative;
+  z-index: 2;
+}
+
+.history__item:nth-child(1) { animation-delay: 0.1s; }
+.history__item:nth-child(2) { animation-delay: 0.2s; }
+.history__item:nth-child(3) { animation-delay: 0.3s; }
+.history__item:nth-child(4) { animation-delay: 0.4s; }
+.history__item:nth-child(5) { animation-delay: 0.5s; }
+.history__item:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes history-fade-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.history__item-icon {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  background-color: #9b7e5d;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 32px;
+}
+
+.history__item-content {
+  flex: 1;
+}
+
+.history__item-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.history__item-year {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 400;
+  color: #9b7e5d;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+}
+
+.history__item-title {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.history__item-description {
+  font-family: 'Mulish Medium', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #b8b8b8;
+  font-weight: 400;
+}
+
+/* Tablet */
+@media (max-width: 1280px) {
+  .history {
+    padding: 100px 0;
+  }
+
+  .history__container {
+    gap: 60px;
+  }
+
+  .history__title {
+    font-size: 44px;
+    margin-bottom: 24px;
+  }
+
+  .history__text {
+    font-size: 16px;
+  }
+
+  .history__item-year {
+    font-size: 20px;
+  }
+
+  .history__item-title {
+    font-size: 21px;
+  }
+}
+
+/* Tablet - single column */
+@media (max-width: 1023px) {
+  .history {
+    padding: 80px 0;
+  }
+
+  .history__container {
+    grid-template-columns: 1fr;
+    gap: 60px;
+    min-height: auto;
+    padding: 0;
+  }
+
+  .history__left {
+    position: static;
+    padding-right: 0;
+  }
+
+  .history__right::before {
+    left: 24px;
+  }
+
+  .history__right {
+    gap: 56px;
+  }
+
+  .history__item-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 28px;
+  }
+
+  .history__item-year {
+    font-size: 19px;
+  }
+
+  .history__item-title {
+    font-size: 19px;
+  }
+
+  .history__item-description {
+    font-size: 15px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .history {
+    padding: 60px 0;
+  }
+
+  .history__container {
+    gap: 40px;
+  }
+
+  .history__title {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  .history__text {
+    font-size: 15px;
+  }
+
+  .history__right {
+    gap: 48px;
+  }
+
+  .history__right::before {
+    left: 22px;
+  }
+
+  .history__item {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .history__item-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
+  }
+
+  .history__item-year {
+    font-size: 18px;
+  }
+
+  .history__item-title {
+    font-size: 18px;
+  }
+
+  .history__item-description {
+    font-size: 14px;
+  }
+
+  .history__item-header {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .history {
+    padding: 50px 0;
+  }
+
+  .history__title {
+    font-size: 28px;
+  }
+
+  .history__item-year {
+    font-size: 17px;
+  }
+
+  .history__item-title {
+    font-size: 17px;
+  }
+}
