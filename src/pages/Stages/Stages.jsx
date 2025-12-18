@@ -1,6 +1,7 @@
-import { useMemo, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView, useMotionValue } from 'framer-motion';
 import StickyHeader from '../../components/StickyHeader/StickyHeader';
+import Breadcrumbs from '../../components/Widgets/Breadcrumbs/Breadcrumbs';
 import Footer from '../../components/Footer/Footer';
 import { background3, background4 } from '../../assets/images';
 import './Stages.css';
@@ -45,7 +46,7 @@ const stagesData = [
       'спецификация материалов, мебели и оборудования с артикулами, магазинами и ценами',
     ],
     result:
-      'Стройка получает чёткие, точные чертежи для безопасной и качественной реализации.',
+      'Проект получает чёткие, точные чертежи для безопасной и качественной реализации.',
   },
   {
     id: 'supervision',
@@ -106,24 +107,20 @@ function Stages() {
     }
   }, [isLastStepInView, progress]);
 
-  const heroBackground = useMemo(
-    () => ({
-      backgroundImage: `
-        radial-gradient(120% 120% at 10% 10%, rgba(200, 162, 120, 0.15), transparent 40%),
-        radial-gradient(90% 90% at 90% 20%, rgba(255, 255, 255, 0.07), transparent 45%),
-        url(${background4})
-      `,
-    }),
-    []
-  );
 
   return (
     <div className="stages-page">
       <StickyHeader />
 
       <main className="stages">
-        <section className="stages-hero" style={heroBackground}>
+        <section className="stages-hero">
+          <img src={background4} alt="" className="stages-hero__bg" />
           <div className="stages-hero__overlay" />
+          <div className="stages-hero__breadcrumbs">
+            <div className="stages-hero__breadcrumbs-container">
+              <Breadcrumbs />
+            </div>
+          </div>
           <div className="stages-hero__content">
             <Motion.span
               className="stages-hero__eyebrow"
@@ -167,21 +164,7 @@ function Stages() {
             </div>
           </div>
 
-          <Motion.div
-            className="stages-hero__card"
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.25 }}
-          >
-            <div className="stages-hero__card-top">
-              <span className="stages-hero__pill">full cycle</span>
-              <span className="stages-hero__pill stages-hero__pill--light">дизайн → реализация</span>
-            </div>
-            <p className="stages-hero__card-text">
-              Стратегия, визуализация, чертежи и авторский надзор — единый маршрут без потери
-              смысла и стиля.
-            </p>
-          </Motion.div>
+          
         </section>
 
         <section className="stages-body" ref={containerRef}>
@@ -205,7 +188,7 @@ function Stages() {
                 {stagesData.map((stage, index) => (
                   <div key={stage.id} className="stages-aside__tick">
                     <span className="stages-aside__tick-dot" />
-                    <span className="stages-aside__tick-label">0{index + 1}</span>
+                    <span className="stages-aside__tick-label">{index + 1} шаг</span>
                   </div>
                 ))}
               </div>
@@ -226,7 +209,7 @@ function Stages() {
               >
                 <div className="stages-step__header">
                   <div className="stages-step__meta">
-                    <span className="stages-step__index">0{index + 1}</span>
+                    <span className="stages-step__index">{index + 1} шаг</span>
                     <span className="stages-step__subtitle">{stage.subtitle}</span>
                   </div>
                   <span className="stages-step__badge">этап</span>
@@ -263,7 +246,8 @@ function Stages() {
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="stages-footer__visual" style={{ backgroundImage: `url(${background3})` }}>
+            <div className="stages-footer__visual">
+              <img src={background3} alt="" className="stages-footer__bg" />
               <div className="stages-footer__glow" />
             </div>
             <div className="stages-footer__content">

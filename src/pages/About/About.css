@@ -3,8 +3,18 @@
   background-color: #1a1a1a;
 }
 
+.about-breadcrumbs {
+  color: #fff;
+}
+
+.about-breadcrumbs__container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
 .about-content {
-  padding: 80px 40px;
+  padding: 40px 40px 80px;
   text-align: center;
   color: #fff;
 }
@@ -12,4 +22,36 @@
 .about-logo {
   height: 100px;
   margin-bottom: 20px;
+}
+
+.about-section {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 60px 90px;
+}
+
+@media (max-width: 1023px) {
+  .about-section {
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-breadcrumbs {
+    padding-top: 80px;
+  }
+
+  .about-breadcrumbs__container {
+    padding: 0 20px;
+  }
+
+  .about-section {
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-section {
+    padding: 0 16px;
+  }
 }

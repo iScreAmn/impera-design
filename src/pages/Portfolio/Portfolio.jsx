@@ -1,4 +1,5 @@
 import StickyHeader from '../../components/StickyHeader/StickyHeader';
+import Footer from '../../components/Footer/Footer';
 import { logo } from '../../assets/images';
 import './Portfolio.css';
 
@@ -10,6 +11,7 @@ function Portfolio() {
         <img src={logo} alt="KPI Studios" className="portfolio-logo" />
         <h1>Портфолио</h1>
       </div>
+      <Footer />
     </div>
   );
 }
