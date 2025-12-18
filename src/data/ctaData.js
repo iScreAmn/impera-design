@@ -1,4 +1,4 @@
-import { background6, photo3 } from '../assets/images'
+import { background6 } from '../assets/images'
 
 export const ctaData = {
   backgroundImage: background6,
@@ -9,11 +9,6 @@ export const ctaData = {
     'Ответим на все интересующие вопросы',
     'Договоримся об удобном времени для выезда замерщика'
   ],
-  person: {
-    image: photo3,
-    name: 'Анастасия',
-    title: 'дизайнер'
-  },
   form: {
     title: 'Оставьте заявку,',
     subtitle: 'позвоним вам в течение 15 минут',

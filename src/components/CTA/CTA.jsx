@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './CTA.css'
 
-const CTA = ({ backgroundImage, title, checklistItems, person, form }) => {
+const CTA = ({ backgroundImage, title, checklistItems, form }) => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -102,13 +102,6 @@ const CTA = ({ backgroundImage, title, checklistItems, person, form }) => {
           </form>
         </div>
       </div>
-      <div className="cta__person">
-            <img src={person.image} alt={`${person.name} - ${person.title}`} className="cta__person-img" />
-            <div className="cta__person-info">
-              <div className="cta__person-name">{person.name}</div>
-              <div className="cta__person-title">{person.title}</div>
-            </div>
-          </div>
     </section>
   )
 }
