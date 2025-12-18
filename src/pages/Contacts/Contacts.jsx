@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import StickyHeader from '../../components/StickyHeader/StickyHeader';
+import Breadcrumbs from '../../components/Widgets/Breadcrumbs/Breadcrumbs';
 import Modal from '../../components/widgets/Modals/Modal';
+import Footer from '../../components/Footer/Footer';
 import useModal from '../../utils/useModal';
 import { contactsData, socialLinks, infoCards, texts } from '../../data/contactsData';
 import './Contacts.css';
@@ -145,6 +147,12 @@ function Contacts() {
     <div className="contacts">
       <StickyHeader />
       
+      <div className="contacts__breadcrumbs">
+        <div className="contacts__breadcrumbs-container">
+          <Breadcrumbs />
+        </div>
+      </div>
+
       <section className="contacts__hero">
         <div className="contacts__container">
           <h1 className="contacts__title">{texts.pageTitle}</h1>
@@ -238,6 +246,8 @@ function Contacts() {
           </a>
         </div>
       </Modal>
+
+      <Footer />
     </div>
   );
 }

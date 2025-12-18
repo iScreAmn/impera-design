@@ -3,6 +3,22 @@
   background-color: #1a1a1a;
 }
 
+.contacts__breadcrumbs-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+@media (max-width: 768px) {
+  .contacts__breadcrumbs {
+    padding-top: 80px;
+  }
+
+  .contacts__breadcrumbs-container {
+    padding: 0 20px;
+  }
+}
+
 /* Hero Section */
 .contacts__hero {
   padding: 20px 40px 80px;
