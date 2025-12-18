@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
+import { IoIosClose } from 'react-icons/io';
 import StickyHeader from '../../components/StickyHeader/StickyHeader';
+import Breadcrumbs from '../../components/Widgets/Breadcrumbs/Breadcrumbs';
+import Footer from '../../components/Footer/Footer';
 import { projectsData } from '../../data/projectsData';
 import './ProjectPage.css';
 
@@ -57,13 +61,13 @@ function ProjectPage() {
     <div className="project-page">
       <StickyHeader />
       
-      <div className="project-container">
-        <div className="project-header">
-          <button className="project-back" onClick={() => navigate('/projects')}>
-            ← Вернуться к проектам
-          </button>
+      <div className="project-breadcrumbs">
+        <div className="project-breadcrumbs__container">
+          <Breadcrumbs />
         </div>
+      </div>
 
+      <div className="project-container">
         <div className="project">
           <div className="project__content">
             <div className="project__info">
@@ -99,19 +103,57 @@ function ProjectPage() {
 
             <div className="project__gallery-wrapper">
               <div className="project__gallery">
-                {project.images.map((image, index) => (
-                  <div
-                    key={index}
-                    className="project-gallery__item"
-                    onClick={() => openModal(index)}
-                  >
-                    <img
-                      src={image}
-                      alt={`${project.title} - изображение ${index + 1}`}
-                      className="project-gallery__img"
-                    />
-                  </div>
-                ))}
+                {project.images.map((image, index) => {
+                  const totalImages = project.images.length;
+                  const isLarge = index === 0 || index === totalImages - 1 || index % 3 === 0;
+                  const isFirstInPair = !isLarge && index % 3 === 1;
+                  
+                  if (isLarge) {
+                    return (
+                      <div
+                        key={index}
+                        className="project-gallery__item project-gallery__item--large"
+                        onClick={() => openModal(index)}
+                      >
+                        <img
+                          src={image}
+                          alt={`${project.title} - изображение ${index + 1}`}
+                          className="project-gallery__img"
+                        />
+                      </div>
+                    );
+                  } else if (isFirstInPair) {
+                    const nextImage = project.images[index + 1];
+                    return (
+                      <div key={`pair-${index}`} className="project-gallery__pair">
+                        <div
+                          className="project-gallery__item project-gallery__item--small"
+                          onClick={() => openModal(index)}
+                        >
+                          <img
+                            src={image}
+                            alt={`${project.title} - изображение ${index + 1}`}
+                            className="project-gallery__img"
+                          />
+                        </div>
+                        {nextImage && (
+                          <div
+                            className="project-gallery__item project-gallery__item--small"
+                            onClick={() => openModal(index + 1)}
+                          >
+                            <img
+                              src={nextImage}
+                              alt={`${project.title} - изображение ${index + 2}`}
+                              className="project-gallery__img"
+                            />
+                          </div>
+                        )}
+                      </div>
+                    );
+                  } else {
+                    return null;
+                  }
+                })}
               </div>
             </div>
           </div>
@@ -132,7 +174,7 @@ function ProjectPage() {
             onClick={closeModal}
             aria-label="Закрыть"
           >
-            ✕
+            <IoIosClose />
           </button>
           
           <button
@@ -140,7 +182,7 @@ function ProjectPage() {
             onClick={prevImage}
             aria-label="Предыдущее изображение"
           >
-            ‹
+            <MdKeyboardArrowLeft />
           </button>
           
           <img
@@ -155,7 +197,7 @@ function ProjectPage() {
             onClick={nextImage}
             aria-label="Следующее изображение"
           >
-            ›
+            <MdKeyboardArrowRight />
           </button>
 
           <div className="project-modal__counter">
@@ -163,6 +205,8 @@ function ProjectPage() {
           </div>
         </div>
       )}
+
+      <Footer />
     </div>
   );
 }
