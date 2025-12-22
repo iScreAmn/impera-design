@@ -37,6 +37,37 @@ export { default as lesnoiPark2 } from './projects/lesnoi/lesnoi2.webp';
 export { default as lesnoiPark3 } from './projects/lesnoi/lesnoi3.webp';
 export { default as lesnoiPark4 } from './projects/lesnoi/lesnoi4.webp';
 
+// Cafe Trophi
+export { default as cafeTrophi1 } from './projects/cafe-trophi/trophi1.jpg';
+export { default as cafeTrophi2 } from './projects/cafe-trophi/trophi2.jpg';
+export { default as cafeTrophi3 } from './projects/cafe-trophi/trophi3.jpg';
+export { default as cafeTrophi4 } from './projects/cafe-trophi/trophi4.jpg';
+
+// Kids Room
+export { default as kidsRoom1 } from './projects/kids-room/kids1.jpeg';
+export { default as kidsRoom2 } from './projects/kids-room/kids2.jpeg';
+export { default as kidsRoom3 } from './projects/kids-room/kids3.jpeg';
+export { default as kidsRoom4 } from './projects/kids-room/kids4.jpeg';
+
+// Slow Glow
+export { default as slowGlow1 } from './projects/slow-glow/slow1.jpg';
+export { default as slowGlow2 } from './projects/slow-glow/slow2.jpg';
+export { default as slowGlow3 } from './projects/slow-glow/slow3.jpg';
+export { default as slowGlow4 } from './projects/slow-glow/slow4.jpg';
+
+// Bulvar
+export { default as bulvar1 } from './projects/bulvar/bulvar1.jpg';
+export { default as bulvar2 } from './projects/bulvar/bulvar2.jpg';
+export { default as bulvar3 } from './projects/bulvar/bulvar3.jpg';
+export { default as bulvar4 } from './projects/bulvar/bulvar4.jpg';
+
+// Office Express
+export { default as office1 } from './projects/office/officeExpress1.jpg';
+export { default as office2 } from './projects/office/officeExpress2.jpg';
+export { default as office3 } from './projects/office/officeExpress3.jpg';
+export { default as office4 } from './projects/office/officeExpress4.jpg';
+
+
 // Partners
 export { default as partner1 } from './partners/drev-uiut-black22.png';
 export { default as partner2 } from './partners/eco-carcas.png';

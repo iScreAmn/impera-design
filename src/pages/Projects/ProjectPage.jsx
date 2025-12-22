@@ -76,29 +76,6 @@ function ProjectPage() {
               <div className="project__description">
                 <p>{project.description}</p>
               </div>
-
-              <div className="project__characteristics">
-                <h3 className="project__subtitle">Характеристики проекта:</h3>
-                <ul className="project__list">
-                  <li><strong>Студия:</strong> {project.studio}</li>
-                  <li><strong>Площадь:</strong> {project.area} м²</li>
-                  <li><strong>Тип проекта:</strong> {project.type}</li>
-                  <li><strong>Дизайнер:</strong> {project.designer}</li>
-                  <li><strong>Локация:</strong> {project.location}</li>
-                  <li><strong>Дата реализации:</strong> {project.date}</li>
-                </ul>
-
-                {project.features && (
-                  <>
-                    <h3 className="project__subtitle">Особенности:</h3>
-                    <ul className="project__features">
-                      {project.features.map((feature, index) => (
-                        <li key={index}>{feature}</li>
-                      ))}
-                    </ul>
-                  </>
-                )}
-              </div>
             </div>
 
             <div className="project__gallery-wrapper">
