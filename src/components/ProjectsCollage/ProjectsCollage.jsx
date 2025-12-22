@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { projectsData } from '../../data/projectsData';
 import './ProjectsCollage.css';
 
-function ProjectsCollage({ onProjectClick }) {
+function ProjectsCollage({ onProjectClick, limit }) {
   const navigate = useNavigate();
+  const displayedProjects = limit ? projectsData.slice(0, limit) : projectsData;
   const [activeImages, setActiveImages] = useState(() =>
-    projectsData.reduce((acc, project) => {
+    displayedProjects.reduce((acc, project) => {
       acc[project.id] = 0;
       return acc;
     }, {})
@@ -26,7 +27,7 @@ function ProjectsCollage({ onProjectClick }) {
 
   return (
     <div id="projects-collage" className="projects-collage">
-      {projectsData.map((project) => (
+      {displayedProjects.map((project) => (
         <div
           key={project.id}
           className="projects-collage__item"

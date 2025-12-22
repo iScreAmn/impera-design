@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import StickyHeader from '../StickyHeader/StickyHeader';
 import Hero from '../Hero/Hero';
 import Calculator from '../Calculator/Calculator';
@@ -23,7 +24,12 @@ function Home() {
           <h2 className="home__projects-title">Реализованные проекты Impera Studio</h2>
           <p className="home__projects-subtitle">Наши работы говорят сами за себя</p>
         </div>
-        <ProjectsCollage />
+        <ProjectsCollage limit={4} />
+        <div className="home__projects-footer">
+          <Link to="/projects" className="home__projects-button">
+            Посмотреть портфолио
+          </Link>
+        </div>
       </section>
       <ServicesSection />
       <Advantage />
