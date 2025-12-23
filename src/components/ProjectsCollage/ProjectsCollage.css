@@ -5,6 +5,7 @@
   padding: 0 40px;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   gap: 40px;
+  scroll-margin-top: 120px; /* Отступ для sticky header при прокрутке */
 }
 
 .projects-collage__item {

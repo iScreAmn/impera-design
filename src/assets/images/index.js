@@ -77,3 +77,12 @@ export { default as partner5 } from './partners/lightproof.png';
 export { default as partner6 } from './partners/stroim.png';
 export { default as partner7 } from './partners/location.png';
 
+// Clients
+export { default as client1 } from './partners/clients/client1.png';
+export { default as client2 } from './partners/clients/client2.png';
+export { default as client3 } from './partners/clients/client3.png';
+export { default as client4 } from './partners/clients/client4.png';
+export { default as client5 } from './partners/clients/client5.png';
+export { default as client6 } from './partners/clients/client6.png';
+
+
