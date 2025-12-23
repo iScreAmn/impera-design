@@ -1,16 +1,158 @@
+import { useMemo } from 'react';
 import StickyHeader from '../../components/StickyHeader/StickyHeader';
+import Breadcrumbs from '../../components/Widgets/Breadcrumbs/Breadcrumbs';
 import Footer from '../../components/Footer/Footer';
-import { logo } from '../../assets/images';
+import {
+  client1,
+  client2,
+  client3,
+  client4,
+  client5,
+  client6,
+  logo,
+} from '../../assets/images';
 import './Clients.css';
 
+const CLIENTS = [
+  { name: 'Nova Development', focus: 'Девелоперские проекты', logo: client1 },
+  { name: 'Urban Impact', focus: 'Коммерческая недвижимость', logo: client2 },
+  { name: 'Gastronomy Lab', focus: 'HoReCa', logo: client3 },
+  { name: 'Eco Frame', focus: 'Строительные решения', logo: client4 },
+  { name: 'Lightproof', focus: 'Световые системы', logo: client5 },
+  { name: 'Isstroi', focus: 'Жилые комплексы', logo: client6 },
+];
+
+const INITIAL_TESTIMONIALS = [
+  {
+    id: 't1',
+    name: 'Александр Воробьев',
+    company: 'CEO, Urban Impact',
+    text: 'Команда быстро предложила рабочие концепции и сопровождала согласования с девелопером без лишней бюрократии.',
+  },
+  {
+    id: 't2',
+    name: 'Мария Деева',
+    company: 'COO, Gastronomy Lab',
+    text: 'Ресторан получил интерьер, который усиливает гостевой опыт. Ребята гибкие и держат сроки.',
+  },
+  {
+    id: 't3',
+    name: 'Олег Савчук',
+    company: 'Партнер, Eco Frame',
+    text: 'Четкая коммуникация, современный дизайн и внимание к деталям на стройке. Сотрудничаем и дальше.',
+  },
+];
+
 function Clients() {
+  const stats = useMemo(
+    () => [
+      { label: 'Дизайн-проектов', value: '300+' },
+      { label: 'Средняя площадь реализованных проектов', value: '200 м²' },
+      { label: 'Экономии на ремонте за счёт проекта', value: 'до 40%' },
+    ],
+    []
+  );
+
   return (
     <div className="clients-page">
       <StickyHeader />
-      <div className="clients-content">
-        <img src={logo} alt="KPI Studios" className="clients-logo" />
-        <h1>Наши клиенты</h1>
+
+      <div className="clients-breadcrumbs">
+        <div className="clients-breadcrumbs__container">
+          <Breadcrumbs />
+        </div>
       </div>
+
+      <section className="clients-hero">
+        <div className="clients-hero__container">
+          <div className="clients-hero__content">
+            <div className="clients-hero__eyebrow">Партнерства, которые двигают бизнес</div>
+            <h1 className="clients-hero__title">Наши клиенты</h1>
+            <p className="clients-hero__subtitle">
+              Мы проектируем пространства, которые усиливают бренды и создают измеримый эффект:
+              от девелоперов и ритейла до HoReCa и офисов.
+            </p>
+            <div className="clients-hero__stats">
+              {stats.map((item) => (
+                <div key={item.label} className="clients-hero__stat">
+                  <div className="clients-hero__stat-value">{item.value}</div>
+                  <div className="clients-hero__stat-label">{item.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="clients-hero__card">
+            <img src={logo} alt="Impera Design" className="clients-hero__logo" />
+            <div className="clients-hero__card-text">
+              <p>
+                Синхронизируем архитектуру, инженерку и брендинг, чтобы каждый проект был собран
+                как продукт: быстро, прозрачно, с вниманием к деталям.
+              </p>
+              <div className="clients-hero__badges">
+                <span>Full-cycle</span>
+                <span>Авторский надзор</span>
+                <span>Digital-подход</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="clients-list">
+        <div className="clients-list__header">
+          <div>
+            <h2 className="clients-list__title">Клиенты, которые доверяют</h2>
+            <p className="clients-list__subtitle">
+              Используем корпоративный контроль качества и прозрачные процессы — поэтому возвращаются
+              с новыми задачами.
+            </p>
+          </div>
+          <div className="clients-list__pill">6 активных партнерств</div>
+        </div>
+
+        <div className="clients-list__marquee">
+          <div className="clients-list__fade clients-list__fade--left" aria-hidden />
+          <div className="clients-list__fade clients-list__fade--right" aria-hidden />
+          <div className="clients-list__track">
+            {[...CLIENTS, ...CLIENTS].map((client, index) => (
+              <article key={`${client.name}-${index}`} className="clients-list__card">
+                <div className="clients-list__logo-box">
+                  <img src={client.logo} alt={client.name} className="clients-list__logo" />
+                </div>
+                <div className="clients-list__info">
+                  <h3 className="clients-list__name">{client.name}</h3>
+                  <p className="clients-list__focus">{client.focus}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="clients-testimonials">
+        <div className="clients-testimonials__header">
+          <div>
+            <h2 className="clients-testimonials__title">Отзывы</h2>
+            <p className="clients-testimonials__subtitle">
+              Коротко и по делу. Реальные отзывы от наших клиентов.
+            </p>
+          </div>
+        </div>
+
+        <div className="clients-testimonials__grid">
+          {INITIAL_TESTIMONIALS.map((item) => (
+            <article key={item.id} className="clients-testimonials__card">
+              <div className="clients-testimonials__quote">"{item.text}"</div>
+              <div className="clients-testimonials__author">
+                <div className="clients-testimonials__name">{item.name}</div>
+                <div className="clients-testimonials__company">{item.company}</div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <Footer />
     </div>
   );

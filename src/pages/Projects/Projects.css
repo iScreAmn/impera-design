@@ -1,36 +1,52 @@
 .projects-page {
   min-height: 100vh;
-  background-color: #fff;
+}
+
+.projects-breadcrumbs {
+  width: min(1200px, 100%);
+  margin: 0 auto;
 }
 
 .projects-breadcrumbs__container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 40px;
+}
+
+.projects-breadcrumbs .breadcrumbs__current {
+  color: #d6d6d6;
+}
+
+.projects-breadcrumbs .breadcrumbs__separator {
+  color: #6a6a6a;
+}
+
+@media (max-width: 1024px) {
+  .projects-breadcrumbs {
+    padding: 100px 24px 0;
+  }
 }
 
 @media (max-width: 768px) {
-  .projects-breadcrumbs__container {
-    padding: 0 20px;
+  .projects-breadcrumbs {
+    padding: 80px 20px 0;
   }
 
-  .projects-breadcrumbs {
-    padding-top: 80px;
+  .projects-breadcrumbs__container {
+    padding: 0;
   }
 }
 
 .projects-hero {
   padding: 0 0 120px;
-  background: #fff;
+  color: #f6f6f6;
 }
 
 .projects-hero__container {
-  width: min(1200px, 100%);
+  width: 1440px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 60px 90px;
   display: grid;
   gap: 28px;
-  color: #1f1f1f;
 }
 
 .projects-hero__header {
@@ -44,6 +60,7 @@
   font-weight: 700;
   letter-spacing: 0.02em;
   margin: 0;
+  color: #f6f6f6;
 }
 
 .projects-hero__subtitle {
@@ -51,7 +68,7 @@
   font-family: 'Mulish', sans-serif;
   font-size: 1.05rem;
   line-height: 1.7;
-  color: #3a3a3a;
+  color: #d6d6d6;
   margin: 0;
 }
 
@@ -66,11 +83,11 @@
   align-items: center;
   padding: 10px 16px;
   border-radius: 999px;
-  background: #f7f5f2;
-  color: #2f2f2f;
+  background: rgba(255, 255, 255, 0.06);
+  color: #e3d4c3;
   font-family: 'Mulish', sans-serif;
   font-size: 0.95rem;
-  border: 1px solid #ece7df;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .projects-hero__actions {
@@ -107,14 +124,15 @@
 }
 
 .projects-hero__btn--ghost {
-  background: #fff;
-  color: #1f1f1f;
-  border: 1px solid #e7dfd4;
+  background: rgba(255, 255, 255, 0.06);
+  color: #f6f6f6;
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .projects-hero__btn--ghost:hover {
-  border-color: #8b7355;
-  color: #8b7355;
+  border-color: rgba(139, 115, 85, 0.5);
+  background: rgba(139, 115, 85, 0.15);
+  color: #d9c8b4;
   transform: translateY(-1px);
 }
 

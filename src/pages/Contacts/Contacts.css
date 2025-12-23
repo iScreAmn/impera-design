@@ -3,30 +3,49 @@
   background-color: #1a1a1a;
 }
 
+.contacts__breadcrumbs {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+}
+
 .contacts__breadcrumbs-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 40px;
+}
+
+/* Стили для breadcrumbs на темном фоне */
+.contacts__breadcrumbs .breadcrumbs__current {
+  color: #d6d6d6;
+}
+
+.contacts__breadcrumbs .breadcrumbs__separator {
+  color: #6a6a6a;
+}
+
+@media (max-width: 1024px) {
+  .contacts__breadcrumbs {
+    padding: 100px 24px 0;
+  }
 }
 
 @media (max-width: 768px) {
   .contacts__breadcrumbs {
-    padding-top: 80px;
+    padding: 80px 20px 0;
   }
 
   .contacts__breadcrumbs-container {
-    padding: 0 20px;
+    padding: 0;
   }
 }
 
 /* Hero Section */
 .contacts__hero {
-  padding: 20px 40px 80px;
   background-color: #1a1a1a;
 }
 
 .contacts__container {
-  max-width: 1400px;
+  max-width: 1440px;
+  padding: 60px 90px;
   margin: 0 auto;
   position: relative;
 }

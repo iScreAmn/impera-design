@@ -1,5 +1,5 @@
 .breadcrumbs {
-  padding: 0 12px 12px;
+  padding: 20px 0 0;
   width: 100%;
 }
 
@@ -23,17 +23,17 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #5e5e5e;
+  color: rgba(247, 247, 247, 0.6);
   font-size: 12px;
   font-weight: 500;
   text-decoration: none;
   transition: color 0.2s ease, opacity 0.2s ease;
 }
 
-/* .breadcrumbs__link:hover {
-  color: #1a1a1a;
+.breadcrumbs__link:hover {
+  color: #d9c8b4;;
   opacity: 0.8;
-} */
+}
 
 .breadcrumbs__link--home {
   font-weight: 500;
@@ -44,6 +44,7 @@
   height: 15px;
   flex-shrink: 0;
   stroke-width: 1.5;
+  color: rgba(212, 184, 150, 0.7);
 }
 
 .breadcrumbs__text {

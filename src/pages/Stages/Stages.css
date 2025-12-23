@@ -37,20 +37,21 @@
 .stages-hero__breadcrumbs {
   position: relative;
   z-index: 2;
-  padding: 20px 0 0;
+  width: min(1200px, 100%);
+  margin: 0 auto;
 }
 
 .stages-hero__breadcrumbs-container {
-  max-width: 1180px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
 .stages-hero__content {
   position: relative;
-  max-width: 1180px;
+  width: 1440px;
   z-index: 2;
   margin: 0 auto;
-  padding: 0 12px;
+  padding: 60px 90px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -516,7 +517,21 @@
   }
 }
 
+@media (max-width: 1024px) {
+  .stages-hero__breadcrumbs {
+    padding: 100px 24px 0;
+  }
+}
+
 @media (max-width: 768px) {
+  .stages-hero__breadcrumbs {
+    padding: 80px 20px 0;
+  }
+
+  .stages-hero__breadcrumbs-container {
+    padding: 0;
+  }
+
   .stages-hero {
     padding: 120px 0 140px;
   }

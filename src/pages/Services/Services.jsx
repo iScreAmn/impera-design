@@ -117,18 +117,15 @@ function Services() {
     <div className="services">
       <StickyHeader />
 
+      <div className="services-breadcrumbs">
+        <div className="services-breadcrumbs__container">
+          <Breadcrumbs />
+        </div>
+      </div>
+
       <section className="services__hero">
         <div className="services__hero-overlay" />
         <div className="services__hero-content">
-          <MotionDiv
-            className="services__breadcrumbs"
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-          >
-            <Breadcrumbs />
-          </MotionDiv>
           <MotionH1
             className="services__title"
             initial={{ opacity: 0, y: 18 }}

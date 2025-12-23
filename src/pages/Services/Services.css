@@ -6,7 +6,6 @@
 
 .services__hero {
   position: relative;
-  padding: 0 24px 96px;
   overflow: hidden;
 }
 
@@ -20,13 +19,13 @@
 .services__hero-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 70% 40%, rgb(212 184 150 / 13%), transparent 30%), radial-gradient(circle at 10% 30%, rgba(255, 255, 255, 0.08), transparent 24%);
   pointer-events: none;
 }
 
 .services__hero-content {
   position: relative;
-  width: min(1180px, 100%);
+  width: 1440px;
+  padding: 60px 90px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -34,32 +33,48 @@
   z-index: 1;
 }
 
-.services__breadcrumbs {
-  margin-bottom: 8px;
+.services-breadcrumbs {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+}
+
+.services-breadcrumbs__container {
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 /* Стили для breadcrumbs на темном фоне */
-.services__breadcrumbs .breadcrumbs__link {
-  color: rgba(247, 247, 247, 0.6);
-}
 
-.services__breadcrumbs .breadcrumbs__link:hover {
-  color: rgba(247, 247, 247, 0.9);
-}
-
-.services__breadcrumbs .breadcrumbs__separator {
+.services-breadcrumbs .breadcrumbs__separator {
   color: rgba(247, 247, 247, 0.4);
 }
 
-.services__breadcrumbs .breadcrumbs__current {
+.services-breadcrumbs .breadcrumbs__current {
   color: rgba(247, 247, 247, 0.8);
 }
 
-.services__breadcrumbs .breadcrumbs__icon {
+.services-breadcrumbs .breadcrumbs__icon {
   color: rgba(212, 184, 150, 0.7);
 }
 
+@media (max-width: 1024px) {
+  .services-breadcrumbs {
+    padding: 100px 24px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-breadcrumbs {
+    padding: 80px 20px 0;
+  }
+
+  .services-breadcrumbs__container {
+    padding: 0;
+  }
+}
+
 .services__title {
+  width: 800px;
   font-family: 'Square721', 'Mulish', sans-serif;
   font-size: clamp(32px, 5vw, 56px);
   letter-spacing: 0.02em;
@@ -116,9 +131,9 @@
 }
 
 .services .services__wrapper {
-  width: min(1180px, 100%);
+  width: 1440px;
+  padding: 60px 90px;
   margin: 0 auto;
-  padding: 0 0 120px;
   display: flex;
   flex-direction: column;
   gap: 32px;

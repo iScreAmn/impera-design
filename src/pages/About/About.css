@@ -4,13 +4,14 @@
 }
 
 .about-breadcrumbs {
-  color: #fff;
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  /* color: #fff; */
 }
 
 .about-breadcrumbs__container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 40px;
 }
 
 .about-content {
@@ -36,19 +37,28 @@
   }
 }
 
+@media (max-width: 1024px) {
+  .about-breadcrumbs {
+    padding: 100px 24px 0;
+  }
+}
+
 @media (max-width: 768px) {
   .about-breadcrumbs {
-    padding-top: 80px;
+    padding: 80px 20px 0;
   }
 
   .about-breadcrumbs__container {
-    padding: 0 20px;
+    padding: 0;
   }
 
   .about-section {
     padding: 0 24px;
   }
 }
+
+  
+
 
 @media (max-width: 480px) {
   .about-section {
