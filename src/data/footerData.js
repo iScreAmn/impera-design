@@ -1,7 +1,7 @@
 import { FaTelegramPlane, FaWhatsapp, FaVk, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 
 export const footerData = {
-  description: 'Студия коммерческого дизайна интерьеров. Создаём стильные и функциональные пространства для бизнеса и жизни.',
+  description: 'Студия коммерческого дизайна интерьеров. Создаём стильные и функциональные пространства для бизнеса и жизни',
   
   contacts: [
     {

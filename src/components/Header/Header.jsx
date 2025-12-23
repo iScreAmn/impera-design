@@ -26,7 +26,6 @@ function Header() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: Отправка формы
     setFormData({ name: '', email: '', question: '' });
     closeModal();
   };
@@ -42,19 +41,19 @@ function Header() {
         </Link>
 
         <div className="header__contacts">
-          {contacts.map((contact) => (
-            <div key={contact.href} className="header__contact">
-              <span className="header__icon" aria-hidden="true">
-                {contact.icon}
-              </span>
-              <div className="header__contact-info">
-                <a href={contact.href} className="header__contact-link">
-                  {contact.text}
-                </a>
-                <span className="header__contact-label">{contact.caption}</span>
+          {contacts.map((contact) => {
+            const Icon = contact.icon;
+            return (
+              <div key={contact.href} className="header__contact">
+                <div className="header__contact-info">
+                  <a href={contact.href} className="header__contact-link">
+                    {contact.text}
+                  </a>
+                  <span className="header__contact-label">{contact.caption}</span>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="header__actions">

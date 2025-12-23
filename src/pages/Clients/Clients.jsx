@@ -14,12 +14,12 @@ import {
 import './Clients.css';
 
 const CLIENTS = [
-  { name: 'Nova Development', focus: 'Девелоперские проекты', logo: client1 },
-  { name: 'Urban Impact', focus: 'Коммерческая недвижимость', logo: client2 },
-  { name: 'Gastronomy Lab', focus: 'HoReCa', logo: client3 },
-  { name: 'Eco Frame', focus: 'Строительные решения', logo: client4 },
-  { name: 'Lightproof', focus: 'Световые системы', logo: client5 },
-  { name: 'Isstroi', focus: 'Жилые комплексы', logo: client6 },
+  { name: 'Антонов и партнеры', focus: 'Девелоперские проекты', logo: client1 },
+  { name: 'Boss Lounge', focus: 'Коммерческая недвижимость', logo: client2 },
+  { name: 'Crazy Brothers', focus: 'Рсторан', logo: client3 },
+  { name: 'Дворик Друзей', focus: 'Строительные решения', logo: client4 },
+  { name: 'Lesnoy', focus: 'Световые системы', logo: client5 },
+  { name: 'OMMA', focus: 'Ресторан', logo: client6 },
 ];
 
 const INITIAL_TESTIMONIALS = [

@@ -157,35 +157,37 @@ function Contacts() {
         <div className="contacts__container">
           <h1 className="contacts__title">{texts.pageTitle}</h1>
           
-          <div className="contacts__info-grid">
-            {infoCards.map((card) => {
-              const Icon = card.icon;
-              return (
-                <div key={card.id} className="contacts__info-card">
-                  <div className="contacts__info-icon">
-                    <Icon />
+          <div className="contacts__info-wrapper">
+            <div className="contacts__info-grid">
+              {infoCards.map((card) => {
+                const Icon = card.icon;
+                return (
+                  <div key={card.id} className="contacts__info-card">
+                    <div className="contacts__info-icon">
+                      <Icon />
+                    </div>
+                    <div className="contacts__info-content">
+                      {card.isLink ? (
+                        <a href={card.link} className="contacts__info-value">
+                          {card.value}
+                        </a>
+                      ) : (
+                        <p className="contacts__info-value">{card.value}</p>
+                      )}
+                      <p className="contacts__info-label">{card.label}</p>
+                    </div>
                   </div>
-                  <div className="contacts__info-content">
-                    {card.isLink ? (
-                      <a href={card.link} className="contacts__info-value">
-                        {card.value}
-                      </a>
-                    ) : (
-                      <p className="contacts__info-value">{card.value}</p>
-                    )}
-                    <p className="contacts__info-label">{card.label}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
 
-          <button 
-            className="contacts__cta-btn"
-            onClick={openModal}
-          >
-            {texts.ctaBtn}
-          </button>
+            <button 
+              className="contacts__cta-btn"
+              onClick={openModal}
+            >
+              {texts.ctaBtn}
+            </button>
+          </div>
         </div>
       </section>
 

@@ -43,7 +43,7 @@
 .home__projects-button {
   display: inline-block;
   padding: 16px 40px;
-  background-color: #8b7355;
+  background: linear-gradient(135deg, #d4b896 0%, #c49b74 100%);
   color: #fff;
   font-family: 'Square721', sans-serif;
   font-size: 1rem;
@@ -56,7 +56,7 @@
 }
 
 .home__projects-button:hover {
-  background-color: #725d45;
+  background: linear-gradient(135deg, #e5c9a8 0%, #d4b896 100%);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(139, 115, 85, 0.4);
 }

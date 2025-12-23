@@ -12,9 +12,29 @@ function ProjectPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const project = projectsData.find((p) => p.slug === slug);
-  
+
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const openModal = (index) => {
+    setCurrentImageIndex(index);
+    setModalOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    document.body.style.overflow = 'auto';
+  };
+
+  const handleScrollToGallery = (e) => {
+    e.preventDefault();
+    const target = document.getElementById('project-gallery');
+    if (!target) return;
+    const headerHeight = 130;
+    const top = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+    window.scrollTo({ top, behavior: 'smooth' });
+  };
 
   if (!project) {
     return (
@@ -27,17 +47,6 @@ function ProjectPage() {
       </div>
     );
   }
-
-  const openModal = (index) => {
-    setCurrentImageIndex(index);
-    setModalOpen(true);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-    document.body.style.overflow = 'auto';
-  };
 
   const nextImage = (e) => {
     e.stopPropagation();
@@ -67,75 +76,91 @@ function ProjectPage() {
         </div>
       </div>
 
-      <div className="project-container">
-        <div className="project">
-          <div className="project__content">
-            <div className="project__info">
-              <h1 className="project__title">{project.title}</h1>
-              
-              <div className="project__description">
-                <p>{project.description}</p>
-              </div>
+      <section className="project-hero">
+        <div className="project-hero__container">
+          <div className="project-hero__content">
+            <div className="project-hero__eyebrow">{project.type || 'Проект'}</div>
+            <h1 className="project-hero__title">{project.title}</h1>
+            <p className="project-hero__subtitle">{project.description}</p>
+
+            <div className="project-hero__meta">
+              {project.location && (
+                <div className="project-hero__chip">Локация: {project.location}</div>
+              )}
+              {project.area && <div className="project-hero__chip">{project.area} м²</div>}
+              {project.designer && <div className="project-hero__chip">{project.designer}</div>}
+              {project.date && <div className="project-hero__chip">{project.date}</div>}
             </div>
 
-            <div className="project__gallery-wrapper">
-              <div className="project__gallery">
-                {project.images.map((image, index) => {
-                  const totalImages = project.images.length;
-                  const isLarge = index === 0 || index === totalImages - 1 || index % 3 === 0;
-                  const isFirstInPair = !isLarge && index % 3 === 1;
-                  
-                  if (isLarge) {
-                    return (
-                      <div
-                        key={index}
-                        className="project-gallery__item project-gallery__item--large"
-                        onClick={() => openModal(index)}
-                      >
-                        <img
-                          src={image}
-                          alt={`${project.title} - изображение ${index + 1}`}
-                          className="project-gallery__img"
-                        />
-                      </div>
-                    );
-                  } else if (isFirstInPair) {
-                    const nextImage = project.images[index + 1];
-                    return (
-                      <div key={`pair-${index}`} className="project-gallery__pair">
-                        <div
-                          className="project-gallery__item project-gallery__item--small"
-                          onClick={() => openModal(index)}
-                        >
-                          <img
-                            src={image}
-                            alt={`${project.title} - изображение ${index + 1}`}
-                            className="project-gallery__img"
-                          />
-                        </div>
-                        {nextImage && (
-                          <div
-                            className="project-gallery__item project-gallery__item--small"
-                            onClick={() => openModal(index + 1)}
-                          >
-                            <img
-                              src={nextImage}
-                              alt={`${project.title} - изображение ${index + 2}`}
-                              className="project-gallery__img"
-                            />
-                          </div>
-                        )}
-                      </div>
-                    );
-                  } else {
-                    return null;
-                  }
-                })}
-              </div>
+            <div className="project-hero__actions">
+              <button className="project-hero__btn project-hero__btn--primary" onClick={handleScrollToGallery}>
+                Смотреть галерею
+              </button>
+              <button className="project-hero__btn project-hero__btn--ghost" onClick={() => navigate('/contacts')}>
+                Обсудить проект
+              </button>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      <section id="project-gallery" className="project-gallery-section">
+        <div className="project-gallery__container">
+          <div className="project__gallery">
+            {project.images.map((image, index) => {
+              const totalImages = project.images.length;
+              const isLarge = index === 0 || index === totalImages - 1 || index % 3 === 0;
+              const isFirstInPair = !isLarge && index % 3 === 1;
+
+              if (isLarge) {
+                return (
+                  <div
+                    key={index}
+                    className="project-gallery__item project-gallery__item--large"
+                    onClick={() => openModal(index)}
+                  >
+                    <img
+                      src={image}
+                      alt={`${project.title} - изображение ${index + 1}`}
+                      className="project-gallery__img"
+                    />
+                  </div>
+                );
+              } else if (isFirstInPair) {
+                const nextImage = project.images[index + 1];
+                return (
+                  <div key={`pair-${index}`} className="project-gallery__pair">
+                    <div
+                      className="project-gallery__item project-gallery__item--small"
+                      onClick={() => openModal(index)}
+                    >
+                      <img
+                        src={image}
+                        alt={`${project.title} - изображение ${index + 1}`}
+                        className="project-gallery__img"
+                      />
+                    </div>
+                    {nextImage && (
+                      <div
+                        className="project-gallery__item project-gallery__item--small"
+                        onClick={() => openModal(index + 1)}
+                      >
+                        <img
+                          src={nextImage}
+                          alt={`${project.title} - изображение ${index + 2}`}
+                          className="project-gallery__img"
+                        />
+                      </div>
+                    )}
+                  </div>
+                );
+              } else {
+                return null;
+              }
+            })}
+          </div>
+        </div>
+      </section>
 
       {modalOpen && (
         <div

@@ -52,8 +52,9 @@
 
 /* Dark Card Specific */
 .service-card--dark {
-  grid-column: 4 / 5 !important;
-  grid-row: 2 / 3 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
   padding: 40px;
   cursor: default;
@@ -146,8 +147,7 @@
 }
 
 .service-card--dark .service-card__title {
-  font-size: 28px;
-  margin-bottom: 30px;
+  font-size: 22px;
   max-width: 100%;
 }
 
