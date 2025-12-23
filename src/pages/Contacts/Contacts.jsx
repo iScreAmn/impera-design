@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import StickyHeader from '../../components/StickyHeader/StickyHeader';
 import Breadcrumbs from '../../components/Widgets/Breadcrumbs/Breadcrumbs';
-import Modal from '../../components/widgets/Modals/Modal';
+import Modal from '../../components/Widgets/Modals/Modal';
 import Footer from '../../components/Footer/Footer';
 import useModal from '../../utils/useModal';
 import { contactsData, socialLinks, infoCards, texts } from '../../data/contactsData';

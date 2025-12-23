@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { headerData } from '../../data/headerData';
-import Modal from '../widgets/Modals/Modal';
+import Modal from '../Widgets/Modals/Modal';
 import useModal from '../../utils/useModal';
 import './Header.css';
 
