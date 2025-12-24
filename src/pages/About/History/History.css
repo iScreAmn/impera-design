@@ -271,7 +271,7 @@
 
 @media (max-width: 480px) {
   .history {
-    padding: 17px 0;
+    padding: 20px 10px 60px;
   }
 
   .history__title {

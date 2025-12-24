@@ -421,6 +421,10 @@
     padding-bottom: 32px;
   }
 
+
+  .footer__nav {
+    display: none;
+  }
   .footer__about {
     gap: 18px;
   }

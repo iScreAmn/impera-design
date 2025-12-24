@@ -273,6 +273,15 @@
 }
 
 @media (max-width: 480px) {
+  .partners {
+    padding: 50px 0 0;
+  }
+
+
+  .partners__content {
+    padding: 0 40px 40px;
+  }
+
   .partners__title {
     font-size: 26px;
   }
@@ -306,6 +315,10 @@
 
   .partners__item:nth-child(3n) {
     grid-column: 1 / -1;
+  }
+
+  .partners__item:nth-last-child(-n+2) {
+    grid-column: auto;
   }
 
   .partners__card {
