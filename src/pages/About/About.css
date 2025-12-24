@@ -38,14 +38,12 @@
 }
 
 @media (max-width: 1024px) {
-  .about-breadcrumbs {
-    padding: 100px 24px 0;
-  }
+  
 }
 
 @media (max-width: 768px) {
-  .about-breadcrumbs {
-    padding: 80px 20px 0;
+  .breadcrumbs {
+    padding: 12px 16px;
   }
 
   .about-breadcrumbs__container {
@@ -57,11 +55,8 @@
   }
 }
 
-  
-
-
 @media (max-width: 480px) {
   .about-section {
-    padding: 0 16px;
+    padding: 0 16px 40px;
   }
 }

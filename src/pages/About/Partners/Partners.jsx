@@ -14,6 +14,7 @@ import './Partners.css';
 const Partners = () => {
   const headerRef = useRef(null);
   const trackRef = useRef(null);
+  const [isMobile, setIsMobile] = React.useState(false);
 
   const partners = [
     { id: 1, logo: partner1, name: 'Древ Уют', link: '#!' },
@@ -25,8 +26,15 @@ const Partners = () => {
     { id: 7, logo: partner7, name: 'Location', link: '#!' },
   ];
 
-  // Дублируем массив для бесконечной прокрутки
-  const duplicatedPartners = [...partners, ...partners, ...partners];
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 480);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Дублируем массив для бесконечной прокрутки только на десктопе
+  const displayPartners = isMobile ? partners : [...partners, ...partners, ...partners];
 
   useEffect(() => {
     if (!headerRef.current) return;
@@ -92,9 +100,9 @@ const Partners = () => {
             className="partners__track"
             style={{ opacity: 0, transform: 'translateY(40px)' }}
           >
-            {duplicatedPartners.map((partner, index) => (
+            {displayPartners.map((partner, index) => (
               <a
-                key={`${partner.id}-${index}`}
+                key={isMobile ? partner.id : `${partner.id}-${index}`}
                 href={partner.link}
                 className="partners__item"
                 aria-label={partner.name}

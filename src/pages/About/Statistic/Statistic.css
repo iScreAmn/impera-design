@@ -173,10 +173,13 @@
 
   .statistic__card {
     padding: 22px 20px;
+    width: 170px;
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   .statistic__value {
-    font-size: 36px;
+    font-size: 34px;
   }
 
   .statistic__label {
@@ -186,11 +189,32 @@
 
 @media (max-width: 480px) {
   .statistic__grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .statistic__title {
     font-size: 28px;
+  }
+
+  .statistic__card:last-child {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 22px 20px;
+  }
+
+  .statistic__card:last-child .statistic__value {
+    margin-bottom: 0;
+    font-size: 26px;
+    flex-shrink: 0;
+  }
+
+  .statistic__card:last-child .statistic__label {
+    text-align: left;
+    flex: 1;
   }
 }
 

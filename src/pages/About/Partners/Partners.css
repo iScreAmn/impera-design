@@ -278,16 +278,34 @@
   }
 
   .partners__wrapper {
-    margin: 0 -16px;
+    margin: 0;
+    overflow: visible;
   }
 
   .partners__wrapper::before,
   .partners__wrapper::after {
-    width: 60px;
+    display: none;
+  }
+
+  .partners__track {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    animation: none;
+    width: 100%;
+  }
+
+  .partners__track:hover {
+    animation-play-state: unset;
   }
 
   .partners__item {
-    flex: 0 0 200px;
+    flex: none;
+    width: 100%;
+  }
+
+  .partners__item:nth-child(3n) {
+    grid-column: 1 / -1;
   }
 
   .partners__card {
@@ -297,11 +315,6 @@
 
   .partners__logo {
     max-height: 60px;
-  }
-
-  .partners__track {
-    gap: 14px;
-    animation-duration: 30s;
   }
 
   .partners__item:hover {

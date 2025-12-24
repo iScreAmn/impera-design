@@ -46,6 +46,7 @@ const Statistic = () => {
 
   useEffect(() => {
     if (!containerRef.current) return;
+    if (window.innerWidth <= 767) return;
 
     const stop = inView(
       containerRef.current,
