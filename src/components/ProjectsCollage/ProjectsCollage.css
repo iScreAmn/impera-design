@@ -117,7 +117,11 @@
 
 @media (max-width: 768px) {
   .projects-collage {
-    padding: 0 20px;
+    padding: 0 10px;
+  }
+
+  .projects-collage__item:nth-child(n+3) {
+    display: none;
   }
 
   .projects-collage__main {

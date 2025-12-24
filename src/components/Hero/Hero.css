@@ -155,3 +155,9 @@
   }
 }
 
+@media (max-width: 480px) {
+  .hero__content {
+    padding: 80px 10px;
+  }
+}
+

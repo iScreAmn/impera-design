@@ -609,3 +609,9 @@
   }
 }
 
+@media (max-width: 480px) {
+  .calculator {
+    margin: 48px auto;
+  }
+}
+  
