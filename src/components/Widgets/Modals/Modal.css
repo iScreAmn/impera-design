@@ -143,7 +143,6 @@
 @media (max-width: 640px) {
   .modal {
     padding: 16px;
-    align-items: flex-end;
   }
 
   .modal__content {
@@ -179,6 +178,20 @@
       transform: translateY(0);
       opacity: 1;
     }
+  }
+}
+
+@media (max-width: 640px) {
+  .question-modal.modal {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .question-modal .modal__content {
+    margin: auto;
+    max-width: 92vw;
+    max-height: 82vh;
+    border-radius: 16px;
   }
 }
 

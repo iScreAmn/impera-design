@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { headerData } from '../../data/headerData';
+import { logoMini } from '../../assets/images';
 import Modal from '../Widgets/Modals/Modal';
 import useModal from '../../utils/useModal';
 import './Header.css';
 
 function Header() {
   const {
-    logoImage,
     logoAlt,
     logoTitle,
     contacts,
@@ -34,7 +34,7 @@ function Header() {
     <header className="header">
       <div className="header__container">
         <Link to="/" className="header__logo">
-          <img src={logoImage} alt={logoAlt} className="header__logo-image" />
+          <img src={logoMini} alt={logoAlt} className="header__logo-image" />
           <div className="header__logo-text">
             {logoTitle && <span className="header__title">{logoTitle}</span>}
           </div>
