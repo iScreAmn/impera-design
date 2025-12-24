@@ -12,7 +12,7 @@ import Contacts from './pages/Contacts/Contacts';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/impera-design">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
