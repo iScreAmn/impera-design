@@ -4,12 +4,12 @@ import { FaWhatsapp, FaTelegramPlane } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 
 export const calculatorData = {
-  title: 'Рассчитайте стоимость услуг в калькуляторе',
-  titleAccent: '+ получите бонус',
+  title: 'Рассчитать стоимость услуг в калькуляторе',
+  titleAccent: '+ получить бонус',
   steps: [
     {
       field: 'area',
-      question: 'Какая площадь вашего помещения?',
+      question: 'Какая площадь помещения?',
       options: [
         'Менее 50 м²',
         '50-80 м²',
@@ -38,14 +38,13 @@ export const calculatorData = {
         'Классический',
         'Минимализм',
         'Лофт',
-        'Скандинавский',
         'Еще не определился'
       ],
       multiple: false
     },
     {
       field: 'budget',
-      question: 'Какой ваш ориентировочный бюджет на проект?',
+      question: 'Ориентировочный бюджет?',
       options: [
         'Экономичный вариант',
         'Средний бюджет',

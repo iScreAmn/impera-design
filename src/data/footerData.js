@@ -1,7 +1,7 @@
 import { FaTelegramPlane, FaWhatsapp, FaVk, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 
 export const footerData = {
-  description: 'Студия коммерческого дизайна интерьеров. Создаём стильные и функциональные пространства для бизнеса и жизни',
+  description: 'Студия коммерческого дизайна интерьеров. Создаём стильные и функциональные пространства для бизнеса',
   
   contacts: [
     {
@@ -19,7 +19,7 @@ export const footerData = {
     {
       icon: FaMapMarkerAlt,
       href: '#',
-      text: 'Москва, ул. Верхние Поля, 10',
+      text: 'г. Москва, ул. Верхние Поля, д. 10',
       label: 'Наш адрес'
     }
   ],

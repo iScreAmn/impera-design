@@ -20,7 +20,7 @@ export const headerData = {
       caption: 'Напишите нам на почту',
     },
   ],
-  ctaLabel: 'Задайте вопрос онлайн',
+  ctaLabel: 'Задать вопрос',
   socials: [
     {
       icon: FaTelegramPlane,
