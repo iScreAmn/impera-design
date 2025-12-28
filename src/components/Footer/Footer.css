@@ -221,6 +221,7 @@
 }
 
 .footer__contact-link {
+  width: 250px;
   font-family: 'Mulish Medium', sans-serif;
   font-size: 15px;
   color: #d8d8d8;
