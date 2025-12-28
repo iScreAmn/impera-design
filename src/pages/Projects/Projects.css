@@ -37,14 +37,13 @@
 }
 
 .projects-hero {
-  padding: 0 0 120px;
   color: #f6f6f6;
 }
 
 .projects-hero__container {
   width: 1440px;
   margin: 0 auto;
-  padding: 60px 90px;
+  padding: 95px 90px 60px;
   display: grid;
   gap: 28px;
 }

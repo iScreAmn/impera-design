@@ -27,28 +27,28 @@ const INITIAL_TESTIMONIALS = [
     id: 't1',
     name: 'Александр Воробьев',
     company: 'CEO, Urban Impact',
-    text: 'Команда быстро предложила рабочие концепции и сопровождала согласования с девелопером без лишней бюрократии.',
+    text: 'Команда быстро предложила рабочие концепции и сопровождала согласования с девелопером без лишней бюрократии',
   },
   {
     id: 't2',
     name: 'Мария Деева',
     company: 'COO, Gastronomy Lab',
-    text: 'Ресторан получил интерьер, который усиливает гостевой опыт. Ребята гибкие и держат сроки.',
+    text: 'Ресторан получил интерьер, который усиливает гостевой опыт. Ребята гибкие и держат сроки',
   },
   {
     id: 't3',
     name: 'Олег Савчук',
     company: 'Партнер, Eco Frame',
-    text: 'Четкая коммуникация, современный дизайн и внимание к деталям на стройке. Сотрудничаем и дальше.',
+    text: 'Четкая коммуникация, современный дизайн и внимание к деталям на стройке. Сотрудничаем и дальше',
   },
 ];
 
 function Clients() {
   const stats = useMemo(
     () => [
-      { label: 'Дизайн-проектов', value: '300+' },
-      { label: 'Средняя площадь реализованных проектов', value: '200 м²' },
-      { label: 'Экономии на ремонте за счёт проекта', value: 'до 40%' },
+      { label: 'дизайн-проектов', value: '300+' },
+      { label: 'средняя площадь реализованных проектов', value: '200 м²' },
+      { label: 'экономии на ремонте за счёт проекта', value: 'до 40%' },
     ],
     []
   );
@@ -70,7 +70,7 @@ function Clients() {
             <h1 className="clients-hero__title">Наши клиенты</h1>
             <p className="clients-hero__subtitle">
               Мы проектируем пространства, которые усиливают бренды и создают измеримый эффект:
-              от девелоперов и ритейла до HoReCa и офисов.
+              от девелоперов и ритейла до ресторанов и офисов
             </p>
             <div className="clients-hero__stats">
               {stats.map((item) => (
@@ -87,13 +87,8 @@ function Clients() {
             <div className="clients-hero__card-text">
               <p>
                 Синхронизируем архитектуру, инженерку и брендинг, чтобы каждый проект был собран
-                как продукт: быстро, прозрачно, с вниманием к деталям.
+                как продукт: быстро, прозрачно, с вниманием к деталям
               </p>
-              <div className="clients-hero__badges">
-                <span>Full-cycle</span>
-                <span>Авторский надзор</span>
-                <span>Digital-подход</span>
-              </div>
             </div>
           </div>
         </div>
@@ -102,13 +97,12 @@ function Clients() {
       <section className="clients-list">
         <div className="clients-list__header">
           <div>
-            <h2 className="clients-list__title">Клиенты, которые доверяют</h2>
+            <h2 className="clients-list__title">Клиенты, которые нам доверяют</h2>
             <p className="clients-list__subtitle">
-              Используем корпоративный контроль качества и прозрачные процессы — поэтому возвращаются
-              с новыми задачами.
+              Двойной контроль качества и прозрачные процессы - поэтому к нам возвращаются
+              с новыми задачами
             </p>
           </div>
-          <div className="clients-list__pill">6 активных партнерств</div>
         </div>
 
         <div className="clients-list__marquee">
@@ -135,7 +129,7 @@ function Clients() {
           <div>
             <h2 className="clients-testimonials__title">Отзывы</h2>
             <p className="clients-testimonials__subtitle">
-              Коротко и по делу. Реальные отзывы от наших клиентов.
+              Реальные отзывы наших клиентов
             </p>
           </div>
         </div>
@@ -145,8 +139,6 @@ function Clients() {
             <article key={item.id} className="clients-testimonials__card">
               <div className="clients-testimonials__quote">"{item.text}"</div>
               <div className="clients-testimonials__author">
-                <div className="clients-testimonials__name">{item.name}</div>
-                <div className="clients-testimonials__company">{item.company}</div>
               </div>
             </article>
           ))}

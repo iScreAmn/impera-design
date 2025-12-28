@@ -3,6 +3,7 @@
   background: #fff;
   color: #0f0f0f;
   overflow: hidden;
+  padding: 50px 20px;
 }
 
 .statistic::after {
@@ -23,15 +24,6 @@
   max-width: 820px;
 }
 
-.statistic__eyebrow {
-  font-family: 'Mulish Medium', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.24em;
-  color: #9b7e5d;
-  margin-bottom: 16px;
-  font-size: 13px;
-}
-
 .statistic__title {
   font-family: var(--font-heading);
   font-size: 48px;
@@ -50,7 +42,7 @@
   font-family: 'Mulish Medium', sans-serif;
   font-size: 18px;
   line-height: 1.6;
-  color: #b8b8b8;
+  color: #716f6f;
   max-width: 640px;
 }
 

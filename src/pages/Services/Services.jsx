@@ -16,7 +16,7 @@ const servicesData = [
   {
     id: 'service-1',
     title: 'ПОЛНЫЙ ДИЗАЙН-ПРОЕКТ',
-    summary: 'Подробная инструкция по будущему интерьеру с бюджетом, сценариями и прозрачными решениями.',
+    summary: 'Подробная инструкция по реализации будущего интерьера с бюджетом, сценариями и прозрачными решениями.',
     deliverables: [
       'Выезд на объект, профессиональный замер и заполнение ТЗ',
       '2–3 планировочных решения с расстановкой мебели',
@@ -133,7 +133,7 @@ function Services() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: 'easeOut', delay: 0.05 }}
           >
-            Полный цикл услуг по интерьеру
+            Полный спектр услуг по дизайну интерьера
           </MotionH1>
           <MotionP
             className="services__subtitle"
@@ -142,7 +142,7 @@ function Services() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: 'easeOut', delay: 0.12 }}
           >
-            От концепции до сдачи под ключ: визуализация, документация, стройка и постоянный контроль качества.
+            От концепции до ремонта под ключ: визуализация, документация, ремонтные работы и постоянный контроль качества
           </MotionP>
           <MotionDiv
             className="services__cta"
@@ -152,10 +152,10 @@ function Services() {
             transition={{ duration: 0.6, ease: 'easeOut', delay: 0.18 }}
           >
             <Link to="/contacts" className="services__cta-button services__cta-button--primary">
-              Запросить консультацию
+              Онлайн консультация
             </Link>
             <a href="tel:+79917761559" className="services__cta-button services__cta-button--ghost">
-              Позвонить студии
+              Позвонить
             </a>
           </MotionDiv>
         </div>

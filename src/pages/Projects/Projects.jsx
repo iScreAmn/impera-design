@@ -36,17 +36,9 @@ function Projects() {
           <div className="projects-hero__header">
             <h1 className="projects-hero__title">Проекты Impera Studio</h1>
             <p className="projects-hero__subtitle">
-              Дизайн, который усиливает бренды: HoReCa, офисы, спа, частные
-              пространства. Чёткая концепция, продуманная эргономика и премиальный
-              опыт для ваших гостей и команды.
+              Дизайн, который усиливает бренды: кафе и рестораны, бары и клубы, офисы, спа-комплексы. Чёткая концепция, продуманная эргономика и премиальный
+              опыт для ваших гостей и команды
             </p>
-          </div>
-
-          <div className="projects-hero__chips">
-            <span>HoReCa</span>
-            <span>Офисы / коворкинги</span>
-            <span>SPA & wellness</span>
-            <span>Частные интерьеры</span>
           </div>
 
           <div className="projects-hero__actions">

@@ -95,7 +95,7 @@ const AboutCta = () => {
             className="about-cta__text"
             style={{ opacity: 0, transform: 'translateY(30px)' }}
           >
-            Свяжитесь с нами и начните <br /> свой проект уже сегодня
+            Свяжитесь с нами и мы начнем работу <br /> над вашим проектом уже сегодня
           </p>
           <div
             ref={buttonsRef}

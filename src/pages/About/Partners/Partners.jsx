@@ -88,7 +88,7 @@ const Partners = () => {
           style={{ opacity: 0, transform: 'translateY(30px)' }}
         >
           <p className="partners__eyebrow">Партнёры</p>
-          <h2 className="partners__title">Надежные партнеры гарантия качества</h2>
+          <h2 className="partners__title">Надежные партнеры - гарантия качества</h2>
           <p className="partners__subtitle">
             Работаем с проверенными поставщиками и подрядчиками, которые разделяют наше стремление к совершенству
           </p>

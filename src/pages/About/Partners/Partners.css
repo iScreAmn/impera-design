@@ -21,6 +21,7 @@
   z-index: 1;
   display: grid;
   gap: 48px;
+  padding: 50px 20px;
 }
 
 .partners__header {
@@ -38,6 +39,7 @@
 }
 
 .partners__title {
+  width: 1300px;
   font-family: var(--font-heading);
   font-size: 46px;
   font-weight: 400;

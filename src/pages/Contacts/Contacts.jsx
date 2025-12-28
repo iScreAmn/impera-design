@@ -95,7 +95,6 @@ function YandexMap() {
           </a>
         </div>
         <div className="contacts__map-socials">
-          <p className="contacts__map-socials-label">{texts.socialsLabel}</p>
           <div className="contacts__map-socials-icons">
             {socialLinks.map((social) => {
               const Icon = social.icon;

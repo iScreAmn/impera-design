@@ -75,7 +75,6 @@ const Statistic = () => {
     <section className="statistic">
       <div className="statistic__container about-section">
         <div className="statistic__header">
-          <p className="statistic__eyebrow">Цифры, которыми мы гордимся</p>
           <h2 className="statistic__title">
             {title} <span className="statistic__title-accent">{subtitle}</span>
           </h2>

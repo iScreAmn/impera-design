@@ -319,7 +319,8 @@
 }
 
 .clients-testimonials__card {
-  background: #11131a;
+  background: #fff;
+  color: #1f1f1f;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
   padding: 18px;
@@ -331,7 +332,7 @@
 .clients-testimonials__quote {
   font-family: 'Mulish', sans-serif;
   line-height: 1.7;
-  color: #e6e6e6;
+  color: #1f1f1f;
 }
 
 .clients-testimonials__author {
