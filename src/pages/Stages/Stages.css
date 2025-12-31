@@ -600,6 +600,10 @@
     padding: 0 14px 70px;
   }
 
+  .stages-aside {
+    min-height: unset !important
+  }
+
   .stages-hero__tags {
     gap: 8px;
   }
