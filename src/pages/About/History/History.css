@@ -310,7 +310,12 @@
   }
 
   .history__title {
-    font-size: 28px;
+    font-size: 25px;
+    width: 400px;
+  }
+
+  .history__text {
+    width: 350px;
   }
 
   .history__item-year {
@@ -319,5 +324,9 @@
 
   .history__item-title {
     font-size: 17px;
+  }
+
+  .history__left {
+    min-height: unset !important;
   }
 }

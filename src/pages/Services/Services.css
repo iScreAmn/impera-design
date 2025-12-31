@@ -404,5 +404,25 @@
 }
 
 @media (max-width: 480px) {
-  
+
+  .services__hero {
+    padding: 20px 20px 0;
+  }
+
+  .services .services__wrapper {
+    width: unset;
+    padding-top: 20px ;
+  }
+
+  .services__hero-content {
+    padding: unset;
+  }
+
+  .services__title {
+    width: 350px;
+  }
+
+  .services__subtitle {
+    width: 350px;
+  }
 }

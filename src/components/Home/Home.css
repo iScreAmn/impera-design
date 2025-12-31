@@ -87,4 +87,17 @@
     padding: 14px 32px;
     font-size: 0.9rem;
   }
+
+  @media (max-width: 480px) {
+    .home__projects-title {
+      font-size: 25px;
+    }
+
+    .home__projects-subtitle {
+      font-size: 15px;
+      color: #000;
+    }
+    
+    
+  }
 }

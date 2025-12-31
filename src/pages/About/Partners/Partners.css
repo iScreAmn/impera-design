@@ -281,11 +281,17 @@
 
 
   .partners__content {
-    padding: 0 40px 40px;
+    /* padding: 0 40px 40px; */
   }
 
   .partners__title {
-    font-size: 26px;
+    font-size: 20px;
+    width: 350px;
+  }
+
+  .partners__subtitle {
+    font-size: 13px;
+    width: 300px;
   }
 
   .partners__wrapper {

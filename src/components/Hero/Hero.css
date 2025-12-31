@@ -159,5 +159,8 @@
   .hero__content {
     padding: 80px 10px;
   }
-}
 
+  .hero__title {
+    padding-top: 20px;
+}
+}

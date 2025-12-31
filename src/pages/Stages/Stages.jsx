@@ -75,6 +75,8 @@ function Stages() {
   const containerRef = useRef(null);
   const listRef = useRef(null);
   const lastStepRef = useRef(null);
+  const asideRef = useRef(null);
+  const asideCardRef = useRef(null);
   
   // Отслеживаем прокрутку списка шагов
   const { scrollYProgress } = useScroll({
@@ -106,6 +108,76 @@ function Stages() {
       progress.set(1);
     }
   }, [isLastStepInView, progress]);
+
+  // Sticky logic for aside card
+  useEffect(() => {
+    const bodySection = containerRef.current;
+    const asideBlock = asideRef.current;
+
+    if (!bodySection || !asideBlock) return;
+
+    const cardContent = asideCardRef.current;
+    const listBlock = listRef.current;
+    if (!cardContent || !listBlock) return;
+
+    // Устанавливаем высоту aside равной высоте списка
+    const setAsideHeight = () => {
+      const listHeight = listBlock.offsetHeight;
+      asideBlock.style.minHeight = `${listHeight}px`;
+    };
+
+    const handleScroll = () => {
+      const bodyRect = bodySection.getBoundingClientRect();
+      const asideRect = asideBlock.getBoundingClientRect();
+      const cardHeight = cardContent.offsetHeight;
+      const stickyTop = 120;
+
+      // Секция еще не в зоне видимости
+      if (bodyRect.top > stickyTop) {
+        asideBlock.classList.remove('is-fixed', 'is-bottom');
+        cardContent.style.width = '';
+        cardContent.style.left = '';
+        return;
+      }
+
+      // Aside достиг конца - прижимаем к низу
+      if (asideRect.bottom < stickyTop + cardHeight) {
+        asideBlock.classList.remove('is-fixed');
+        asideBlock.classList.add('is-bottom');
+        cardContent.style.width = '';
+        cardContent.style.left = '';
+        return;
+      }
+
+      // Секция в зоне видимости - фиксируем
+      if (!asideBlock.classList.contains('is-fixed')) {
+        const rect = asideBlock.getBoundingClientRect();
+        cardContent.style.width = `${rect.width}px`;
+        cardContent.style.left = `${rect.left}px`;
+      }
+      asideBlock.classList.add('is-fixed');
+      asideBlock.classList.remove('is-bottom');
+    };
+
+    const handleResize = () => {
+      asideBlock.classList.remove('is-fixed', 'is-bottom');
+      cardContent.style.width = '';
+      cardContent.style.left = '';
+      asideBlock.style.minHeight = '';
+      setAsideHeight();
+      handleScroll();
+    };
+
+    setAsideHeight();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleResize);
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
 
   return (
@@ -168,29 +240,31 @@ function Stages() {
         </section>
 
         <section className="stages-body" ref={containerRef}>
-          <aside className="stages-aside">
-            <div className="stages-aside__card">
-              <div className="stages-aside__meta">
-                <span className="stages-aside__label">прозрачность процесса</span>
-              </div>
-              <p className="stages-aside__text">
-                Каждый этап завершается понятным результатом - вы всегда знаете, что уже готово и
-                что происходит дальше
-              </p>
-              <div
-                className="stages-aside__progress"
-              >
-                <Motion.span
-                  className="stages-aside__progress-fill"
-                  style={{ scaleY: progress }}
-                  aria-hidden
-                />
-                {stagesData.map((stage, index) => (
-                  <div key={stage.id} className="stages-aside__tick">
-                    <span className="stages-aside__tick-dot" />
-                    <span className="stages-aside__tick-label">{index + 1} шаг</span>
-                  </div>
-                ))}
+          <aside className="stages-aside" ref={asideRef}>
+            <div className="stages-aside__card" ref={asideCardRef}>
+              <div className="stages-aside__card-content">
+                <div className="stages-aside__meta">
+                  <span className="stages-aside__label">прозрачность процесса</span>
+                </div>
+                <p className="stages-aside__text">
+                  Каждый этап завершается понятным результатом - вы всегда знаете, что уже готово и
+                  что происходит дальше
+                </p>
+                <div
+                  className="stages-aside__progress"
+                >
+                  <Motion.span
+                    className="stages-aside__progress-fill"
+                    style={{ scaleY: progress }}
+                    aria-hidden
+                  />
+                  {stagesData.map((stage, index) => (
+                    <div key={stage.id} className="stages-aside__tick">
+                      <span className="stages-aside__tick-dot" />
+                      <span className="stages-aside__tick-label">{index + 1} шаг</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </aside>
