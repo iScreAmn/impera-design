@@ -248,8 +248,6 @@
   align-items: center;
   justify-content: center;
   padding: 20px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .navigation__drawer-button {
@@ -279,7 +277,7 @@
 }
 
 .navigation__drawer-footer {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: flex-start;
   gap: 14px;
@@ -356,6 +354,10 @@
 @media (max-width: 560px) {
   .navigation__drawer {
     padding: 95px 22px 32px;
+    justify-content: unset;
+  }
+  .navigation__drawer-cta {
+    margin-top: 80px;
   }
 
   .navigation__drawer-link {
