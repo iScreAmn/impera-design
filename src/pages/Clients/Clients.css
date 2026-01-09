@@ -331,8 +331,9 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
   padding: clamp(16px, 2.5vw, 18px);
-  display: grid;
-  gap: clamp(10px, 1.5vw, 12px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2vw, 16px);
   box-shadow: 0 16px 30px rgba(0, 0, 0, 0.25);
 }
 
@@ -346,16 +347,22 @@
 .clients-testimonials__author {
   display: grid;
   gap: 4px;
+  margin-top: auto;
 }
 
 .clients-testimonials__name {
   font-family: 'Square721', sans-serif;
-  font-size: 1.05rem;
+  font-size: clamp(15px, 1.8vw, 16.8px);
+  font-weight: 600;
+  color: #1f1f1f;
+  margin: 0;
 }
 
 .clients-testimonials__company {
   font-family: 'Mulish', sans-serif;
-  color: #b2b2b2;
+  font-size: clamp(13px, 1.6vw, 14px);
+  color: #666;
+  margin: 0;
 }
 
 @media (max-width: 1024px) {
