@@ -42,32 +42,33 @@
 }
 
 .projects-hero__container {
-  width: 1440px;
+  width: min(1440px, 100%);
   margin: 0 auto;
-  padding: 50px 90px 60px;
+  padding: clamp(40px, 6vw, 50px) clamp(20px, 6vw, 90px) clamp(40px, 5vw, 60px);
   display: grid;
-  gap: 28px;
+  gap: clamp(20px, 3vw, 28px);
 }
 
 .projects-hero__header {
   display: grid;
-  gap: 14px;
+  gap: clamp(12px, 2vw, 14px);
 }
 
 .projects-hero__title {
   font-family: 'Square721', sans-serif;
-  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-size: clamp(26px, 4.5vw, 44.8px);
   font-weight: 700;
   letter-spacing: 0.02em;
   margin: 0;
   color: #f6f6f6;
+  line-height: 1.15;
 }
 
 .projects-hero__subtitle {
   max-width: 850px;
   font-family: 'Mulish', sans-serif;
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: clamp(15px, 2vw, 16.8px);
+  line-height: 1.65;
   color: #d6d6d6;
   margin: 0;
 }
@@ -75,18 +76,18 @@
 .projects-hero__chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: clamp(8px, 1.5vw, 10px);
 }
 
 .projects-hero__chips span {
   display: inline-flex;
   align-items: center;
-  padding: 10px 16px;
+  padding: clamp(8px, 1.5vw, 10px) clamp(12px, 2vw, 16px);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.06);
   color: #e3d4c3;
   font-family: 'Mulish', sans-serif;
-  font-size: 0.95rem;
+  font-size: clamp(14px, 1.8vw, 15.2px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -100,15 +101,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 16px 26px;
+  padding: clamp(14px, 2vw, 16px) clamp(20px, 3vw, 26px);
   border-radius: 6px;
   font-family: 'Square721', sans-serif;
-  font-size: 0.95rem;
+  font-size: clamp(14px, 1.8vw, 15.2px);
   font-weight: 700;
   text-transform: uppercase;
   text-decoration: none;
   transition: all 0.25s ease;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .projects-hero__btn--primary {
@@ -141,26 +143,95 @@
   padding: 20px 0 100px;
 }
 
+@media (max-width: 1024px) {
+  .projects-hero__container {
+    padding: 40px 24px 50px;
+  }
+}
+
 @media (max-width: 768px) {
   .projects-hero {
-    padding: 100px 0 70px;
+    padding: 0;
   }
 
   .projects-hero__container {
-    padding: 0 20px;
+    padding: 20px 20px 50px;
+    gap: 22px;
+  }
+
+  .projects-hero__header {
+    gap: 12px;
+  }
+
+  .projects-hero__title {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .projects-hero__subtitle {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .projects-hero__chips {
+    gap: 8px;
+  }
+
+  .projects-hero__chips span {
+    padding: 8px 14px;
+    font-size: 14px;
   }
 
   .projects-hero__actions {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
   }
 
   .projects-hero__btn {
     width: 100%;
     justify-content: center;
+    padding: 14px 20px;
+    font-size: 14px;
   }
 
   .projects-list {
     padding: 10px 0 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-hero__container {
+    padding: 16px 16px 40px;
+    gap: 18px;
+  }
+
+  .projects-hero__header {
+    gap: 10px;
+  }
+
+  .projects-hero__title {
+    font-size: 24px;
+    line-height: 1.22;
+  }
+
+  .projects-hero__subtitle {
+    font-size: 14px;
+    line-height: 1.58;
+  }
+
+  .projects-hero__chips span {
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+
+  .projects-hero__actions {
+    gap: 10px;
+  }
+
+  .projects-hero__btn {
+    padding: 13px 18px;
+    font-size: 13px;
   }
 }
