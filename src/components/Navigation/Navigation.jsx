@@ -3,13 +3,25 @@ import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
 import { navigationItems } from '../../data/navigationData';
 import { headerData } from '../../data/headerData';
-import { logo } from '../../assets/images';
 import Modal from '../Widgets/Modals/Modal';
 import useModal from '../../utils/useModal';
 import './Navigation.css';
 
 const MotionDiv = motion.div;
 const MotionNav = motion.nav;
+const MotionSvg = motion.svg;
+const pathTransition = { duration: 0.28, ease: [0.4, 0, 0.2, 1] };
+
+const Path = (props) => (
+  <motion.path
+    fill="transparent"
+    strokeWidth="2.6"
+    stroke="currentColor"
+    strokeLinecap="round"
+    transition={pathTransition}
+    {...props}
+  />
+);
 
 function Navigation() {
   const location = useLocation();
@@ -17,7 +29,7 @@ function Navigation() {
   const [dragOffset, setDragOffset] = useState(0);
   const drawerRef = useRef(null);
   const touchStartY = useRef(null);
-  const { socials, logoAlt, ctaLabel } = headerData;
+  const { socials, ctaLabel } = headerData;
   const { isOpen: isModalOpen, openModal, closeModal } = useModal();
   const [formData, setFormData] = useState({ name: '', email: '', question: '' });
 
@@ -127,7 +139,7 @@ function Navigation() {
           ))}
         </ul>
 
-        <button
+        <a
           type="button"
           className={`navigation__burger ${isOpen ? 'navigation__burger--active' : ''}`}
           aria-label={isOpen ? 'Закрыть меню' : 'Открыть меню'}
@@ -135,12 +147,36 @@ function Navigation() {
           aria-controls="mobile-drawer"
           onClick={() => setIsOpen((prev) => !prev)}
         >
-          <span className="navigation__burger-lines" aria-hidden="true">
-            <span className="navigation__burger-line" />
-            <span className="navigation__burger-line" />
-            <span className="navigation__burger-line" />
-          </span>
-        </button>
+          <MotionSvg
+            width="23"
+            height="23"
+            viewBox="0 0 23 23"
+            initial={false}
+            animate={isOpen ? 'open' : 'closed'}
+            aria-hidden="true"
+          >
+            <Path
+              variants={{
+                closed: { d: 'M 2 2.5 L 20 2.5' },
+                open: { d: 'M 3 16.5 L 17 2.5' },
+              }}
+            />
+            <Path
+              d="M 2 9.423 L 20 9.423"
+              variants={{
+                closed: { opacity: 1 },
+                open: { opacity: 0 },
+              }}
+              transition={{ duration: 0.16, ease: [0.4, 0, 0.2, 1] }}
+            />
+            <Path
+              variants={{
+                closed: { d: 'M 2 16.346 L 20 16.346' },
+                open: { d: 'M 3 2.5 L 17 16.346' },
+              }}
+            />
+          </MotionSvg>
+        </a>
       </div>
 
       <AnimatePresence>
@@ -169,20 +205,7 @@ function Navigation() {
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
             >
-              <div className="navigation__drawer-header">
-                <Link to="/" className="navigation__brand" onClick={closeMenu}>
-                  <img src={logo} alt={logoAlt} className="navigation__brand-logo" />
-                </Link>
-                <button
-                  type="button"
-                  className="navigation__close"
-                  onClick={closeMenu}
-                  aria-label="Закрыть меню"
-                >
-                  <span />
-                  <span />
-                </button>
-              </div>
+              
 
               <ul className="navigation__drawer-list">
                 {navigationItems.map((item) => (
