@@ -12,6 +12,20 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+@media (hover: none) {
+  /* Убираем iOS focus ring на тач-устройствах, но оставляем клавиатурный через :focus-visible */
+  .navigation a:focus,
+  .navigation button:focus {
+    outline: none;
+  }
+}
+
+.navigation a:focus-visible,
+.navigation button:focus-visible {
+  outline: 2px solid #d4b896;
+  outline-offset: 4px;
+}
+
 .navigation__container {
   max-width: 1400px;
   margin: 0 auto;
@@ -176,12 +190,14 @@
   color: #fff;
   text-decoration: none;
   user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .navigation__brand-logo {
   width: 118px;
   height: 70px;
   user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .navigation__brand-text {
