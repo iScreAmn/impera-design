@@ -172,12 +172,8 @@
 }
 
 .navigation__brand-logo {
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
-  object-fit: cover;
-  background: #1c1c1c;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  width: 118px;
+  height: 70px;
 }
 
 .navigation__brand-text {
@@ -375,7 +371,7 @@
 
 @media (max-width: 560px) {
   .navigation__drawer {
-    padding: 28px 22px 32px;
+    padding: 10px 22px 32px;
   }
 
   .navigation__drawer-link {

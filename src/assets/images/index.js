@@ -1,5 +1,5 @@
 // Logo
-export { default as logo } from './logo.webp';
+export { default as logo } from './logos/logo-original.webp';
 export { default as logoMini } from './logo-mini.webp';
 
 // Background

@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
 import { navigationItems } from '../../data/navigationData';
 import { headerData } from '../../data/headerData';
-import { logoMini } from '../../assets/images';
+import { logo } from '../../assets/images';
 import Modal from '../Widgets/Modals/Modal';
 import useModal from '../../utils/useModal';
 import './Navigation.css';
@@ -171,8 +171,7 @@ function Navigation() {
             >
               <div className="navigation__drawer-header">
                 <Link to="/" className="navigation__brand" onClick={closeMenu}>
-                  <img src={logoMini} alt={logoAlt} className="navigation__brand-logo" />
-                  <span className="navigation__brand-text">Impera Studio</span>
+                  <img src={logo} alt={logoAlt} className="navigation__brand-logo" />
                 </Link>
                 <button
                   type="button"
