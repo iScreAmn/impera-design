@@ -6,14 +6,14 @@ export const footerData = {
   contacts: [
     {
       icon: FaPhoneAlt,
-      href: 'tel:+79917761559',
-      text: '+7 (991) 776-15-59',
+      href: 'tel:+79960545054',
+      text: '+7 (966) 054-50-54',
       label: 'Позвоните нам'
     },
     {
       icon: FaEnvelope,
-      href: 'mailto:studio-lafee@yandex.ru',
-      text: 'studio-lafee@yandex.ru',
+      href: 'mailto:impera-design@mail.ru',
+      text: 'impera-design@mail.ru',
       label: 'Напишите нам'
     },
     {
@@ -28,7 +28,7 @@ export const footerData = {
     {
       icon: FaTelegramPlane,
       label: 'Telegram',
-      href: 'https://t.me/'
+      href: 'https://t.me/olga_korshow'
     },
     {
       icon: FaWhatsapp,

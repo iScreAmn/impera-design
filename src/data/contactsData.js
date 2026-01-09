@@ -17,14 +17,14 @@ export const texts = {
 
 // Контактные данные
 export const contactsData = {
-  phone: {
-    value: '+7 (991) 776-15-59',
-    link: 'tel:+79917761559',
+    phone: {
+    value: '+7 (966) 054-50-54',
+    link: 'tel:+79960545054',
     label: 'Ежедневно на связи',
   },
   email: {
-    value: 'studio-lafee@yandex.ru',
-    link: 'mailto:studio-lafee@yandex.ru',
+    value: 'impera-design@mail.ru',
+    link: 'mailto:impera-design@mail.ru',
     label: 'Служба поддержки',
   },
   workingHours: {

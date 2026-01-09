@@ -9,14 +9,14 @@ export const headerData = {
   contacts: [
     {
       icon: FaPhoneAlt,
-      href: 'tel:+79917761559',
-      text: '+7 (991) 776-15-59',
+      href: 'tel:+79960545054',
+      text: '+7 (966) 054-50-54',
       caption: 'Пн-Пт: 09:00-19:00',
     },
     {
       icon: MdOutlineEmail,
-      href: 'mailto:studio-lafee@yandex.ru',
-      text: 'studio-lafee@yandex.ru',
+      href: 'mailto:impera-design@mail.ru',
+      text: 'impera-design@mail.ru',
       caption: 'Напишите нам на почту',
     },
   ],
