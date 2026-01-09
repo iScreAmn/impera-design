@@ -107,7 +107,7 @@
   padding: clamp(20px, 3vw, 24px);
   display: grid;
   gap: clamp(12px, 2vw, 16px);
-  margin-top: 0;
+  margin-top: 123px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
 }
 
