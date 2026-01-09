@@ -79,7 +79,6 @@ function ProjectPage() {
       <section className="project-hero">
         <div className="project-hero__container">
           <div className="project-hero__content">
-            <div className="project-hero__eyebrow">{project.type || 'Проект'}</div>
             <h1 className="project-hero__title">{project.title}</h1>
             <p className="project-hero__subtitle">{project.description}</p>
 

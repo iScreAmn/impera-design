@@ -9,6 +9,7 @@
 .project-breadcrumbs {
   width: min(1200px, 100%);
   margin: 0 auto;
+  padding-top: 100px;
 }
 
 .project-breadcrumbs__container {

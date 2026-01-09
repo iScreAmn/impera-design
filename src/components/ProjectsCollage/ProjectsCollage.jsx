@@ -41,6 +41,15 @@ function ProjectsCollage({ onProjectClick, limit }) {
             }
           }}
         >
+          <div className="projects-collage__info">
+            <h3 className="projects-collage__title">{project.title}</h3>
+            <div className="projects-collage__meta">
+              <span className="projects-collage__location">📍 {project.location}</span>
+              <span className="projects-collage__date">📅 {project.date}</span>
+              <span className="projects-collage__area">📐 {project.area}</span>
+            </div>
+          </div>
+
           <div className="projects-collage__main">
             <img
               src={project.images[activeImages[project.id] || 0]}
@@ -67,15 +76,6 @@ function ProjectsCollage({ onProjectClick, limit }) {
             ))}
             <div className="projects-collage__thumb-wrapper projects-collage__thumb-wrapper--cta">
               <span className="projects-collage__cta">Смотреть проект</span>
-            </div>
-          </div>
-
-          <div className="projects-collage__info">
-            <h3 className="projects-collage__title">{project.title}</h3>
-            <div className="projects-collage__meta">
-              <span className="projects-collage__location">📍 {project.location}</span>
-              <span className="projects-collage__date">📅 {project.date}</span>
-              <span className="projects-collage__area">📐 {project.area}</span>
             </div>
           </div>
         </div>
