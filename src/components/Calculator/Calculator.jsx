@@ -1,5 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import './Calculator.css';
+import Modal from '../Widgets/Modals/Modal';
 
 const Calculator = ({
   title,
@@ -18,6 +19,8 @@ const Calculator = ({
 }) => {
   const totalSteps = steps.length;
   const [currentStep, setCurrentStep] = useState(1);
+  const [isMobile, setIsMobile] = useState(false);
+  const [showContactModal, setShowContactModal] = useState(false);
 
   const createInitialAnswers = () =>
     steps.reduce((acc, step) => {
@@ -37,6 +40,14 @@ const Calculator = ({
   
   const [formData, setFormData] = useState(createInitialFormData);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const handleResize = () => setIsMobile(window.innerWidth <= 968);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleOptionClick = (option) => {
     if (currentStep > totalSteps) return;
@@ -110,6 +121,10 @@ const Calculator = ({
       ...formData,
       contactMethod: method
     });
+
+    if (isMobile && !isSubmitted) {
+      setShowContactModal(true);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -122,6 +137,7 @@ const Calculator = ({
     
     console.log('Результаты калькулятора:', result);
     setIsSubmitted(true);
+    setShowContactModal(false);
   };
 
   const canSubmit = formData.name && formData.phone && formData.email && formData.consent;
@@ -142,6 +158,88 @@ const Calculator = ({
     setFormData(createInitialFormData());
     setCurrentStep(1);
     setIsSubmitted(false);
+    setShowContactModal(false);
+  };
+
+  const renderContactForm = (variant = 'default') => {
+    const isModalVariant = variant === 'modal';
+    const inputClass = isModalVariant ? 'calculator-modal__input' : 'calculator__input';
+    const formClass = isModalVariant
+      ? 'calculator-modal__form'
+      : 'calculator__form';
+    const submitClass = isModalVariant ? 'calculator-modal__submit' : 'calculator__submit';
+
+    return (
+      <form className={formClass} onSubmit={handleSubmit}>
+      <input
+        type="text"
+        name="phone"
+        className={inputClass}
+        placeholder={placeholders.phone}
+        value={formData.phone}
+        onChange={handleInputChange}
+        required
+      />
+      <input
+        type="email"
+        name="email"
+        className={inputClass}
+        placeholder={placeholders.email}
+        value={formData.email}
+        onChange={handleInputChange}
+        required
+      />
+      <input
+        type="text"
+        name="name"
+        className={inputClass}
+        placeholder={placeholders.name}
+        value={formData.name}
+        onChange={handleInputChange}
+        required
+      />
+
+      <button
+        type="submit"
+        className={`${submitClass} ${!canSubmit ? `${submitClass}--disabled` : ''}`}
+        disabled={!canSubmit}
+      >
+        {buttons.submit}
+      </button>
+
+      {isModalVariant ? (
+        <label className="calculator-modal__checkbox-label">
+          <div className="calculator-modal__checkbox-wrapper">
+            <input
+              type="checkbox"
+              name="consent"
+              checked={formData.consent}
+              onChange={handleInputChange}
+              className="calculator__checkbox-input"
+            />
+            <span className="calculator__checkbox-custom" />
+          </div>
+          <span className="calculator-modal__checkbox-text">
+            {contactConsent.text}{' '}
+            <a href={contactConsent.href} className="calculator__link">{contactConsent.linkText}</a>
+          </span>
+        </label>
+      ) : (
+        <label className="calculator__checkbox-label">
+          <input
+            type="checkbox"
+            name="consent"
+            checked={formData.consent}
+            onChange={handleInputChange}
+            className="calculator__checkbox-input"
+          />
+          <span className="calculator__checkbox-custom" />
+          {contactConsent.text}{' '}
+          <a href={contactConsent.href} className="calculator__link">{contactConsent.linkText}</a>
+        </label>
+      )}
+      </form>
+    );
   };
 
   return (
@@ -268,56 +366,7 @@ const Calculator = ({
                     })}
                   </div>
 
-                  <form className="calculator__form" onSubmit={handleSubmit}>
-                    <input
-                      type="text"
-                      name="phone"
-                      className="calculator__input"
-                      placeholder={placeholders.phone}
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      required
-                    />
-                    <input
-                      type="email"
-                      name="email"
-                      className="calculator__input"
-                      placeholder={placeholders.email}
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                    />
-                    <input
-                      type="text"
-                      name="name"
-                      className="calculator__input"
-                      placeholder={placeholders.name}
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      required
-                    />
-
-                    <button
-                      type="submit"
-                      className={`calculator__submit ${!canSubmit ? 'calculator__submit--disabled' : ''}`}
-                      disabled={!canSubmit}
-                    >
-                      {buttons.submit}
-                    </button>
-
-                    <label className="calculator__checkbox-label">
-                      <input
-                        type="checkbox"
-                        name="consent"
-                        checked={formData.consent}
-                        onChange={handleInputChange}
-                        className="calculator__checkbox-input"
-                      />
-                      <span className="calculator__checkbox-custom" />
-                      {contactConsent.text}{' '}
-                      <a href={contactConsent.href} className="calculator__link">{contactConsent.linkText}</a>
-                    </label>
-                  </form>
+                  {!isMobile && renderContactForm()}
                 </>
               )}
             </div>
@@ -344,7 +393,7 @@ const Calculator = ({
           </div>
 
           <div className="calculator__bonuses">
-            <h4 className="calculator__bonuses-title">В конце вы получите:</h4>
+            <h4 className="calculator__bonuses-title">В результате вы получите:</h4>
             <div className="calculator__bonus-items">
               {bonuses.map((bonus, index) => {
                 const BonusIcon = bonus.icon;
@@ -360,6 +409,20 @@ const Calculator = ({
           </div>
         </div>
       </div>
+
+      {isMobile && showContactModal && !isSubmitted && (
+        <Modal
+          isOpen
+          onClose={() => setShowContactModal(false)}
+          title={<span className="calculator-modal__title-text">Оставьте Ваши контакты</span>}
+          className="calculator-contact-modal"
+        >
+          <p className="calculator-modal__subtitle">
+            Мы свяжемся с Вами и направим расчет
+          </p>
+          {renderContactForm('modal')}
+        </Modal>
+      )}
     </div>
   );
 };
