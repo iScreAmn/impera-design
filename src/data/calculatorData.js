@@ -1,11 +1,10 @@
-import { thanku, photo1, document, checklist } from '../assets/images';
+import { thanku, photo1, document } from '../assets/images';
 import { IoMdCheckboxOutline } from "react-icons/io";
 import { FaWhatsapp, FaTelegramPlane } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 
 export const calculatorData = {
   title: 'Рассчитать стоимость услуг в калькуляторе',
-  titleAccent: '+ получить бонус',
   steps: [
     {
       field: 'area',
@@ -24,9 +23,9 @@ export const calculatorData = {
       question: 'Какие услуги вас интересуют?',
       subtitle: 'Выберите один или несколько вариантов',
       options: [
-        'Ремонт',
         'Дизайн-проект',
-        'Меблировка помещений'
+        'Дизайн-проект + ремонт',
+        'Чертежи для ремонта',
       ],
       multiple: true
     },
@@ -50,17 +49,6 @@ export const calculatorData = {
         'Средний бюджет',
         'Премиальный сегмент',
         'Пока не определился'
-      ],
-      multiple: false
-    },
-    {
-      field: 'timeline',
-      question: 'Когда вы планируете начать?',
-      options: [
-        'В течение месяца',
-        'Через 1-3 месяца',
-        'Через 3-6 месяцев',
-        'Интересуюсь, собираю информацию'
       ],
       multiple: false
     }
@@ -96,11 +84,6 @@ export const calculatorData = {
       icon: IoMdCheckboxOutline,
       text: 'Коммерческое предложение',
       image: document
-    },
-    {
-      icon: IoMdCheckboxOutline,
-      text: 'Чек-лист самостоятельного ремонта',
-      image: checklist
     }
   ],
   placeholders: {
@@ -123,11 +106,10 @@ export const calculatorData = {
     prefix: 'Готово',
     finalLabel: 'Остался завершающий шаг!',
     finalHeading: 'Отлично. Остался последний шаг!',
-    finalSubtitle: 'Заполните форму чтобы мы могли прислать вам результат.',
     submittedHeading: 'Наш менеджер свяжется с вами в ближайшее время',
     submittedSubtitle: 'Мы уже обрабатываем вашу заявку.'
   },
-  contactQuestion: 'Выберите куда вам отправить расчет стоимости?',
+  contactQuestion: 'Выберите удобный способ связи',
   thankYouImage: thanku,
   thankYouAlt: 'Спасибо'
 };
