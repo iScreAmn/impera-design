@@ -143,11 +143,11 @@
 
 @media (max-width: 768px) {
   .hero__title {
-    font-size: 24px;
+    font-size: 12px;
   }
 
   .hero__title-large {
-    font-size: 36px;
+    font-size: 28px;
   }
 
   .hero__features {
@@ -161,6 +161,6 @@
   }
 
   .hero__title {
-    padding-top: 20px;
+    padding-top: 60px;
 }
 }
