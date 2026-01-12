@@ -1,5 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { animate, inView } from 'motion';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import StickyHeader from '../../components/StickyHeader/StickyHeader';
 import Breadcrumbs from '../../components/Widgets/Breadcrumbs/Breadcrumbs';
 import Footer from '../../components/Footer/Footer';
@@ -125,17 +130,31 @@ function Clients() {
           </div>
         </div>
 
-        <div className="clients-testimonials__grid">
+        <Swiper
+          modules={[Navigation, Pagination]}
+          spaceBetween={20}
+          slidesPerView={1}
+          navigation
+          pagination={{ clickable: true }}
+          loop
+          className="clients-testimonials__swiper"
+          breakpoints={{
+            768: { slidesPerView: 2, spaceBetween: 24 },
+            1120: { slidesPerView: 3, spaceBetween: 24 },
+          }}
+        >
           {testimonials.list.map((item) => (
-            <article key={item.id} className="clients-testimonials__card">
-              <div className="clients-testimonials__quote">"{item.text}"</div>
-              <div className="clients-testimonials__author">
-                {item.name && <div className="clients-testimonials__name">{item.name}</div>}
-                {item.company && <div className="clients-testimonials__company">{item.company}</div>}
-              </div>
-            </article>
+            <SwiperSlide key={item.id}>
+              <article className="clients-testimonials__card">
+                <div className="clients-testimonials__quote">"{item.text}"</div>
+                <div className="clients-testimonials__author">
+                  {item.name && <div className="clients-testimonials__name">{item.name}</div>}
+                  {item.company && <div className="clients-testimonials__company">{item.company}</div>}
+                </div>
+              </article>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </section>
 
       <Footer />
