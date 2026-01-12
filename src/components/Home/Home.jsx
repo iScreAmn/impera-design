@@ -11,6 +11,7 @@ import Footer from '../Footer/Footer';
 import { calculatorData } from '../../data/calculatorData';
 import { aboutData } from '../../data/aboutData';
 import { ctaData } from '../../data/ctaData';
+import { projectsPageData } from '../../data/projectsData';
 import './Home.css';
 
 function Home() {
@@ -21,7 +22,7 @@ function Home() {
       <Calculator {...calculatorData} />
       <section className="home__projects">
         <div className="home__projects-header">
-          <h2 className="home__projects-title">Реализованные проекты Impera Studio</h2>
+          <h2 className="home__projects-title">{projectsPageData.homeTitle}</h2>
           <p className="home__projects-subtitle">Наши работы говорят сами за себя</p>
         </div>
         <ProjectsCollage limit={4} />

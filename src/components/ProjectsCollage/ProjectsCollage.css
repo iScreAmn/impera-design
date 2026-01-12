@@ -121,6 +121,10 @@
     padding: 0 10px;
   }
 
+  .projects-collage__title {
+    font-size: 28px;
+  }
+
   .projects-collage__main {
     height: 300px;
   }
