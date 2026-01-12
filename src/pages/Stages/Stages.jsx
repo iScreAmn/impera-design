@@ -109,18 +109,18 @@ function Stages() {
     }
   }, [isLastStepInView, progress]);
 
-  // Sticky logic for aside card
+  // Sticky logic for aside card (manual fix)
   useEffect(() => {
     const bodySection = containerRef.current;
     const asideBlock = asideRef.current;
-
-    if (!bodySection || !asideBlock) return;
-
     const cardContent = asideCardRef.current;
     const listBlock = listRef.current;
-    if (!cardContent || !listBlock) return;
 
-    // Устанавливаем высоту aside равной высоте списка
+    if (!bodySection || !asideBlock || !cardContent || !listBlock) return;
+
+    const stickyTop = 120;
+
+    // Устанавливаем минимальную высоту под высоту списка
     const setAsideHeight = () => {
       const listHeight = listBlock.offsetHeight;
       asideBlock.style.minHeight = `${listHeight}px`;
@@ -130,39 +130,38 @@ function Stages() {
       const bodyRect = bodySection.getBoundingClientRect();
       const asideRect = asideBlock.getBoundingClientRect();
       const cardHeight = cardContent.offsetHeight;
-      const stickyTop = 120;
 
-      // Секция еще не в зоне видимости
+      // Секция еще не дошла до верхнего порога
       if (bodyRect.top > stickyTop) {
-        asideBlock.classList.remove('is-fixed', 'is-bottom');
-        cardContent.style.width = '';
+        cardContent.style.position = 'relative';
+        cardContent.style.top = '';
         cardContent.style.left = '';
+        cardContent.style.width = '';
         return;
       }
 
-      // Aside достиг конца - прижимаем к низу
-      if (asideRect.bottom < stickyTop + cardHeight) {
-        asideBlock.classList.remove('is-fixed');
-        asideBlock.classList.add('is-bottom');
-        cardContent.style.width = '';
-        cardContent.style.left = '';
+      // Достигли низа списка — ставим карточку в конец aside
+      const bodyBottomSpace = bodyRect.bottom - stickyTop - cardHeight;
+      if (bodyBottomSpace <= 0) {
+        cardContent.style.position = 'absolute';
+        cardContent.style.top = `${listBlock.offsetHeight - cardHeight}px`;
+        cardContent.style.left = '0';
+        cardContent.style.width = '100%';
         return;
       }
 
-      // Секция в зоне видимости - фиксируем
-      if (!asideBlock.classList.contains('is-fixed')) {
-        const rect = asideBlock.getBoundingClientRect();
-        cardContent.style.width = `${rect.width}px`;
-        cardContent.style.left = `${rect.left}px`;
-      }
-      asideBlock.classList.add('is-fixed');
-      asideBlock.classList.remove('is-bottom');
+      // Фиксируем карточку
+      cardContent.style.position = 'fixed';
+      cardContent.style.top = `${stickyTop}px`;
+      cardContent.style.left = `${asideRect.left}px`;
+      cardContent.style.width = `${asideRect.width}px`;
     };
 
     const handleResize = () => {
-      asideBlock.classList.remove('is-fixed', 'is-bottom');
-      cardContent.style.width = '';
+      cardContent.style.position = 'relative';
+      cardContent.style.top = '';
       cardContent.style.left = '';
+      cardContent.style.width = '';
       asideBlock.style.minHeight = '';
       setAsideHeight();
       handleScroll();
@@ -178,7 +177,6 @@ function Stages() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-
 
   return (
     <div className="stages-page">

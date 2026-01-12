@@ -181,20 +181,6 @@
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.25);
 }
 
-.stages-aside.is-fixed .stages-aside__card-content {
-  position: fixed;
-  top: 120px;
-}
-
-.stages-aside.is-bottom {
-  display: flex;
-  align-items: flex-end;
-}
-
-.stages-aside.is-bottom .stages-aside__card-content {
-  position: relative;
-}
-
 .stages-list {
   flex: 1;
 }
