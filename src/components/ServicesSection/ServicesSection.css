@@ -3,6 +3,20 @@
   background-color: #0a0a0a;
 }
 
+.services-section__container {
+  margin: 0 auto;
+}
+
+.services-section__title {
+  font-family: 'Square721';
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0 0 60px 0;
+  text-align: center;
+}
+
 .services__wrapper {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -227,6 +241,11 @@
     padding: 60px 0;
   }
 
+  .services-section__title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+
   .services__wrapper {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
@@ -275,6 +294,11 @@
 @media (max-width: 480px) {
   .services-section {
     padding: 20px 0;
+  }
+
+  .services-section__title {
+    font-size: 25px;
+    margin-bottom: 30px;
   }
 
   .service-card {
