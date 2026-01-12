@@ -26,7 +26,11 @@ function Hero() {
             <span className="hero__title-large">{emphasis}</span>
           </h1>
           <p className="hero__subtitle">{subtitle}</p>
-          <button className="hero__button" type="button">
+          <button 
+            className="hero__button" 
+            type="button"
+            onClick={() => window.open('https://t.me/olga_korshow', '_blank')}
+          >
             {ctaLabel}
           </button>
         </div>
