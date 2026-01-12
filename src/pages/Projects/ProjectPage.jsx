@@ -86,7 +86,7 @@ function ProjectPage() {
               {project.location && (
                 <div className="project-hero__chip">Локация: {project.location}</div>
               )}
-              {project.area && <div className="project-hero__chip">{project.area} м²</div>}
+              {project.area && <div className="project-hero__chip">{project.area}</div>}
               {project.designer && <div className="project-hero__chip">{project.designer}</div>}
               {project.date && <div className="project-hero__chip">{project.date}</div>}
             </div>
