@@ -15,6 +15,8 @@ function ProjectPage() {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   const openModal = (index) => {
     setCurrentImageIndex(index);
@@ -64,6 +66,33 @@ function ProjectPage() {
     if (e.key === 'ArrowRight') nextImage(e);
     if (e.key === 'ArrowLeft') prevImage(e);
     if (e.key === 'Escape') closeModal();
+  };
+
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+    }
+    if (isRightSwipe) {
+      setCurrentImageIndex((prev) => 
+        prev === 0 ? project.images.length - 1 : prev - 1
+      );
+    }
   };
 
   return (
@@ -191,6 +220,9 @@ function ProjectPage() {
             alt={`${project.title} - изображение ${currentImageIndex + 1}`}
             className="project-modal__img"
             onClick={(e) => e.stopPropagation()}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
           />
           
           <button
