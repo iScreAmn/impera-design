@@ -445,6 +445,7 @@
   }
 
   .project-modal__counter {
+    display: none;
     bottom: 260px;
     font-size: 0.85rem;
     padding: 8px 16px;
