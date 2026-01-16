@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { projectsData } from '../../data/projectsData';
 import './ProjectsCollage.css';
@@ -6,16 +5,6 @@ import './ProjectsCollage.css';
 function ProjectsCollage({ onProjectClick, limit }) {
   const navigate = useNavigate();
   const displayedProjects = limit ? projectsData.slice(0, limit) : projectsData;
-  const [activeImages, setActiveImages] = useState(() =>
-    displayedProjects.reduce((acc, project) => {
-      acc[project.id] = 0;
-      return acc;
-    }, {})
-  );
-
-  const handleThumbActivate = (projectId, index) => {
-    setActiveImages((prev) => ({ ...prev, [projectId]: index }));
-  };
 
   const handleProjectClick = (slug) => {
     if (onProjectClick) {
@@ -52,24 +41,21 @@ function ProjectsCollage({ onProjectClick, limit }) {
 
           <div className="projects-collage__main">
             <img
-              src={project.images[activeImages[project.id] || 0]}
+              src={project.images[0]}
               alt={project.title}
               className="projects-collage__img"
             />
           </div>
 
           <div className="projects-collage__thumbs">
-            {project.thumbnails.map((thumb, index) => (
+            {project.images.slice(1, 4).map((image, index) => (
               <div
                 key={index}
                 className="projects-collage__thumb-wrapper"
-                onMouseEnter={() => handleThumbActivate(project.id, index)}
-                onFocus={() => handleThumbActivate(project.id, index)}
-                onTouchStart={() => handleThumbActivate(project.id, index)}
               >
                 <img
-                  src={thumb}
-                  alt={`${project.title} ${index + 1}`}
+                  src={image}
+                  alt={`${project.title} ${index + 2}`}
                   className="projects-collage__img projects-collage__img--thumb"
                 />
               </div>

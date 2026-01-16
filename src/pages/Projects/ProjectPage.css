@@ -230,6 +230,11 @@
     padding: 20px 0 70px;
   }
 
+
+  .project-hero__title {
+    font-size: 18px;
+  }
+
   .project-hero__container,
   .project-gallery__container {
     padding: 24px;

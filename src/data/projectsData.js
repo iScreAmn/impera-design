@@ -302,7 +302,7 @@ export const projectsData = [
   },
   {
     id: 10,
-    slug: 'hotel',
+    slug: 'paratun',
     title: 'Гостиничный комплекс «Паратунь»',
     location: 'г. Петропавловск-Камчатский',
     date: '2024 г.',
