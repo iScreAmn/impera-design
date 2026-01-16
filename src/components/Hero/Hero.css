@@ -149,6 +149,7 @@
   }
 
   .hero__features {
+    width: 350px;
     grid-template-columns: 1fr;
   }
 }
