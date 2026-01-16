@@ -285,37 +285,12 @@
   position: absolute;
   top: 30px;
   right: 30px;
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-}
-
-.project-modal__close:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: rotate(90deg);
-}
-
-.project-modal__nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+  background: transparent;
+  color: #c4b5a0;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
   font-size: 2rem;
   cursor: pointer;
   display: flex;
@@ -325,8 +300,32 @@
   backdrop-filter: blur(10px);
 }
 
+.project-modal__close:hover {
+  background: rgba(196, 181, 160, 0.2);
+  color: #c4b5a0;
+  transform: rotate(90deg);
+}
+
+.project-modal__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  color: #c4b5a0;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
 .project-modal__nav:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(161, 145, 130, 0.26);
   border-color: rgba(255, 255, 255, 0.5);
 }
 
@@ -419,6 +418,7 @@
   }
 
   .project-modal__close {
+    display: none;
     top: 15px;
     right: 15px;
     width: 40px;
@@ -427,17 +427,17 @@
   }
 
   .project-modal__nav {
-    width: 50px;
-    height: 50px;
     font-size: 1.5rem;
   }
 
   .project-modal__nav--prev {
-    left: 15px;
+    left: -10px;
   }
 
   .project-modal__nav--next {
-    right: 15px;
+    right: -10px;
+    background: none !important;
+    border: none;
   }
 
   .project-modal__counter {
