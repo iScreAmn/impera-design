@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
 import { IoIosClose } from 'react-icons/io';
@@ -38,6 +38,33 @@ function ProjectPage() {
     window.scrollTo({ top, behavior: 'smooth' });
   };
 
+  useEffect(() => {
+    if (!modalOpen || !project) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+      }
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        setCurrentImageIndex((prev) => 
+          prev === 0 ? project.images.length - 1 : prev - 1
+        );
+      }
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        setModalOpen(false);
+        document.body.style.overflow = 'auto';
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [modalOpen, project]);
+
   if (!project) {
     return (
       <div className="project-page">
@@ -51,21 +78,15 @@ function ProjectPage() {
   }
 
   const nextImage = (e) => {
-    e.stopPropagation();
+    if (e) e.stopPropagation();
     setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
   };
 
   const prevImage = (e) => {
-    e.stopPropagation();
+    if (e) e.stopPropagation();
     setCurrentImageIndex((prev) => 
       prev === 0 ? project.images.length - 1 : prev - 1
     );
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === 'ArrowRight') nextImage(e);
-    if (e.key === 'ArrowLeft') prevImage(e);
-    if (e.key === 'Escape') closeModal();
   };
 
   const minSwipeDistance = 50;
@@ -194,8 +215,6 @@ function ProjectPage() {
         <div
           className="project-modal"
           onClick={closeModal}
-          onKeyDown={handleKeyDown}
-          tabIndex={0}
           role="dialog"
           aria-modal="true"
         >
