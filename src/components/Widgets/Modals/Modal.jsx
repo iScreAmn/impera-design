@@ -10,6 +10,7 @@ const Modal = ({
 }) => {
   const modalRef = useRef(null);
   const previousFocusRef = useRef(null);
+  const hasFocusedRef = useRef(false);
 
   // Handle Escape key press
   useEffect(() => {
@@ -24,22 +25,39 @@ const Modal = ({
       // Prevent body scroll when modal is open
       document.body.style.overflow = 'hidden';
       
-      // Save current focused element
-      previousFocusRef.current = document.activeElement;
-      
-      // Focus modal content
-      if (modalRef.current) {
-        modalRef.current.focus();
+      // Save current focused element only on first open
+      if (previousFocusRef.current === null) {
+        previousFocusRef.current = document.activeElement;
       }
+      
+      // Focus first input only once when modal opens, don't refocus on re-renders
+      if (modalRef.current && !hasFocusedRef.current) {
+        const firstInput = modalRef.current.querySelector('input:not([type="checkbox"]):not([type="radio"]), textarea, select');
+        if (firstInput) {
+          // Use setTimeout to ensure DOM is ready
+          setTimeout(() => {
+            firstInput.focus();
+          }, 0);
+        } else {
+          modalRef.current.focus();
+        }
+        hasFocusedRef.current = true;
+      }
+    } else {
+      // Reset focus flag when modal closes
+      hasFocusedRef.current = false;
     }
 
     return () => {
       document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = '';
-      
-      // Restore focus to previous element
-      if (previousFocusRef.current) {
-        previousFocusRef.current.focus();
+      if (!isOpen) {
+        document.body.style.overflow = '';
+        
+        // Restore focus to previous element
+        if (previousFocusRef.current) {
+          previousFocusRef.current.focus();
+          previousFocusRef.current = null;
+        }
       }
     };
   }, [isOpen, onClose]);

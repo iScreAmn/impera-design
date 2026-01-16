@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useCallback } from 'react';
 import './Calculator.css';
 import Modal from '../Widgets/Modals/Modal';
 
@@ -108,13 +108,13 @@ const Calculator = ({
     }
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = useCallback((e) => {
     const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [name]: type === 'checkbox' ? checked : value
-    });
-  };
+    }));
+  }, []);
 
   const handleContactMethodClick = (method) => {
     setFormData({
@@ -160,6 +160,10 @@ const Calculator = ({
     setIsSubmitted(false);
     setShowContactModal(false);
   };
+
+  const handleCloseModal = useCallback(() => {
+    setShowContactModal(false);
+  }, []);
 
   const renderContactForm = (variant = 'default') => {
     const isModalVariant = variant === 'modal';
@@ -412,8 +416,8 @@ const Calculator = ({
 
       {isMobile && showContactModal && !isSubmitted && (
         <Modal
-          isOpen
-          onClose={() => setShowContactModal(false)}
+          isOpen={showContactModal}
+          onClose={handleCloseModal}
           title={<span className="calculator-modal__title-text">Оставьте Ваши контакты</span>}
           className="calculator-contact-modal"
         >
