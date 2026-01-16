@@ -59,6 +59,7 @@
   line-height: 1.7;
   color: #b8b8b8;
   max-width: 340px;
+  white-space: pre-line;
 }
 
 .footer__socials {
