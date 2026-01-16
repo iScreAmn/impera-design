@@ -20,7 +20,7 @@ export const calculatorData = {
     },
     {
       field: 'services',
-      question: 'Какие услуги вас интересуют?',
+      question: 'Какие услуги Вас интересуют?',
       subtitle: 'Выберите один или несколько вариантов',
       options: [
         'Дизайн-проект',
@@ -31,7 +31,7 @@ export const calculatorData = {
     },
     {
       field: 'style',
-      question: 'Какой стиль интерьера вам ближе?',
+      question: 'Какой стиль интерьера Вам ближе?',
       options: [
         'Современный',
         'Классический',
