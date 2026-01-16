@@ -238,6 +238,24 @@
   .project-gallery-section {
     padding: 20px 0 80px;
   }
+
+  .project__gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .project-gallery__pair {
+    display: contents;
+  }
+
+  .project-gallery__item {
+    width: 100%;
+  }
+
+  .project-gallery__item--small {
+    aspect-ratio: 1 / 1;
+  }
 }
 
 .project-modal {
@@ -414,11 +432,6 @@
 
   .project__title {
     font-size: 1.5rem;
-  }
-
-  .project-gallery__pair {
-    grid-template-columns: 1fr;
-    gap: 20px;
   }
 
   .project-modal__close {

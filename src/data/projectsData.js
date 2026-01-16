@@ -275,7 +275,7 @@ export const projectsData = [
   {
     id: 8,
     slug: 'restaurant',
-    title: 'Ресторан Дворик друзей',
+    title: 'Ресторан «Дворик друзей»',
     location: 'г. Монино',
     date: '2023 г.',
     area: '210 м²',
@@ -303,7 +303,7 @@ export const projectsData = [
   {
     id: 10,
     slug: 'hotel',
-    title: 'Гостиничный комплекс и ресторан «Паратунь»',
+    title: 'Гостиничный комплекс «Паратунь»',
     location: 'г. Петропавловск-Камчатский',
     date: '2024 г.',
     area: '450 м²',
@@ -317,7 +317,7 @@ export const projectsData = [
   {
     id: 11,
     slug: 'crazy-brothers',
-    title: 'Клуб Crazy Brothers',
+    title: 'Кафе «Crazy Brothers»',
     location: 'г. Москва',
     date: '2024 г.',
     area: '142 м²',
