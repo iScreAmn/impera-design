@@ -284,7 +284,9 @@
 .clients-testimonials {
   width: min(1440px, 100%);
   margin: 0 auto;
-  padding: clamp(40px, 6vw, 60px) clamp(20px, 6vw, 90px);
+  padding: clamp(40px, 6vw, 60px) clamp(20px, 6vw, 90px) clamp(80px, 10vw, 100px);
+  position: relative;
+  overflow: visible;
 }
 
 .clients-testimonials__header {
@@ -326,8 +328,6 @@
 }
 
 .clients-testimonials__card {
-  background: #fff;
-  color: #1f1f1f;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
   padding: clamp(16px, 2.5vw, 18px);
@@ -341,7 +341,8 @@
   font-family: 'Mulish', sans-serif;
   font-size: clamp(14px, 1.8vw, 16px);
   line-height: 1.65;
-  color: #1f1f1f;
+  color: #fff;
+  text-align: center;
 }
 
 .clients-testimonials__author {
@@ -354,8 +355,9 @@
   font-family: 'Square721', sans-serif;
   font-size: clamp(15px, 1.8vw, 16.8px);
   font-weight: 600;
-  color: #1f1f1f;
+  color: #7a7a7a;
   margin: 0;
+  text-align: center;
 }
 
 .clients-testimonials__company {
@@ -367,6 +369,9 @@
 
 .clients-testimonials__swiper {
   width: 100%;
+  position: relative;
+  overflow: visible;
+  padding-bottom: 40px;
 }
 
 .clients-testimonials__swiper .swiper-slide {
@@ -385,19 +390,34 @@
 }
 
 .clients-testimonials__swiper .swiper-pagination-bullet {
-  background: rgba(255, 255, 255, 0.4);
-  opacity: 1;
+  background: #ffffff !important;
+  opacity: 1 !important;
+  width: 6px !important;
+  height: 6px !important;
+  margin: 0 6px !important;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 10;
+  position: relative;
 }
 
 .clients-testimonials__swiper .swiper-pagination-bullet-active {
-  background: rgba(196, 181, 160, 0.9);
+  background: #d4b896 !important;
+  opacity: 1 !important;
+  transform: scale(1.2);
 }
 
 .clients-testimonials__swiper .swiper-pagination-fraction,
 .clients-testimonials__swiper .swiper-pagination-custom,
 .clients-testimonials__swiper .swiper-horizontal > .swiper-pagination-bullets,
 .clients-testimonials__swiper .swiper-pagination-bullets.swiper-pagination-horizontal {
-  bottom: -20px;
+  bottom: 0 !important;
+  position: absolute !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 0;
+  width: 100%;
+  z-index: 10;
 }
 
 @media (max-width: 1024px) {

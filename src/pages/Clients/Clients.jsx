@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { animate, inView } from 'motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -131,16 +131,23 @@ function Clients() {
         </div>
 
         <Swiper
-          modules={[Navigation, Pagination]}
-          spaceBetween={20}
-          slidesPerView={1}
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={24}
+          slidesPerView={3}
           navigation
           pagination={{ clickable: true }}
+          centeredSlides
           loop
+          loopAdditionalSlides={2}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
           className="clients-testimonials__swiper"
           breakpoints={{
-            768: { slidesPerView: 2, spaceBetween: 24 },
-            1120: { slidesPerView: 3, spaceBetween: 24 },
+            320: { slidesPerView: 1, spaceBetween: 20, centeredSlides: false, loop: true },
+            768: { slidesPerView: 2, spaceBetween: 24, centeredSlides: true, loop: true },
           }}
         >
           {testimonials.list.map((item) => (
