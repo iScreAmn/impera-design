@@ -84,7 +84,7 @@ function ProjectPage() {
 
             <div className="project-hero__meta">
               {project.location && (
-                <div className="project-hero__chip">Локация: {project.location}</div>
+                <div className="project-hero__chip">{project.location}</div>
               )}
               {project.area && <div className="project-hero__chip">{project.area}</div>}
               {project.designer && <div className="project-hero__chip">{project.designer}</div>}
@@ -115,7 +115,7 @@ function ProjectPage() {
                 return (
                   <div
                     key={index}
-                    className="project-gallery__item project-gallery__item--large"
+                    className="project-gallery__item project-gallery__item--small"
                     onClick={() => openModal(index)}
                   >
                     <img
