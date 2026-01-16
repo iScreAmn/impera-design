@@ -186,7 +186,7 @@ export const projectsData = [
       'Индивидуальная мебель по проекту',
     ],
     images: [bossLounge1, bossLounge2, bossLounge3, bossLounge4, bossLounge5, bossLounge6, bossLounge7, bossLounge8, bossLounge9, bossLounge10, bossLounge11, bossLounge12, bossLounge13, bossLounge14, bossLounge15, bossLounge16],
-    thumbnails: [bossLounge1, bossLounge2, bossLounge3],
+    thumbnails: [bossLounge1, bossLounge2, bossLounge3, bossLounge4],
   },
   {
     id: 2,
@@ -204,7 +204,7 @@ export const projectsData = [
       'Индивидуальное освещение в каждой зоне',
     ],
     images: [lesnoiPark1, lesnoiPark2, lesnoiPark3, lesnoiPark4, lesnoiPark5, lesnoiPark6, lesnoiPark7, lesnoiPark8, lesnoiPark9, lesnoiPark10, lesnoiPark11, lesnoiPark12, lesnoiPark13, lesnoiPark14, lesnoiPark15, lesnoiPark16, lesnoiPark17, lesnoiPark18, lesnoiPark19],
-    thumbnails: [lesnoiPark1, lesnoiPark2, lesnoiPark3],
+    thumbnails: [lesnoiPark1, lesnoiPark2, lesnoiPark3, lesnoiPark4],
   },
   {
     id: 3,
@@ -217,7 +217,7 @@ export const projectsData = [
     description: 'Интерьер, который создаёт ощущение приватности и премиального комфорта, повышая доверие клиентов и их готовность возвращаться.Чёткое зонирование, продуманная навигация и изолированные кабинеты формируют удобный клиентский сценарий и эффективную работу персонала. Тёплаяприродная палитра, акцентный свет и натуральные материалы усиливают восприятие бренда.',
     features: [],
     images: [taiMassage1, taiMassage2, taiMassage3, taiMassage4, taiMassage5, taiMassage6, taiMassage7, taiMassage8, taiMassage9, taiMassage10, taiMassage11, taiMassage12, taiMassage13, taiMassage14, taiMassage15, taiMassage16, taiMassage17],
-    thumbnails: [taiMassage1, taiMassage2, taiMassage3],
+    thumbnails: [taiMassage1, taiMassage2, taiMassage3, taiMassage4],
   },
   {
     id: 4,
@@ -230,7 +230,7 @@ export const projectsData = [
     description: 'Пространство, которое не просто радует маленьких гостей, но и напрямую влияет на прибыль бизнеса. Продуманное зонирование, безопасные материалы, яркие акценты и мебель по росту - делают пребывание детей комфортным и увлекательным. А это большеспокойных родителей, больше проведённого времени на территории и выше средний чек.',
     features: [],
     images: [kidsRoom1, kidsRoom2, kidsRoom3, kidsRoom4, kidsRoom5, kidsRoom6, kidsRoom7, kidsRoom8],
-    thumbnails: [kidsRoom1, kidsRoom2, kidsRoom3],
+    thumbnails: [kidsRoom1, kidsRoom2, kidsRoom3, kidsRoom4],
   },
   {
     id: 5,
@@ -243,7 +243,7 @@ export const projectsData = [
     description: 'Пространство с атмосферой уединённого премиального отдыха. Темная палитра, бетонные фактуры и тёплый многоуровневый свет формируют глубокий, обволакивающий фон, в котором хочется задержаться. Интерьер зонирован без перегородок - с помощью света, форм и фактур. Это дизайн, который работает на атмосферу, вовлекает гостя и формирует желание возвращаться.',
     features: [],
     images: [slowGlow1, slowGlow2, slowGlow3, slowGlow4, slowGlow5, slowGlow6, slowGlow7, slowGlow8],
-    thumbnails: [slowGlow1, slowGlow2, slowGlow3],
+    thumbnails: [slowGlow1, slowGlow2, slowGlow3, slowGlow4],
   },
   {
     id: 6,
@@ -257,7 +257,7 @@ export const projectsData = [
     description: 'Ресторан, в интерьер которого невозможно не влюбиться. Здесь одинаково комфортно как для тихого ужина вдвоём, так и для шумной вечеринки с живой музыкой. Изумрудная палитра, теплое золото и мягкая подсветка создают элегантную и утонченную атмосферу. Высокие потолки и светлые стены визуально расширяют пространство. Здесь каждая деталь - от расположения столиков до текстуры обивки - продумана так, чтобы гостям хотелось остаться подольше и вернуться снова',
     features: [],
     images: [bulvar1, bulvar2, bulvar3, bulvar4, bulvar5, bulvar6, bulvar7, bulvar8, bulvar9, bulvar10, bulvar11, bulvar12, bulvar13],
-    thumbnails: [bulvar1, bulvar2, bulvar3],
+    thumbnails: [bulvar1, bulvar2, bulvar3, bulvar4],
   },
   {
     id: 7,
@@ -270,7 +270,7 @@ export const projectsData = [
     description: 'Офис компании - это не просто столы, стулья и шкафы с документами. Это место, где сотрудники проводят большую часть дня и важно, чтобы они чувствовали себя комфортно. Сдержанная палитра, минимализм, большое количество зелени и естественного света сделали офис стильным и уютным.',
     features: [],
     images: [office1, office2, office3, office4, office5, office6, office7, office8, office9, office10, office11, office12, office13, office14, office15, office16, office17],
-    thumbnails: [office1, office2, office3],
+    thumbnails: [office1, office2, office3, office4],
   },
   {
     id: 8,
@@ -284,7 +284,7 @@ export const projectsData = [
     description: 'Этот интерьер создавался как место, где гости могут не просто поесть, а отдохнуть, переключиться и провести время с удовольствием.Здесь каждый найдет формат под своё настроение:\n- комфортные посадочные группы для неспешных бесед\n- более приватные зоны для уединения\n- просторный зал для компаний\n- барная зона и сцена для живых выступлений и событий',
     features: [],
     images: [dvorik1, dvorik2, dvorik3, dvorik4, dvorik5, dvorik6, dvorik7, dvorik8, dvorik9],
-    thumbnails: [dvorik1, dvorik2, dvorik3],
+    thumbnails: [dvorik1, dvorik2, dvorik3, dvorik4],
   },
   {
     id: 9,
@@ -298,7 +298,7 @@ export const projectsData = [
     description: 'Этот проект - про атмосферу, в которую хочется возвращаться. Мы объединили природные мотивы, тёплые текстуры и современную эстетику, чтобы создать пространство, где гость чувствует не просто комфорт, а настоящее эмоциональное погружение. Графичные панели, фактуры кирпича и дерева, мягкий свет и глубокие оттенки создают ощущение уюта и уединения.',
     features: [],
     images: [hotel1, hotel2, hotel3, hotel4, hotel5, hotel6, hotel7, hotel8, hotel9, hotel10, hotel11, hotel12, hotel13, hotel14, hotel15, hotel16, hotel17, hotel18, hotel19, hotel20, hotel21, hotel22, hotel23, hotel24, hotel25, hotel26],
-    thumbnails: [hotel1, hotel2, hotel3],
+    thumbnails: [hotel1, hotel2, hotel3, hotel4],
   },
   {
     id: 10,
@@ -312,7 +312,7 @@ export const projectsData = [
     description: 'Дизайн гостиничного комплекса создан как комфортная и статусная среда для отдыха и деловых поездок. Номера и отличаются продуманной планировкой, спокойной природной палитрой и акцентными материалами, создающими ощущение уюта и приватности на уровне премиального сервиса.Ресторан спроектирован как самостоятельная точка притяжения - место для встреч, мероприятий и гастрономического опыта.',
     features: [],
     images: [paratun1, paratun2, paratun3, paratun4, paratun5, paratun6, paratun7, paratun8, paratun9, paratun10, paratun11, paratun12, paratun13],
-    thumbnails: [paratun1, paratun2, paratun3],
+    thumbnails: [paratun1, paratun2, paratun3, paratun4],
   },
   {
     id: 11,
@@ -326,7 +326,7 @@ export const projectsData = [
     description: 'Мы создали не просто интерьер, а атмосферу, которая стала частью ночной жизни города. Здесь пространство работает на эмоции, вовлекает, удерживает гостей и формирует запоминающийся образ. Мы выстроили концепцию вокруг контраста: тёмные, глубокие оттенки сочетаются с тёплым, мягким светом, а лаконичные формы - с тактильно приятнымиматериалами. Вертикальные световые акценты визуально вытягивают пространство и задают ритм, а живая зелень добавляет ощущение уюта и баланса.',
     features: [],
     images: [crazyBrothers1, crazyBrothers2, crazyBrothers3, crazyBrothers4, crazyBrothers5, crazyBrothers6, crazyBrothers7, crazyBrothers8, crazyBrothers9, crazyBrothers10, crazyBrothers11, crazyBrothers12],
-    thumbnails: [crazyBrothers1, crazyBrothers2, crazyBrothers3],
+    thumbnails: [crazyBrothers1, crazyBrothers2, crazyBrothers3, crazyBrothers4],
   }
 ];
 

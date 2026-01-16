@@ -141,7 +141,7 @@
   width: 100%;
   padding: 14px 16px;
   font-family: 'Mulish Medium', system-ui, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 6px;
   background-color: rgba(255, 255, 255, 0.9);
@@ -276,7 +276,7 @@
 
   .cta__input {
     padding: 12px 14px;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .cta__button {

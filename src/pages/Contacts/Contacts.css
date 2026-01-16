@@ -309,7 +309,7 @@
   border: 1px solid #444;
   color: #fff;
   padding: clamp(14px, 2vw, 16px) clamp(16px, 2.5vw, 20px);
-  font-size: clamp(15px, 1.8vw, 16px);
+  font-size: 16px;
   font-family: inherit;
   border-radius: 8px;
   transition: border-color 0.3s ease;
@@ -587,7 +587,7 @@
   .callback-modal__input,
   .callback-modal__textarea {
     padding: 12px 14px;
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .callback-modal__submit {

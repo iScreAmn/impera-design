@@ -25,6 +25,7 @@
 }
 
 .statistic__title {
+  width: 1000px;
   font-family: var(--font-heading);
   font-size: 48px;
   font-weight: 400;
@@ -132,10 +133,6 @@
     padding: 80px 0 100px;
   }
 
-  .statistic__header {
-    max-width: none;
-  }
-
   .statistic__title {
     font-size: 36px;
   }
@@ -153,6 +150,11 @@
 
   .statistic__eyebrow {
     font-size: 12px;
+  }
+
+
+  .statistic__header {
+    max-width: 350px;
   }
 
   .statistic__title {
@@ -187,6 +189,7 @@
 
   .statistic__title {
     font-size: 28px;
+    width: 100%;
   }
 
   .statistic__card:last-child {
