@@ -1,7 +1,8 @@
 import { thanku, photo1, document } from '../assets/images';
 import { IoMdCheckboxOutline } from "react-icons/io";
-import { FaWhatsapp, FaTelegramPlane } from "react-icons/fa";
+import { FaTelegramPlane } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
+import messengerIcon from '../assets/images/art/max-white.webp';
 
 export const calculatorData = {
   title: 'Рассчитать стоимость услуг в калькуляторе',
@@ -55,14 +56,15 @@ export const calculatorData = {
   ],
   contactMethods: [
     {
-      id: 'whatsapp',
-      label: 'WhatsApp',
-      icon: FaWhatsapp
-    },
-    {
       id: 'telegram',
       label: 'Telegram',
       icon: FaTelegramPlane
+    },
+    {
+      id: 'messenger',
+      label: 'MAX',
+      icon: messengerIcon,
+      iconType: 'img',
     },
     {
       id: 'email',

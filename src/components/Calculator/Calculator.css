@@ -331,8 +331,11 @@
   color: #ffffff;
 }
 
-.calculator__contact-btn--whatsapp.calculator__contact-btn--active {
-  background-color: #25d366;
+.calculator__contact-btn--messenger.calculator__contact-btn--active {
+  background: linear-gradient(90deg, #52a9ce 0%, #9549d6 100%);
+  background-origin: border-box;
+  background-clip: border-box;
+  border-color: transparent;
 }
 
 .calculator__contact-btn--telegram.calculator__contact-btn--active {
@@ -345,6 +348,13 @@
 
 .calculator__contact-icon {
   font-size: 20px;
+}
+
+.calculator__contact-btn img.calculator__contact-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  display: block;
 }
 
 .calculator__form {

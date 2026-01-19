@@ -363,7 +363,11 @@ const Calculator = ({
                           onClick={() => handleContactMethodClick(method.id)}
                           type="button"
                         >
-                          {MethodIcon && <MethodIcon className="calculator__contact-icon" />}
+                          {MethodIcon && (method.iconType === 'img' ? (
+                            <img src={MethodIcon} alt="" className="calculator__contact-icon" aria-hidden />
+                          ) : (
+                            <MethodIcon className="calculator__contact-icon" />
+                          ))}
                           {method.label}
                         </button>
                       );
