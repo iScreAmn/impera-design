@@ -1,5 +1,6 @@
 import StickyHeader from '../../components/StickyHeader/StickyHeader';
 import Breadcrumbs from '../../components/Widgets/Breadcrumbs/Breadcrumbs';
+import { teamPhoto } from '../../assets/images';
 import Statistic from './Statistic/Statistic';
 import History from './History/History';
 import Mission from './Mission/Mission';
@@ -16,6 +17,9 @@ function About() {
         <div className="about-breadcrumbs__container">
           <Breadcrumbs />
         </div>
+      </div>
+      <div className="about-team-photo">
+        <img src={teamPhoto} alt="Команда" className="about-team-photo__img" />
       </div>
       <History />
       <Statistic />

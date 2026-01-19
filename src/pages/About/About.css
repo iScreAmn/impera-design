@@ -15,6 +15,21 @@
   margin: 0 auto;
 }
 
+.about-team-photo {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-top:20px;
+}
+
+.about-team-photo__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+
+
 .about-content {
   padding: 40px 40px 80px;
   text-align: center;
@@ -32,13 +47,6 @@
   /* padding: 60px 90px; */
 }
 
-@media (max-width: 1023px) {
-}
-
-@media (max-width: 1024px) {
-  
-}
-
 @media (max-width: 768px) {
   .breadcrumbs {
     padding: 12px 16px;
@@ -47,9 +55,4 @@
   .about-breadcrumbs__container {
     padding: 0;
   }
-
-}
-
-@media (max-width: 480px) {
-  
 }
