@@ -400,6 +400,7 @@
   color: #f1ede6;
   line-height: 1.55;
   font-size: 15px;
+  white-space: pre-line;
 }
 
 .stages-footer {
@@ -465,6 +466,7 @@
   font-size: clamp(22px, 3vw, 30px);
   color: #ffffff;
   line-height: 1.35;
+  white-space: pre-line;
 }
 
 .stages-footer__text {
