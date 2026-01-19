@@ -227,10 +227,11 @@
 
 @media (max-width: 767px) {
   .partners {
-    padding: 70px 0 90px;
+    padding: 0 0 90px;
   }
 
   .partners__content {
+    padding: 30px 20px;
     gap: 36px;
   }
 
@@ -275,15 +276,6 @@
 }
 
 @media (max-width: 480px) {
-  .partners {
-    padding: 50px 0 0;
-  }
-
-
-  .partners__content {
-    /* padding: 0 40px 40px; */
-  }
-
   .partners__title {
     font-size: 20px;
     width: 350px;
