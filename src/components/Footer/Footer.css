@@ -110,6 +110,13 @@
   z-index: 1;
 }
 
+.footer__social-link img.footer__social-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  display: block;
+}
+
 /* Navigation Section */
 .footer__nav {
   display: flex;

@@ -70,7 +70,11 @@ function Header() {
                   className="header__social-link"
                   aria-label={social.label}
                 >
-                  <Icon className="header__social-icon" />
+                  {social.iconType === 'img' ? (
+                    <img src={Icon} alt="" className="header__social-icon" aria-hidden />
+                  ) : (
+                    <Icon className="header__social-icon" />
+                  )}
                 </a>
               );
             })}

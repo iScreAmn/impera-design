@@ -1,6 +1,7 @@
 import { logo } from '../assets/images';
-import { FaTelegramPlane, FaWhatsapp, FaPhoneAlt } from 'react-icons/fa';
+import { FaTelegramPlane, FaPhoneAlt } from 'react-icons/fa';
 import { MdOutlineEmail } from "react-icons/md";
+import messengerIcon from '../assets/images/art/max.webp';
 
 export const headerData = {
   logoImage: logo,
@@ -28,9 +29,10 @@ export const headerData = {
       href: '#',
     },
     {
-      icon: FaWhatsapp,
-      label: 'WhatsApp',
+      icon: messengerIcon,
+      label: 'Мессенджер',
       href: '#',
+      iconType: 'img',
     },
   ],
 };

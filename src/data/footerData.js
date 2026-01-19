@@ -1,4 +1,5 @@
-import { FaTelegramPlane, FaWhatsapp, FaVk, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaTelegramPlane, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import messengerIcon from '../assets/images/art/max.webp';
 
 export const footerData = {
   description: 'Студия коммерческого дизайна интерьеров.\nСоздаём стильные и функциональные пространства для бизнеса',
@@ -31,15 +32,11 @@ export const footerData = {
       href: 'https://t.me/olga_korshow'
     },
     {
-      icon: FaWhatsapp,
-      label: 'WhatsApp',
-      href: 'https://wa.me/'
+      icon: messengerIcon,
+      label: 'Мессенджер',
+      href: '#',
+      iconType: 'img',
     },
-    {
-      icon: FaVk,
-      label: 'VKontakte',
-      href: 'https://vk.com/lafee_remont'
-    }
   ],
 
   legal: {

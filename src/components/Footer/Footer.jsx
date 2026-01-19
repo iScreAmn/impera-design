@@ -32,7 +32,11 @@ const Footer = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Icon className="footer__social-icon" />
+                    {social.iconType === 'img' ? (
+                      <img src={Icon} alt="" className="footer__social-icon" aria-hidden />
+                    ) : (
+                      <Icon className="footer__social-icon" />
+                    )}
                   </a>
                 );
               })}
