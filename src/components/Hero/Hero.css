@@ -148,6 +148,10 @@
     font-size: 9px;
   }
 
+  .hero__subtitle {
+    width: 350px;
+  }
+
   .hero__title-large {
     font-size: 27px;
   }
