@@ -153,7 +153,7 @@ function Clients() {
           {testimonials.list.map((item) => (
             <SwiperSlide key={item.id}>
               <article className="clients-testimonials__card">
-                <div className="clients-testimonials__quote">"{item.text}"</div>
+                <div className="clients-testimonials__quote">«{item.text}»</div>
                 <div className="clients-testimonials__author">
                   {item.name && <div className="clients-testimonials__name">{item.name}</div>}
                   {item.company && <div className="clients-testimonials__company">{item.company}</div>}

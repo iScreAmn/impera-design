@@ -204,7 +204,7 @@
 
   .statistic__card:last-child .statistic__value {
     margin-bottom: 0;
-    font-size: 26px;
+    font-size: 34px;
     flex-shrink: 0;
   }
 

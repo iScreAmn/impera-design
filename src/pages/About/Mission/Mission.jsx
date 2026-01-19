@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { animate, inView } from 'motion';
 import { background6 } from '../../../assets/images';
+import { aboutData } from '../../../data/aboutData';
 import './Mission.css';
 
 const Mission = () => {
+  const { eyebrow, title, subtitle, cards } = aboutData.mission;
   const headerRef = useRef(null);
   const containerRef = useRef(null);
   const cardsRef = useRef([]);
@@ -61,64 +63,23 @@ const Mission = () => {
 
       <div className="mission__content about-section">
         <div ref={headerRef} className="mission__header" style={{ opacity: 0, transform: 'translateY(30px)' }}>
-          <p className="mission__eyebrow">Миссия компании</p>
-          <h2 className="mission__title">
-            Мы помогаем бизнесу раскрывать свою индивидуальность через пространство
-          </h2>
-          <p className="mission__subtitle">
-            Мы превращаем идеи владельцев в интерьер, который работает как инструмент: привлекает,
-            удерживает, укрепляет доверие и повышает ценность вашего продукта или услуги
-          </p>
+          <p className="mission__eyebrow">{eyebrow}</p>
+          <h2 className="mission__title">{title}</h2>
+          <p className="mission__subtitle">{subtitle}</p>
         </div>
 
         <div ref={containerRef} className="mission__grid">
-          <div
-            ref={(el) => (cardsRef.current[0] = el)}
-            className="mission__card"
-            style={{ opacity: 0, transform: 'translateY(30px)' }}
-          >
-            <h3 className="mission__card-title">Индивидуальность как актив</h3>
-            <p className="mission__card-text">
-              Каждое пространство - уникальный код бренда: выделяем ДНК компании и транслируем его
-              через форму, материалы, свет и сценарии движения
-            </p>
-          </div>
-
-          <div
-            ref={(el) => (cardsRef.current[1] = el)}
-            className="mission__card mission__card--accent"
-            style={{ opacity: 0, transform: 'translateY(30px)' }}
-          >
-            <h3 className="mission__card-title">Интерьер как инструмент</h3>
-            <p className="mission__card-text">
-              Проектируем так, чтобы интерьер работал: повышал доверие клиентов, упрощал маршруты,
-              удерживал внимание и увеличивал продажи
-            </p>
-          </div>
-
-          <div
-            ref={(el) => (cardsRef.current[2] = el)}
-            className="mission__card"
-            style={{ opacity: 0, transform: 'translateY(30px)' }}
-          >
-            <h3 className="mission__card-title">Системный подход</h3>
-            <p className="mission__card-text">
-              От стратегии до реализации: концепция, 3D, чертежи, подбор материалов и авторский
-              надзор - контролируем качество на каждом этапе
-            </p>
-          </div>
-
-          <div
-            ref={(el) => (cardsRef.current[3] = el)}
-            className="mission__card"
-            style={{ opacity: 0, transform: 'translateY(30px)' }}
-          >
-            <h3 className="mission__card-title">Устойчивый результат</h3>
-            <p className="mission__card-text">
-              Дизайн, который долго остаётся актуальным: продумываем эксплуатацию, сервис и
-              возможность обновлять пространство без сложных вмешательств
-            </p>
-          </div>
+          {cards.map((card, index) => (
+            <div
+              key={card.title}
+              ref={(el) => (cardsRef.current[index] = el)}
+              className={`mission__card${card.accent ? ' mission__card--accent' : ''}`}
+              style={{ opacity: 0, transform: 'translateY(30px)' }}
+            >
+              <h3 className="mission__card-title">{card.title}</h3>
+              <p className="mission__card-text">{card.text}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
