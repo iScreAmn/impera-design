@@ -150,8 +150,13 @@
   }
 
   .hero__features {
-    width: 350px;
+    /* width: 350px; */
     grid-template-columns: 1fr;
+  }
+
+  .hero__background {
+    left: -60px;
+    width: unset;
   }
 }
 

@@ -341,6 +341,7 @@
   line-height: 1.6;
   margin-bottom: 18px;
   max-width: 880px;
+  white-space: pre-line;
 }
 
 .stages-step__grid {
