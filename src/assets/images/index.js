@@ -21,9 +21,9 @@ export { default as checklist } from './art/checklist.png';
 // Photos
 export { default as photo1 } from './photos/olga.jpeg';
 export { default as photo2 } from './photos/olga-2.webp';
-export { default as photo3 } from './photos/anastasia.png';
 export { default as photo4 } from './photos/olga-3.jpg';
 export { default as photo5 } from './photos/olga-4.jpg';
+export { default as teamPhoto } from './photos/team.jpg';
 
 // Projects
 // Boss-Lounge
@@ -64,6 +64,8 @@ export { default as lesnoiPark16 } from './projects/lesnoi/lesnoi-16.jpg';
 export { default as lesnoiPark17 } from './projects/lesnoi/lesnoi-17.jpg';
 export { default as lesnoiPark18 } from './projects/lesnoi/lesnoi-18.jpg';
 export { default as lesnoiPark19 } from './projects/lesnoi/lesnoi-19.jpg';
+export { default as lesnoiPark20 } from './projects/lesnoi/lesnoi-20.jpg';
+export { default as lesnoiPark21 } from './projects/lesnoi/lesnoi-21.jpg';
 
 // Thai Massage
 export { default as taiMassage1 } from './projects/thai/thai-1.jpg';
