@@ -1,4 +1,5 @@
-import { FaPhoneAlt, FaEnvelope, FaClock, FaTelegramPlane, FaWhatsapp, FaVk } from 'react-icons/fa';
+import { FaPhoneAlt, FaEnvelope, FaClock, FaTelegramPlane } from 'react-icons/fa';
+import messengerIcon from '../assets/images/art/max.webp';
 
 // Все тексты страницы
 export const texts = {
@@ -45,19 +46,14 @@ export const socialLinks = [
     id: 'telegram',
     name: 'Telegram',
     icon: FaTelegramPlane,
-    url: 'https://t.me/',
+    url: 'https://t.me/impera_design',
   },
   {
-    id: 'whatsapp',
-    name: 'WhatsApp',
-    icon: FaWhatsapp,
-    url: 'https://wa.me/',
-  },
-  {
-    id: 'vk',
-    name: 'VKontakte',
-    icon: FaVk,
-    url: 'https://vk.com/lafee_remont',
+    id: 'max',
+    name: 'Max',
+    icon: messengerIcon,
+    iconType: 'img',
+    url: 'https://max.ru/u/f9LHodD0cOL32fo5oeSRksJ8PrQ-J9iQqxXimia1fe7yhMpJSQmQcDFcKlA',
   },
 ];
 

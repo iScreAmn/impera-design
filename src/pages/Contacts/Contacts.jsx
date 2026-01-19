@@ -107,7 +107,11 @@ function YandexMap() {
                   className="contacts__social-icon" 
                   aria-label={social.name}
                 >
-                  <Icon />
+                  {social.iconType === 'img' ? (
+                    <img src={Icon} alt="" className="contacts__social-icon-inner" aria-hidden />
+                  ) : (
+                    <Icon className="contacts__social-icon-inner" />
+                  )}
                 </a>
               );
             })}
