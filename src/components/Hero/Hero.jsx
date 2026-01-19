@@ -29,7 +29,7 @@ function Hero() {
           <button 
             className="hero__button" 
             type="button"
-            onClick={() => window.open('https://t.me/olga_korshow', '_blank')}
+            onClick={() => window.open('https://t.me/impera_design', '_blank')}
           >
             {ctaLabel}
           </button>

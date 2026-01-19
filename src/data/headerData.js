@@ -26,12 +26,12 @@ export const headerData = {
     {
       icon: FaTelegramPlane,
       label: 'Telegram',
-      href: '#',
+      href: 'https://t.me/impera_design',
     },
     {
       icon: messengerIcon,
-      label: 'Мессенджер',
-      href: '#',
+      label: 'Max',
+      href: 'https://max.ru/u/f9LHodD0cOL32fo5oeSRksJ8PrQ-J9iQqxXimia1fe7yhMpJSQmQcDFcKlA',
       iconType: 'img',
     },
   ],
