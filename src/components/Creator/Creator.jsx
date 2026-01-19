@@ -26,7 +26,7 @@ const Creator = ({ title, name, intro, paragraphs, quote, imageAlt }) => {
           <h2 className="creator__title">{title}</h2>
           
           <div className="creator__text">
-            <p>
+            <p className="creator__intro">
               <strong>{name}</strong> {intro}
             </p>
             
