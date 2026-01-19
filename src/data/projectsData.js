@@ -173,7 +173,7 @@ export const projectsData = [
   {
     id: 1,
     slug: 'boss-lounge',
-    title: 'Кальянная «BOSS-LOUNGE»',
+    title: 'Кальянная \n«BOSS-LOUNGE»',
     location: 'г. Москва',
     date: '2024 г.',
     area: '230 м²',
