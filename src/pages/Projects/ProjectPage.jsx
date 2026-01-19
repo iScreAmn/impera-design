@@ -129,7 +129,13 @@ function ProjectPage() {
       <section className="project-hero">
         <div className="project-hero__container">
           <div className="project-hero__content">
-            <h1 className="project-hero__title">{project.title}</h1>
+            <h1 className="project-hero__title">
+              {project.title.includes('\n')
+                ? project.title.split('\n').flatMap((part, i) =>
+                    i === 0 ? [part] : [<span key={`mb-${i}`} className="title-break-mobile" aria-hidden />, part]
+                  )
+                : project.title}
+            </h1>
             <p className="project-hero__subtitle">{project.description}</p>
 
             <div className="project-hero__meta">

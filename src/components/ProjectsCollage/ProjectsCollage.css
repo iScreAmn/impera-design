@@ -91,7 +91,10 @@
   color: #2c2c2c;
   margin-bottom: 16px;
   line-height: 1.4;
-  white-space: pre-line;
+}
+
+.projects-collage__title .title-break-mobile {
+  display: none;
 }
 
 .projects-collage__meta {
@@ -124,6 +127,10 @@
 
   .projects-collage__title {
     font-size: 17px;
+  }
+
+  .projects-collage__title .title-break-mobile {
+    display: block;
   }
 
   .projects-collage__main {

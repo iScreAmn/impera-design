@@ -31,7 +31,13 @@ function ProjectsCollage({ onProjectClick, limit }) {
           }}
         >
           <div className="projects-collage__info">
-            <h3 className="projects-collage__title">{project.title}</h3>
+            <h3 className="projects-collage__title">
+              {project.title.includes('\n')
+                ? project.title.split('\n').flatMap((part, i) =>
+                    i === 0 ? [part] : [<span key={`mb-${i}`} className="title-break-mobile" aria-hidden />, part]
+                  )
+                : project.title}
+            </h3>
             <div className="projects-collage__meta">
               <span className="projects-collage__location">📍 {project.location}</span>
               <span className="projects-collage__date">📅 {project.date}</span>
