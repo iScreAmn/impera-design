@@ -247,7 +247,11 @@ function Navigation() {
                         className="navigation__drawer-social"
                         aria-label={social.label}
                       >
-                        <Icon />
+                        {social.iconType === 'img' ? (
+                          <img src={Icon} alt="" className="navigation__drawer-social-icon" aria-hidden />
+                        ) : (
+                          <Icon />
+                        )}
                       </a>
                     );
                   })}

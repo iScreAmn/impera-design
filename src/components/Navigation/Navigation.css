@@ -311,6 +311,13 @@
   transform: translateY(-2px);
 }
 
+.navigation__drawer-social img.navigation__drawer-social-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  display: block;
+}
+
 @media (max-width: 1200px) {
   .navigation__container {
     padding: 0 28px;
