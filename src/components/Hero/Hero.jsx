@@ -21,10 +21,8 @@ function Hero() {
 
       <div className="hero__content">
         <div className="hero__text">
-          <h1 className="hero__title">
-            {title}
-            <span className="hero__title-large">{emphasis}</span>
-          </h1>
+          <h1 className="hero__title">{title}</h1>
+          <span className="hero__title-large">{emphasis}</span>
           <p className="hero__subtitle">{subtitle}</p>
           <button 
             className="hero__button" 
