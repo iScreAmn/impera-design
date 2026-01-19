@@ -130,38 +130,57 @@ function Clients() {
           </div>
         </div>
 
-        <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
-          spaceBetween={24}
-          slidesPerView={3}
-          navigation
-          pagination={{ clickable: true }}
-          centeredSlides
-          loop
-          loopAdditionalSlides={2}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-          }}
-          className="clients-testimonials__swiper"
-          breakpoints={{
-            320: { slidesPerView: 1, spaceBetween: 20, centeredSlides: false, loop: true },
-            768: { slidesPerView: 2, spaceBetween: 24, centeredSlides: true, loop: true },
-          }}
-        >
-          {testimonials.list.map((item) => (
-            <SwiperSlide key={item.id}>
-              <article className="clients-testimonials__card">
-                <div className="clients-testimonials__quote">«{item.text}»</div>
-                <div className="clients-testimonials__author">
-                  {item.name && <div className="clients-testimonials__name">{item.name}</div>}
-                  {item.company && <div className="clients-testimonials__company">{item.company}</div>}
-                </div>
-              </article>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+<div className="clients-testimonials__slider-wrapper">
+          <button className="clients-testimonials__nav clients-testimonials__nav--prev" aria-label="Предыдущий отзыв">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+
+          <div className="clients-testimonials__container">
+            <Swiper
+              modules={[Navigation, Pagination, Autoplay]}
+              spaceBetween={24}
+              slidesPerView={3}
+              navigation={{
+                prevEl: '.clients-testimonials__nav--prev',
+                nextEl: '.clients-testimonials__nav--next',
+              }}
+              pagination={{ clickable: true }}
+              centeredSlides
+              loop
+              loopAdditionalSlides={2}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              className="clients-testimonials__swiper"
+              breakpoints={{
+                320: { slidesPerView: 1, spaceBetween: 20, centeredSlides: false, loop: true },
+                768: { slidesPerView: 2, spaceBetween: 24, centeredSlides: true, loop: true },
+              }}
+            >
+              {testimonials.list.map((item) => (
+                <SwiperSlide key={item.id}>
+                  <article className="clients-testimonials__card">
+                    <div className="clients-testimonials__quote">«{item.text}»</div>
+                    <div className="clients-testimonials__author">
+                      {item.name && <div className="clients-testimonials__name">{item.name}</div>}
+                      {item.company && <div className="clients-testimonials__company">{item.company}</div>}
+                    </div>
+                  </article>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+
+          <button className="clients-testimonials__nav clients-testimonials__nav--next" aria-label="Следующий отзыв">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
       </section>
 
       <Footer />
