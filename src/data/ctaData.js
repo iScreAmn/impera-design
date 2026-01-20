@@ -12,7 +12,7 @@ export const ctaData = {
   ],
   form: {
     title: 'Оставьте заявку,',
-    subtitle: 'Свяжемся с Вамив течение 15 минут',
+    subtitle: 'Свяжемся с Вами в течение 15 минут',
     nameLabel: 'Введите Ваше имя',
     namePlaceholder: 'Ваше имя',
     phoneLabel: 'Введите Ваш номер телефона',

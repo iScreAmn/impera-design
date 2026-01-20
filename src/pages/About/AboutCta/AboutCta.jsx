@@ -104,7 +104,11 @@ const AboutCta = () => {
             className="about-cta__buttons"
             style={{ opacity: 0, transform: 'translateY(25px)' }}
           >
-            <a href={primaryButton.href} className="about-cta__button about-cta__button--primary">
+            <a
+              href={primaryButton.href}
+              className="about-cta__button about-cta__button--primary"
+              {...(primaryButton.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+            >
               {primaryButton.label}
             </a>
             <a href={secondaryButton.href} className="about-cta__button about-cta__button--secondary">

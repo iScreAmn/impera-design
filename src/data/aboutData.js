@@ -13,8 +13,8 @@ export const aboutData = {
   cta: {
     title: 'Готовы к новому уровню дизайна?',
     text: 'Свяжитесь с нами и мы начнем работу над Вашим проектом уже сегодня',
-    primaryButton: { label: 'Обсудить проект', href: '#contact' },
-    secondaryButton: { label: 'Наши работы', href: '#portfolio' },
+    primaryButton: { label: 'Обсудить проект', href: 'https://t.me/impera_design' },
+    secondaryButton: { label: 'Наши работы', href: '/projects' },
   },
 
   mission: {
