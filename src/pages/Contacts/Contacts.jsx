@@ -4,6 +4,7 @@ import Breadcrumbs from '../../components/Widgets/Breadcrumbs/Breadcrumbs';
 import Modal from '../../components/Widgets/Modals/Modal';
 import Footer from '../../components/Footer/Footer';
 import useModal from '../../utils/useModal';
+import { AiOutlineGlobal } from 'react-icons/ai';
 import { contactsData, socialLinks, infoCards, texts } from '../../data/contactsData';
 import './Contacts.css';
 
@@ -182,6 +183,35 @@ function Contacts() {
                   </div>
                 );
               })}
+              <div className="contacts__info-card contacts__info-card--mobile-socials">
+                <div className="contacts__info-icon">
+                  <AiOutlineGlobal />
+                </div>
+                <div className="contacts__info-content contacts__info-content--socials">
+                  <div className="contacts__info-socials">
+                    {socialLinks.map((social) => {
+                      const Icon = social.icon;
+                      return (
+                        <a
+                          key={social.id}
+                          href={social.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="contacts__social-icon"
+                          aria-label={social.name}
+                        >
+                          {social.iconType === 'img' ? (
+                            <img src={Icon} alt="" className="contacts__social-icon-inner" aria-hidden />
+                          ) : (
+                            <Icon className="contacts__social-icon-inner" />
+                          )}
+                        </a>
+                      );
+                    })}
+                  </div>
+                  <p className="contacts__info-label">{texts.socialsCtaLabel}</p>
+                </div>
+              </div>
             </div>
 
             <button 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { servicesData } from '../../data/servicesData';
+import { socialLinks } from '../../data/contactsData';
 import './ServicesSection.css';
 
 const ServicesSection = () => {
@@ -30,9 +31,27 @@ const ServicesSection = () => {
               <h3 className="service-card__title">{servicesData.contactCard.title}</h3>
               <div className="service-card__contact">
                 <p className="service-card__contact-label">{servicesData.contactCard.contact.label}</p>
-                <a href={`mailto:${servicesData.contactCard.contact.email}`} className="service-card__email">
-                  {servicesData.contactCard.contact.email}
-                </a>
+                <div className="service-card__contact-socials">
+                  {socialLinks.map((social) => {
+                    const Icon = social.icon;
+                    return (
+                      <a
+                        key={social.id}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="service-card__social-link"
+                        aria-label={social.name}
+                      >
+                        {social.iconType === 'img' ? (
+                          <img src={Icon} alt="" className="service-card__social-icon" aria-hidden />
+                        ) : (
+                          <Icon className="service-card__social-icon" />
+                        )}
+                      </a>
+                    );
+                  })}
+                </div>
                 <p className="service-card__contact-label">{servicesData.contactCard.contact.phoneLabel}</p>
                 <a href={`tel:${servicesData.contactCard.contact.phone.replace(/\s/g, '')}`} className="service-card__phone">
                   {servicesData.contactCard.contact.phone}

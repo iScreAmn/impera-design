@@ -179,7 +179,63 @@
   margin: 16px 0 4px 0;
 }
 
-.service-card__email,
+.service-card__contact-socials {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.service-card__social-link {
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(203, 164, 122, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #cba47a;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  background: rgba(203, 164, 122, 0.05);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.service-card__social-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(203, 164, 122, 0.2) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.service-card__social-link:hover {
+  border-color: #cba47a;
+  background: rgba(203, 164, 122, 0.15);
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 8px 20px rgba(203, 164, 122, 0.25);
+}
+
+.service-card__social-link:hover::before {
+  opacity: 1;
+}
+
+.service-card__social-icon {
+  font-size: 18px;
+  color: #cba47a;
+  position: relative;
+  z-index: 1;
+}
+
+.service-card__social-link img.service-card__social-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  display: block;
+}
+
 .service-card__phone {
   font-size: 18px;
   font-weight: 500;
@@ -188,7 +244,6 @@
   transition: color 0.3s ease;
 }
 
-.service-card__email:hover,
 .service-card__phone:hover {
   color: #d4b896;
 }
@@ -282,7 +337,6 @@
     font-size: 22px;
   }
 
-  .service-card__email,
   .service-card__phone {
     font-size: 16px;
   }
@@ -324,7 +378,6 @@
     margin-bottom: 20px;
   }
 
-  .service-card__email,
   .service-card__phone {
     font-size: 15px;
   }

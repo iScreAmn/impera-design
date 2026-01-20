@@ -82,6 +82,17 @@
   gap: clamp(12px, 2vw, 16px);
 }
 
+.contacts__info-card--mobile-socials {
+  display: none;
+}
+
+.contacts__info-socials {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
 .contacts__info-icon {
   width: clamp(48px, 5vw, 56px);
   height: clamp(48px, 5vw, 56px);
@@ -99,6 +110,13 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.contacts__info-content.contacts__info-content--socials {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 12px;
 }
 
 .contacts__info-value {
@@ -499,6 +517,16 @@
 
   .contacts__info-card {
     gap: 12px;
+  }
+
+  .contacts__info-card--mobile-socials {
+    display: flex;
+    align-items: center;
+  }
+
+  .contacts__info-socials .contacts__social-icon .contacts__social-icon-inner,
+  .contacts__info-socials .contacts__social-icon img.contacts__social-icon-inner {
+    display: block;
   }
 
   .contacts__info-icon {

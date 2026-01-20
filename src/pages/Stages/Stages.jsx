@@ -279,6 +279,27 @@ function Stages() {
                   </React.Fragment>
                 ))}
               </p>
+              <p className="stages-footer__cta-label">{stagesPageData.footer.ctaLabel}</p>
+              <div className="stages-footer__links">
+                {stagesPageData.footer.contactLinks.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      className="stages-footer__link"
+                      aria-label={item.label}
+                      {...(item.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    >
+                      {item.iconType === 'img' ? (
+                        <img src={Icon} alt="" className="stages-footer__link-icon" aria-hidden />
+                      ) : (
+                        <Icon className="stages-footer__link-icon" />
+                      )}
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </Motion.div>
         </section>
