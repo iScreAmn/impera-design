@@ -97,12 +97,18 @@
   position: relative;
   z-index: 1;
   font-family: var(--font-heading);
-  font-size: 36px;
+  font-size: 27px;
   font-weight: 400;
   line-height: 1.1;
   letter-spacing: -0.01em;
   color: #fff;
   margin-bottom: 10px;
+}
+
+.statistic__value-unit {
+  font-size: 1em;
+  vertical-align: 0.2em;
+  margin-left: 0.08em;
 }
 
 .statistic__label {
@@ -173,7 +179,7 @@
   }
 
   .statistic__value {
-    font-size: 34px;
+    font-size: 27px;
   }
 
   .statistic__label {
