@@ -335,13 +335,14 @@
   flex-direction: column;
   gap: clamp(12px, 2vw, 16px);
   box-shadow: 0 16px 30px rgba(0, 0, 0, 0.25);
+  background: #fff;
 }
 
 .clients-testimonials__quote {
   font-family: 'Mulish', sans-serif;
   font-size: clamp(14px, 1.8vw, 16px);
   line-height: 1.65;
-  color: #fff;
+  color: #1a1a1a;
   text-align: center;
 }
 
@@ -355,7 +356,7 @@
   font-family: 'Square721', sans-serif;
   font-size: clamp(15px, 1.8vw, 16.8px);
   font-weight: 600;
-  color: #7a7a7a;
+  color: #333;
   margin: 0;
   text-align: center;
 }
@@ -363,7 +364,7 @@
 .clients-testimonials__company {
   font-family: 'Mulish', sans-serif;
   font-size: clamp(13px, 1.6vw, 14px);
-  color: #666;
+  color: #555;
   margin: 0;
 }
 
