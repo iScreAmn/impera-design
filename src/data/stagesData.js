@@ -1,4 +1,6 @@
 import { background3, background4 } from '../assets/images';
+import { FaTelegramPlane, FaPhoneAlt } from 'react-icons/fa';
+import messengerIcon from '../assets/images/art/max.webp';
 
 export const stagesData = [
   {
@@ -12,7 +14,7 @@ export const stagesData = [
       'определение стиля, палитры и ключевых пожеланий',
     ],
     result:
-      'Утверждённая планировка и стиль, на основе которых строится будущий\nдизайн-проект',
+      'Утверждённая планировка и стиль, на основе которых строится будущий дизайн-проект',
   },
   {
     id: 'visualization',
@@ -54,7 +56,7 @@ export const stagesData = [
       'согласование изменений в проекте при необходимости',
     ],
     result:
-      'интерьер реализуется именно таким, каким Вы его утвердили - без ошибок, задержек и непредвиденных расходов.',
+      'Интерьер реализуется именно таким, каким Вы его утвердили - без ошибок, задержек и непредвиденных расходов',
   },
 ];
 
@@ -75,7 +77,13 @@ export const stagesPageData = {
     label: 'готовы обсудить проект',
     title: ['Увидим Ваше пространство, определим задачи и реализуем это в \nдизайн-проекте'],
     text: ['Расскажите о Ваших сроках, бюджете и ощущении, которое хотите от интерьера.', ' Мы предложим сценарий шагов и зафиксируем его в плане.'],
-    background: background3
+    background: background3,
+    ctaLabel: 'Свяжитесь с нами',
+    contactLinks: [
+      { icon: FaTelegramPlane, label: 'Telegram', href: 'https://t.me/impera_design' },
+      { icon: messengerIcon, label: 'Max', href: 'https://max.ru/u/f9LHodD0cOL32fo5oeSRksJ8PrQ-J9iQqxXimia1fe7yhMpJSQmQcDFcKlA', iconType: 'img' },
+      { icon: FaPhoneAlt, label: 'Телефон', href: 'tel:+79960545054' },
+    ],
   },
   texts: {
     resultLabel: 'Результат'

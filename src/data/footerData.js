@@ -2,7 +2,7 @@ import { FaTelegramPlane, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-i
 import messengerIcon from '../assets/images/art/max.webp';
 
 export const footerData = {
-  description: 'Студия коммерческого дизайна интерьеров.\nСоздаём стильные и функциональные пространства для бизнеса',
+  description: 'Студия коммерческого дизайна интерьера.\nСоздаём стильные и функциональные пространства для бизнеса.',
   
   contacts: [
     {

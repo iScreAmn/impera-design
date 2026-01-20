@@ -6,6 +6,7 @@ export const texts = {
   pageTitle: 'Контакты',
   addressTitle: 'Адрес',
   socialsLabel: 'Соц. сети:',
+  socialsCtaLabel: 'Связаться онлайн',
   buildRouteBtn: 'Построить маршрут',
   ctaBtn: 'Заказать звонок',
   modal: {
