@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ScrollToTop from './components/Widgets/ScrollToTop/ScrollToTop';
 import Home from './components/Home/Home';
@@ -10,10 +11,18 @@ import Clients from './pages/Clients/Clients';
 import Stages from './pages/Stages/Stages';
 import Contacts from './pages/Contacts/Contacts';
 
+function TextoliteRedirect() {
+  useEffect(() => {
+    window.location.replace(window.location.pathname + window.location.search + window.location.hash);
+  }, []);
+  return null;
+}
+
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/textolite/*" element={<TextoliteRedirect />} />
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
