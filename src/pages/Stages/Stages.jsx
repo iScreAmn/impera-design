@@ -266,7 +266,11 @@ function Stages() {
               <h3 className="stages-footer__title">
                 {stagesPageData.footer.title.map((part, i, arr) => (
                   <React.Fragment key={i}>
-                    {part}
+                    {part.includes('\n')
+                      ? part.split('\n').flatMap((chunk, j) =>
+                          j === 0 ? [chunk] : [<span key={`mb-${i}-${j}`} className="stages-footer__title-break-mobile" aria-hidden />, chunk]
+                        )
+                      : part}
                     {i < arr.length - 1 && <br />}
                   </React.Fragment>
                 ))}
