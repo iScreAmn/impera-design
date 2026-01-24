@@ -1,5 +1,5 @@
 import { FaTelegramPlane, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
-import messengerIcon from '../assets/images/art/max.webp';
+import messengerIcon from '../assets/images/logos/max.webp';
 
 export const footerData = {
   description: 'Студия коммерческого дизайна интерьера.\nСоздаём стильные и функциональные пространства для бизнеса.',
@@ -43,11 +43,11 @@ export const footerData = {
     companyName: 'Impera Design',
     privacyPolicy: {
       text: 'Политика конфиденциальности',
-      href: '#'
+      href: '/privacy'
     },
     termsOfUse: {
       text: 'Условия использования',
-      href: '#'
+      href: '/terms'
     }
   }
 };

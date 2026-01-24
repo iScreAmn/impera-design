@@ -1,12 +1,11 @@
 import { FaPhoneAlt, FaEnvelope, FaClock, FaTelegramPlane } from 'react-icons/fa';
-import messengerIcon from '../assets/images/art/max.webp';
+import messengerIcon from '../assets/images/logos/max.webp';
 
 // Все тексты страницы
 export const texts = {
   pageTitle: 'Контакты',
   addressTitle: 'Адрес',
   socialsLabel: 'Соц. сети:',
-  socialsCtaLabel: 'Связаться онлайн',
   buildRouteBtn: 'Построить маршрут',
   ctaBtn: 'Заказать звонок',
   modal: {

@@ -1,7 +1,7 @@
 import { logo } from '../assets/images';
 import { FaTelegramPlane, FaPhoneAlt } from 'react-icons/fa';
 import { MdOutlineEmail } from "react-icons/md";
-import messengerIcon from '../assets/images/art/max.webp';
+import messengerIcon from '../assets/images/logos/max.webp';
 
 export const headerData = {
   logoImage: logo,

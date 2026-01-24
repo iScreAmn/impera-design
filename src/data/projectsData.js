@@ -188,6 +188,14 @@ export const projectsData = [
     ],
     images: [bossLounge1, bossLounge2, bossLounge3, bossLounge4, bossLounge5, bossLounge6, bossLounge7, bossLounge8, bossLounge9, bossLounge10, bossLounge11, bossLounge12, bossLounge13, bossLounge14, bossLounge15, bossLounge16],
     thumbnails: [bossLounge1, bossLounge2, bossLounge3, bossLounge4],
+    video: {
+      title: 'Реализация проекта',
+      sources: [
+        { src: '/videos/boss.mp4', type: 'video/mp4' },
+        { src: '/videos/boss.webm', type: 'video/webm' }
+      ],
+      poster: bossLounge1
+    }
   },
   {
     id: 2,
@@ -204,7 +212,7 @@ export const projectsData = [
       'Зонирование пространства',
       'Индивидуальное освещение в каждой зоне',
     ],
-    images: [lesnoiPark21, lesnoiPark20, lesnoiPark2, lesnoiPark3, lesnoiPark4, lesnoiPark5, lesnoiPark6, lesnoiPark7, lesnoiPark8, lesnoiPark9, lesnoiPark10, lesnoiPark11, lesnoiPark12, lesnoiPark13, lesnoiPark14, lesnoiPark15, lesnoiPark16, lesnoiPark17, lesnoiPark18, lesnoiPark19, ],
+    images: [lesnoiPark20, lesnoiPark2, lesnoiPark3, lesnoiPark21, lesnoiPark4, lesnoiPark5, lesnoiPark6, lesnoiPark7, lesnoiPark8, lesnoiPark9, lesnoiPark10, lesnoiPark11, lesnoiPark12, lesnoiPark13, lesnoiPark14, lesnoiPark15, lesnoiPark16, lesnoiPark17, lesnoiPark18, lesnoiPark19, ],
     thumbnails: [lesnoiPark2, lesnoiPark3, lesnoiPark4],
   },
   {
@@ -301,6 +309,14 @@ export const projectsData = [
     features: [],
     images: [dvorik1, dvorik2, dvorik3, dvorik4, dvorik5, dvorik6, dvorik7, dvorik8, dvorik9],
     thumbnails: [dvorik1, dvorik2, dvorik3, dvorik4],
+    video: {
+      title: 'Реализация проекта',
+      sources: [
+        { src: '/videos/dvorik-cafe.mp4', type: 'video/mp4' },
+        { src: '/videos/dvorik-cafe.webm', type: 'video/webm' }
+      ],
+      poster: dvorik1
+    }
   },
   {
     id: 10,
@@ -328,6 +344,14 @@ export const projectsData = [
     features: [],
     images: [hotel1, hotel2, hotel3, hotel4, hotel5, hotel6, hotel7, hotel8, hotel9, hotel10, hotel11, hotel12, hotel13, hotel14, hotel15, hotel16, hotel17, hotel18, hotel19, hotel20, hotel21, hotel22, hotel23, hotel24, hotel25, hotel26],
     thumbnails: [hotel1, hotel2, hotel3, hotel4],
+    video: {
+      title: 'Реализация проекта',
+      sources: [
+        { src: '/videos/dvorik-hotel.mp4', type: 'video/mp4' },
+        { src: '/videos/dvorik-hotel.webm', type: 'video/webm' }
+      ],
+      poster: hotel1
+    }
   }
 ];
 

@@ -2,7 +2,7 @@ import { thanku, photo1, document } from '../assets/images';
 import { IoMdCheckboxOutline } from "react-icons/io";
 import { FaTelegramPlane } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
-import messengerIcon from '../assets/images/art/max-white.webp';
+import messengerIcon from '../assets/images/logos/max-white.webp';
 
 export const calculatorData = {
   title: 'Рассчитать стоимость услуг в калькуляторе',
