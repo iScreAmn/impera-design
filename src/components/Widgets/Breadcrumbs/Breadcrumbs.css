@@ -49,6 +49,7 @@
 
 .breadcrumbs__text {
   white-space: nowrap;
+  color: #888888;
 }
 
 .breadcrumbs__separator {
