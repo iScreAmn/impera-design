@@ -178,7 +178,7 @@
   }
 
   .about-cta__title {
-    font-size: 46px;
+    font-size: 38px;
   }
 
   .about-cta__text {
@@ -188,6 +188,12 @@
   .about-cta__button {
     padding: 18px 44px;
     font-size: 16px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .about-cta__content {
+    width: 460px;
   }
 }
 

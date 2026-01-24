@@ -48,13 +48,15 @@
 
 .stages-hero__content {
   position: relative;
-  width: 1440px;
+  width: 100%;
+  max-width: 1440px;
   z-index: 2;
   margin: 0 auto;
   padding: 50px 90px 60px;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  box-sizing: border-box;
 }
 
 .stages-hero__eyebrow {
@@ -463,7 +465,8 @@
 }
 
 .stages-footer__title {
-  width: 700px;
+  max-width: 700px;
+  width: 100%;
   font-family: var(--font-heading);
   font-size: 25px;
   color: #ffffff;
@@ -542,6 +545,32 @@
   height: 18px;
   object-fit: contain;
   display: block;
+}
+
+@media (max-width: 1280px) {
+  .stages-hero__breadcrumbs {
+    padding: 100px 48px 0;
+  }
+
+  .stages-hero__content {
+    padding: 50px 48px 60px;
+  }
+
+  .stages-body {
+    padding: 120px 48px 80px;
+  }
+
+  .stages-footer {
+    padding: 40px 48px 0;
+  }
+
+  .stages-footer__card {
+    gap: 200px;
+  }
+
+  .stages-footer__visual {
+    width: 420px;
+  }
 }
 
 @media (max-width: 1200px) {
