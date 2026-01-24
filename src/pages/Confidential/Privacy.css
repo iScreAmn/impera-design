@@ -1,0 +1,151 @@
+.privacy-page {
+  min-height: 100vh;
+  background: #1a1a1a;
+}
+
+.privacy__breadcrumbs {
+  padding: 120px 0 40px;
+  background: #1a1a1a;
+}
+
+.privacy__breadcrumbs-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.privacy__container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 40px 100px;
+}
+
+.privacy__content {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #222;
+  padding: 60px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+.privacy__title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 40px;
+  line-height: 1.2;
+}
+
+.privacy__section {
+  margin-bottom: 40px;
+}
+
+.privacy__section:last-child {
+  margin-bottom: 0;
+}
+
+.privacy__section-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 20px;
+  line-height: 1.4;
+}
+
+.privacy__subsection {
+  margin: 20px 0 20px 20px;
+}
+
+.privacy__subsection-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 12px;
+  line-height: 1.4;
+}
+
+.privacy__text {
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 16px;
+}
+
+.privacy__text:last-child {
+  margin-bottom: 0;
+}
+
+.privacy__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+}
+
+.privacy__list-item {
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 8px;
+  padding-left: 24px;
+  position: relative;
+}
+
+.privacy__list-item::before {
+  content: '•';
+  position: absolute;
+  left: 8px;
+  color: #d4a574;
+  font-weight: 700;
+}
+
+.privacy__note {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 20px 0 0;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid #d4a574;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .privacy__breadcrumbs {
+    padding: 100px 0 30px;
+  }
+
+  .privacy__breadcrumbs-container {
+    padding: 0 20px;
+  }
+
+  .privacy__container {
+    padding: 40px 20px 60px;
+  }
+
+  .privacy__content {
+    padding: 40px 24px;
+  }
+
+  .privacy__title {
+    font-size: 28px;
+  }
+
+  .privacy__section-title {
+    font-size: 20px;
+  }
+
+  .privacy__subsection-title {
+    font-size: 17px;
+  }
+
+  .privacy__text,
+  .privacy__list-item {
+    font-size: 15px;
+  }
+
+  .privacy__subsection {
+    margin-left: 10px;
+  }
+}
