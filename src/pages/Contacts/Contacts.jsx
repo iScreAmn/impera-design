@@ -105,7 +105,7 @@ function YandexMap() {
                   href={social.url} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="contacts__social-icon" 
+                  className="contacts__social-icon contacts__social-icon--inline" 
                   aria-label={social.name}
                 >
                   {social.iconType === 'img' ? (
@@ -113,6 +113,7 @@ function YandexMap() {
                   ) : (
                     <Icon className="contacts__social-icon-inner" />
                   )}
+                  <span className="contacts__social-text">{social.name}</span>
                 </a>
               );
             })}
@@ -197,7 +198,7 @@ function Contacts() {
                           href={social.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="contacts__social-icon"
+                          className="contacts__social-icon contacts__social-icon--inline"
                           aria-label={social.name}
                         >
                           {social.iconType === 'img' ? (
@@ -205,6 +206,7 @@ function Contacts() {
                           ) : (
                             <Icon className="contacts__social-icon-inner" />
                           )}
+                          <span className="contacts__social-text">{social.name}</span>
                         </a>
                       );
                     })}

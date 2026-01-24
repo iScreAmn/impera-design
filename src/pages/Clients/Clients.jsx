@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { animate, inView } from 'motion';
+import { motion, useInView } from 'motion/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
@@ -10,6 +11,11 @@ import Breadcrumbs from '../../components/Widgets/Breadcrumbs/Breadcrumbs';
 import Footer from '../../components/Footer/Footer';
 import { clientsData } from '../../data/clientsData';
 import './Clients.css';
+
+const t = { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] };
+const itemFromLeft = { hidden: { opacity: 0, x: -28 }, visible: { opacity: 1, x: 0, transition: t } };
+const itemFromRight = { hidden: { opacity: 0, x: 28 }, visible: { opacity: 1, x: 0, transition: t } };
+const itemUp = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: t } };
 
 const AnimatedCounter = ({ value }) => {
   const [current, setCurrent] = useState(0);
@@ -59,78 +65,173 @@ const AnimatedCounter = ({ value }) => {
 
 function Clients() {
   const { hero, clients, testimonials } = clientsData;
+  const breadcrumbsRef = useRef(null);
+  const heroRef = useRef(null);
+  const listRef = useRef(null);
+  const testimonialsRef = useRef(null);
+  const isBreadcrumbsInView = useInView(breadcrumbsRef, { once: true, amount: 0.3 });
+  const isHeroInView = useInView(heroRef, { once: true, amount: 0.12 });
+  const isListInView = useInView(listRef, { once: true, amount: 0.1 });
+  const isTestimonialsInView = useInView(testimonialsRef, { once: true, amount: 0.1 });
 
   return (
     <div className="clients-page">
       <StickyHeader />
 
-      <div className="clients-breadcrumbs">
+      <motion.div
+        ref={breadcrumbsRef}
+        className="clients-breadcrumbs"
+        initial="hidden"
+        animate={isBreadcrumbsInView ? 'visible' : 'hidden'}
+        variants={itemUp}
+      >
         <div className="clients-breadcrumbs__container">
           <Breadcrumbs />
         </div>
-      </div>
+      </motion.div>
 
-      <section className="clients-hero">
-        <div className="clients-hero__container">
-          <div className="clients-hero__content">
-            <div className="clients-hero__eyebrow">{hero.eyebrow}</div>
-            <h1 className="clients-hero__title">{hero.title}</h1>
-            <p className="clients-hero__subtitle">{hero.subtitle}</p>
-            <div className="clients-hero__stats">
+      <section ref={heroRef} className="clients-hero">
+        <motion.div
+          className="clients-hero__container"
+          initial="hidden"
+          animate={isHeroInView ? 'visible' : 'hidden'}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } } }}
+        >
+          <motion.div
+            className="clients-hero__content"
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08, delayChildren: 0 } } }}
+          >
+            <motion.div className="clients-hero__eyebrow" variants={itemFromLeft}>{hero.eyebrow}</motion.div>
+            <motion.h1 className="clients-hero__title" variants={itemFromLeft}>{hero.title}</motion.h1>
+            <motion.p className="clients-hero__subtitle" variants={itemFromLeft}>{hero.subtitle}</motion.p>
+            <motion.div
+              className="clients-hero__stats"
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08, delayChildren: 0 } } }}
+            >
               {hero.stats.map((item) => (
-                <div key={item.label} className="clients-hero__stat">
+                <motion.div key={item.label} className="clients-hero__stat" variants={itemUp}>
                   <AnimatedCounter value={item.value} />
                   <div className="clients-hero__stat-label">{item.label}</div>
-                </div>
+                </motion.div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          <div className="clients-hero__card">
+          <motion.div className="clients-hero__card" variants={itemFromRight}>
             <img src={hero.card.logo} alt="Impera Design" className="clients-hero__logo" />
             <div className="clients-hero__card-text">
               <p>{hero.card.text}</p>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
-      <section className="clients-list">
-        <div className="clients-list__header">
+      <section ref={listRef} className="clients-list">
+        <motion.div
+          className="clients-list__header"
+          initial="hidden"
+          animate={isListInView ? 'visible' : 'hidden'}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } } }}
+        >
           <div>
-            <h2 className="clients-list__title">{clients.title}</h2>
-            <p className="clients-list__subtitle">{clients.subtitle}</p>
+            <motion.h2 className="clients-list__title" variants={itemUp}>{clients.title}</motion.h2>
+            <motion.p className="clients-list__subtitle" variants={itemUp}>{clients.subtitle}</motion.p>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="clients-list__marquee">
-          <div className="clients-list__fade clients-list__fade--left" aria-hidden />
-          <div className="clients-list__fade clients-list__fade--right" aria-hidden />
-          <div className="clients-list__track">
-            {[...clients.list, ...clients.list].map((client, index) => (
-              <article key={`${client.name}-${index}`} className="clients-list__card">
-                <div className="clients-list__logo-box">
-                  <img src={client.logo} alt={client.name} className="clients-list__logo" />
-                </div>
-                <div className="clients-list__info">
-                  <h3 className="clients-list__name">{client.name}</h3>
-                  {client.focus && <p className="clients-list__focus">{client.focus}</p>}
-                </div>
-              </article>
-            ))}
+        {/* Desktop carousel */}
+        <motion.div
+          className="clients-list__slider-wrapper clients-list__desktop"
+          initial="hidden"
+          animate={isListInView ? 'visible' : 'hidden'}
+          variants={itemUp}
+        >
+          <button className="clients-list__nav clients-list__nav--prev" aria-label="Предыдущие клиенты">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+
+          <div className="clients-list__container">
+            <Swiper
+              modules={[Navigation, Autoplay]}
+              spaceBetween={16}
+              slidesPerView={4}
+              navigation={{
+                prevEl: '.clients-list__nav--prev',
+                nextEl: '.clients-list__nav--next',
+              }}
+              loop
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              className="clients-list__swiper"
+            >
+              {clients.list.map((client, index) => (
+                <SwiperSlide key={`${client.name}-${index}`}>
+                  <article className="clients-list__card">
+                    <div className="clients-list__logo-box">
+                      <img src={client.logo} alt={client.name} className="clients-list__logo" />
+                    </div>
+                    <div className="clients-list__info">
+                      <h3 className="clients-list__name">{client.name}</h3>
+                      {client.focus && <p className="clients-list__focus">{client.focus}</p>}
+                    </div>
+                  </article>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
-        </div>
+
+          <button className="clients-list__nav clients-list__nav--next" aria-label="Следующие клиенты">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </motion.div>
+
+        {/* Mobile grid */}
+        <motion.div
+          className="clients-list__grid clients-list__mobile"
+          initial="hidden"
+          animate={isListInView ? 'visible' : 'hidden'}
+          variants={itemUp}
+        >
+          {clients.list.slice(0, 6).map((client, index) => (
+            <article key={`${client.name}-${index}`} className="clients-list__card">
+              <div className="clients-list__logo-box">
+                <img src={client.logo} alt={client.name} className="clients-list__logo" />
+              </div>
+              <div className="clients-list__info">
+                <h3 className="clients-list__name">{client.name}</h3>
+                {client.focus && <p className="clients-list__focus">{client.focus}</p>}
+              </div>
+            </article>
+          ))}
+        </motion.div>
       </section>
 
-      <section className="clients-testimonials">
-        <div className="clients-testimonials__header">
+      <section ref={testimonialsRef} className="clients-testimonials">
+        <motion.div
+          className="clients-testimonials__header"
+          initial="hidden"
+          animate={isTestimonialsInView ? 'visible' : 'hidden'}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } } }}
+        >
           <div>
-            <h2 className="clients-testimonials__title">{testimonials.title}</h2>
-            <p className="clients-testimonials__subtitle">{testimonials.subtitle}</p>
+            <motion.h2 className="clients-testimonials__title" variants={itemUp}>{testimonials.title}</motion.h2>
+            <motion.p className="clients-testimonials__subtitle" variants={itemUp}>{testimonials.subtitle}</motion.p>
           </div>
-        </div>
+        </motion.div>
 
-<div className="clients-testimonials__slider-wrapper">
+        <motion.div
+          className="clients-testimonials__slider-wrapper"
+          initial="hidden"
+          animate={isTestimonialsInView ? 'visible' : 'hidden'}
+          variants={itemUp}
+        >
           <button className="clients-testimonials__nav clients-testimonials__nav--prev" aria-label="Предыдущий отзыв">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="15 18 9 12 15 6"></polyline>
@@ -180,7 +281,7 @@ function Clients() {
               <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
           </button>
-        </div>
+        </motion.div>
       </section>
 
       <Footer />

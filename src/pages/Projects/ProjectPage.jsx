@@ -4,6 +4,7 @@ import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
 import { IoIosClose } from 'react-icons/io';
 import StickyHeader from '../../components/StickyHeader/StickyHeader';
 import Breadcrumbs from '../../components/Widgets/Breadcrumbs/Breadcrumbs';
+import VideoSection from '../../components/VideoSection/VideoSection';
 import Footer from '../../components/Footer/Footer';
 import { projectsData } from '../../data/projectsData';
 import './ProjectPage.css';
@@ -195,7 +196,7 @@ function ProjectPage() {
                         className="project-gallery__img"
                       />
                     </div>
-                    {nextImage && (
+                    {nextImage && index + 1 !== totalImages - 1 && (
                       <div
                         className="project-gallery__item project-gallery__item--small"
                         onClick={() => openModal(index + 1)}
@@ -216,6 +217,8 @@ function ProjectPage() {
           </div>
         </div>
       </section>
+
+      {project.video && <VideoSection video={project.video} />}
 
       {modalOpen && (
         <div

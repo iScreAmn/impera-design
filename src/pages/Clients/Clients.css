@@ -184,25 +184,40 @@
   border: 1px solid rgba(139, 115, 85, 0.35);
 }
 
-.clients-list__marquee {
+.clients-list__desktop {
+  display: flex !important;
+}
+
+.clients-list__mobile {
+  display: none !important;
+}
+
+.clients-list__slider-wrapper {
+  align-items: center;
+  gap: clamp(24px, 3vw, 40px);
   position: relative;
-  overflow: hidden;
   margin-top: clamp(16px, 3vw, 22px);
 }
 
-.clients-list__track {
-  display: flex;
-  gap: clamp(12px, 2vw, 16px);
-  animation: clients-marquee 22s linear infinite;
+.clients-list__container {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
 }
 
-.clients-list__track:hover {
-  animation-play-state: paused;
+.clients-list__swiper {
+  width: 100%;
+  overflow: visible;
+}
+
+.clients-list__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: clamp(16px, 3vw, 22px);
 }
 
 .clients-list__card {
-  min-width: min(240px, 100%);
-  max-width: 280px;
   background: #fff;
   border-radius: 14px;
   padding: clamp(14px, 2.5vw, 18px);
@@ -210,12 +225,18 @@
   gap: clamp(10px, 1.5vw, 12px);
   transition: transform 0.2s ease, border-color 0.2s ease;
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+  width: 300px;
+  height: 100%;
 }
 
 .clients-list__card:hover {
   transform: translateY(-3px);
-  /* border: 1px solid #e8ded1; */
   box-shadow: 0 18px 38px rgba(0, 0, 0, 0.14);
+}
+
+.clients-list__swiper .swiper-slide {
+  height: auto;
+  display: flex;
 }
 
 .clients-list__logo-box {
@@ -253,32 +274,57 @@
   line-height: 1.5;
 }
 
-.clients-list__fade {
+.clients-list__nav {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(139, 115, 85, 0.08);
+  border: 1px solid rgba(139, 115, 85, 0.2);
+  color: #8b7355;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.clients-list__nav::before {
+  content: '';
   position: absolute;
-  top: 0;
-  bottom: 0;
-  width: clamp(60px, 10vw, 120px);
+  inset: 0;
+  background: radial-gradient(circle, rgba(139, 115, 85, 0.15) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.clients-list__nav:hover {
+  background: rgba(139, 115, 85, 0.15);
+  border-color: #8b7355;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(139, 115, 85, 0.2);
+}
+
+.clients-list__nav:hover::before {
+  opacity: 1;
+}
+
+.clients-list__nav svg {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.2s ease;
+}
+
+.clients-list__nav:hover svg {
+  transform: scale(1.1);
+}
+
+.clients-list__nav.swiper-button-disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
   pointer-events: none;
-  z-index: 2;
-}
-
-.clients-list__fade--left {
-  left: 0;
-  background: linear-gradient(90deg, #fff, rgba(255, 255, 255, 0));
-}
-
-.clients-list__fade--right {
-  right: 0;
-  background: linear-gradient(270deg, #fff, rgba(255, 255, 255, 0));
-}
-
-@keyframes clients-marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
 }
 
 .clients-testimonials {
@@ -595,10 +641,8 @@
   }
 
   .clients-list__card {
-    min-width: unset;
-    max-width: 100%;
-    width: 100%;
     padding: 16px;
+    width: unset;
   }
 
   .clients-list__logo-box {
@@ -615,30 +659,6 @@
 
   .clients-list__focus {
     font-size: 13px;
-  }
-
-  .clients-list__marquee {
-    overflow: visible;
-  }
-
-  .clients-list__track {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-    animation: none;
-    transform: none;
-  }
-
-  .clients-list__track:hover {
-    animation-play-state: unset;
-  }
-
-  .clients-list__track > *:nth-child(n + 7) {
-    display: none;
-  }
-
-  .clients-list__fade {
-    display: none;
   }
 
   .clients-testimonials {
@@ -739,20 +759,20 @@
     font-size: 13px;
   }
 
-  .clients-list__marquee {
-    margin-top: 16px;
-    overflow: visible;
+  .clients-list__desktop {
+    display: none !important;
   }
 
-  .clients-list__track {
+  .clients-list__mobile {
+    display: grid !important;
+  }
+
+  .clients-list__grid {
     gap: 12px;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   }
 
   .clients-list__card {
-    min-width: unset;
-    max-width: 100%;
-    width: 100%;
     padding: 14px;
   }
 
@@ -770,10 +790,6 @@
 
   .clients-list__focus {
     font-size: 12px;
-  }
-
-  .clients-list__fade {
-    display: none;
   }
 
   .clients-testimonials {
