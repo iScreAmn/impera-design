@@ -95,30 +95,6 @@ function YandexMap() {
             {phone.value}
           </a>
         </div>
-        <div className="contacts__map-socials">
-          <div className="contacts__map-socials-icons">
-            {socialLinks.map((social) => {
-              const Icon = social.icon;
-              return (
-                <a 
-                  key={social.id}
-                  href={social.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="contacts__social-icon contacts__social-icon--inline" 
-                  aria-label={social.name}
-                >
-                  {social.iconType === 'img' ? (
-                    <img src={Icon} alt="" className="contacts__social-icon-inner" aria-hidden />
-                  ) : (
-                    <Icon className="contacts__social-icon-inner" />
-                  )}
-                  <span className="contacts__social-text">{social.name}</span>
-                </a>
-              );
-            })}
-          </div>
-        </div>
         <button className="contacts__route-btn" onClick={handleBuildRoute}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/>
@@ -222,6 +198,32 @@ function Contacts() {
             >
               {texts.ctaBtn}
             </button>
+          </div>
+
+          <div className="contacts__socials-section">
+            <div className="contacts__socials-label">Спрашивайте, отвечаем онлайн</div>
+            <div className="contacts__map-socials-icons">
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <a 
+                    key={social.id}
+                    href={social.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="contacts__social-icon contacts__social-icon--inline" 
+                    aria-label={social.name}
+                  >
+                    {social.iconType === 'img' ? (
+                      <img src={Icon} alt="" className="contacts__social-icon-inner" aria-hidden />
+                    ) : (
+                      <Icon className="contacts__social-icon-inner" />
+                    )}
+                    <span className="contacts__social-text">{social.name}</span>
+                  </a>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>

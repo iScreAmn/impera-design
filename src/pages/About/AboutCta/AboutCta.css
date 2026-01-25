@@ -217,10 +217,6 @@
 }
 
 @media (max-width: 767px) {
-  .about-cta__container {
-    padding: 0 0 40px;
-  }
-
   .about-cta__content {
     gap: 24px;
     padding: 32px 28px;
