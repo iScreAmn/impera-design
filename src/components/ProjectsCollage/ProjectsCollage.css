@@ -119,6 +119,12 @@
   }
 }
 
+@media (max-width: 1220px) {
+  .projects-collage__title {
+    font-size: 20px;
+  }
+}
+
 @media (max-width: 1024px) {
   .projects-collage {
     grid-template-columns: 1fr;
