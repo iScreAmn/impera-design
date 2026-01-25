@@ -170,8 +170,22 @@
   }
 
   .statistic__grid {
-    grid-template-columns: repeat(auto-fit, 240px);
+    grid-template-columns: 1fr 1fr;
     gap: 16px;
+  }
+
+  .statistic__card {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .statistic__card:nth-child(5) {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
 }
 
@@ -183,7 +197,6 @@
   .statistic__eyebrow {
     font-size: 12px;
   }
-
 
   .statistic__header {
     max-width: 350px;
@@ -197,11 +210,26 @@
     font-size: 15px;
   }
 
+  .statistic__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
   .statistic__card {
     padding: 22px 20px;
-    width: 170px;
+    width: 100%;
+    min-width: 0;
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .statistic__card:nth-child(5) {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
 
   .statistic__value {
@@ -215,8 +243,8 @@
 
 @media (max-width: 480px) {
   .statistic__grid {
-    display: flex;
-    flex-wrap: wrap;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
   }
 
   .statistic__title {
@@ -224,25 +252,26 @@
     width: 100%;
   }
 
-  .statistic__card:last-child {
-    width: 97%;
-    height: 100px;
+  .statistic__card {
+    padding: 20px 16px;
+  }
+
+  .statistic__card:nth-child(5) {
+    grid-column: 1 / -1;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    gap: 16px;
+    justify-content: center;
+    text-align: center;
     padding: 22px 20px;
   }
 
-  .statistic__card:last-child .statistic__value {
-    margin-bottom: 0;
-    font-size: 34px;
-    flex-shrink: 0;
+  .statistic__card:nth-child(5) .statistic__value {
+    font-size: 24px;
   }
 
-  .statistic__card:last-child .statistic__label {
-    text-align: left;
-    flex: 1;
+  .statistic__card:nth-child(5) .statistic__label {
+    font-size: 14px;
   }
 }
 

@@ -547,6 +547,62 @@
   display: block;
 }
 
+@media (max-width: 1025px) {
+  .stages-aside__card-content {
+    display: none;
+  }
+
+  .stages-aside {
+    display: none;
+  }
+
+  .stages-body {
+    flex-direction: column;
+    padding: 100px 24px 70px;
+  }
+
+  .stages {
+    padding: 0 18px 80px;
+  }
+
+  .stages-hero__breadcrumbs {
+    padding: 100px 24px 0;
+  }
+
+  .stages-hero__content {
+    padding: 50px 24px 60px;
+  }
+
+  .stages-hero__card {
+    position: relative;
+    inset: unset;
+    margin: 30px auto 0;
+    width: 100%;
+  }
+
+  .stages-list {
+    min-height: auto;
+  }
+
+  .stages-step__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stages-footer {
+    padding: 40px 24px 0;
+  }
+
+  .stages-footer__card {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .stages-footer__visual {
+    width: 100%;
+    min-height: 180px;
+  }
+}
+
 @media (max-width: 1280px) {
   .stages-hero__breadcrumbs {
     padding: 100px 48px 0;
@@ -578,10 +634,6 @@
     grid-template-columns: 280px 1fr;
   }
 
-  .stages-footer__card {
-    grid-template-columns: 1fr;
-  }
-
   .stages-footer__visual {
     min-height: 180px;
   }
@@ -590,10 +642,6 @@
 @media (max-width: 1024px) {
   .stages {
     padding: 0 18px 80px;
-  }
-
-  .stages-hero {
-    padding-bottom: 160px;
   }
 
   .stages-hero__card {

@@ -187,11 +187,28 @@
   transform: scale(1.05);
 }
 
-@media (max-width: 1280px) {
-  .partners {
-    padding: 90px 0 110px;
+@media (max-width: 1236px) {
+  .partners__content {
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
+  .partners__wrapper {
+    margin: 0 -24px;
+    min-height: 200px;
+  }
+
+  .partners__wrapper::before,
+  .partners__wrapper::after {
+    width: 80px;
+  }
+
+  .partners__item {
+    flex: 0 0 260px;
+  }
+}
+
+@media (max-width: 1280px) {
   .partners__content {
     padding: 50px 48px;
   }
