@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FaBars, FaTimes } from 'react-icons/fa';
 import { headerData } from '../../data/headerData';
 import { logo } from '../../assets/images';
 import Modal from '../Widgets/Modals/Modal';
@@ -17,6 +18,7 @@ function Header() {
 
   const { isOpen, openModal, closeModal } = useModal();
   const [formData, setFormData] = useState({ name: '', email: '', question: '' });
+  const [isBurgerOpen, setIsBurgerOpen] = useState(false);
 
   const isFormValid = formData.name.trim() && formData.email.trim() && formData.question.trim();
 
@@ -28,6 +30,14 @@ function Header() {
     e.preventDefault();
     setFormData({ name: '', email: '', question: '' });
     closeModal();
+  };
+
+  const toggleBurger = () => {
+    setIsBurgerOpen(!isBurgerOpen);
+  };
+
+  const closeBurger = () => {
+    setIsBurgerOpen(false);
   };
 
   return (
@@ -78,6 +88,99 @@ function Header() {
                 </a>
               );
             })}
+          </div>
+          
+          {/* Бургер-меню */}
+          <button 
+            className="header__burger" 
+            type="button" 
+            onClick={toggleBurger}
+            aria-label="Меню"
+          >
+            {isBurgerOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
+      </div>
+
+      {/* Dropdown меню для 1200px-600px */}
+      <div className={`header__dropdown ${isBurgerOpen ? 'header__dropdown--open' : ''}`}>
+        <div className="header__dropdown-content">
+          {contacts.map((contact) => (
+            <div key={contact.href} className="header__dropdown-item">
+              <span className="header__dropdown-label">{contact.caption}</span>
+              <a href={contact.href} className="header__dropdown-link" onClick={closeBurger}>
+                {contact.text}
+              </a>
+            </div>
+          ))}
+          <div className="header__dropdown-socials">
+            <span className="header__dropdown-label">связаться онлайн</span>
+            <div className="header__dropdown-social-links">
+              {socials.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    className="header__dropdown-social-link"
+                    aria-label={social.label}
+                    onClick={closeBurger}
+                  >
+                    {social.iconType === 'img' ? (
+                      <img src={Icon} alt="" className="header__dropdown-social-icon" aria-hidden />
+                    ) : (
+                      <Icon className="header__dropdown-social-icon" />
+                    )}
+                    <span className="header__dropdown-social-text">{social.label}</span>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+          <button 
+            className="header__dropdown-button" 
+            type="button" 
+            onClick={() => { openModal(); closeBurger(); }}
+          >
+            {ctaLabel}
+          </button>
+        </div>
+      </div>
+
+      {/* Fullscreen меню для <600px */}
+      <div className={`header__menu ${isBurgerOpen ? 'header__menu--open' : ''}`}>
+        <div className="header__menu-content">
+          {contacts.map((contact) => (
+            <div key={contact.href} className="header__menu-item">
+              <span className="header__menu-label">{contact.caption}</span>
+              <a href={contact.href} className="header__menu-link" onClick={closeBurger}>
+                {contact.text}
+              </a>
+            </div>
+          ))}
+          <div className="header__menu-socials">
+            <span className="header__menu-label">связаться онлайн</span>
+            <div className="header__menu-social-links">
+              {socials.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    className="header__menu-social-link"
+                    aria-label={social.label}
+                    onClick={closeBurger}
+                  >
+                    {social.iconType === 'img' ? (
+                      <img src={Icon} alt="" className="header__menu-social-icon" aria-hidden />
+                    ) : (
+                      <Icon className="header__menu-social-icon" />
+                    )}
+                    <span className="header__menu-social-text">{social.label}</span>
+                  </a>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
