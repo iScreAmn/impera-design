@@ -537,6 +537,18 @@
   z-index: 10;
 }
 
+@media (max-width: 1240px) {
+  .clients-hero__stat-value {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 1143px) {
+  .clients-hero__stat-value {
+    font-size: 15px;
+  }
+}
+
 @media (max-width: 1055px) {
   .clients-hero__stats {
     grid-template-columns: 1fr;
@@ -552,6 +564,10 @@
     grid-template-columns: 1fr;
     padding: 40px 24px;
     gap: 28px;
+  }
+
+  .clients-hero__stat-value {
+    font-size: 20px;
   }
 
   .clients-hero__card {

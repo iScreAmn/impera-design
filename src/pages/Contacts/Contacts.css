@@ -138,6 +138,7 @@
 }
 
 .contacts__cta-btn {
+  width: fit-content;
   background-color: #b8956a;
   color: #1a1a1a;
   border: none;
@@ -546,7 +547,6 @@
   }
 
   .contacts__cta-btn {
-    width: 100%;
     align-self: stretch;
   }
 
@@ -799,4 +799,14 @@
     padding: 10px 18px;
     font-size: 16px;
   }
+}
+
+.callback-modal__status {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: #1a7f37;
+}
+
+.callback-modal__status--error {
+  color: #b42318;
 }

@@ -109,19 +109,60 @@ function YandexMap() {
 function Contacts() {
   const { isOpen, openModal, closeModal } = useModal();
   const { phone } = contactsData;
-  const [formData, setFormData] = useState({ name: '', phone: '' });
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    message: '',
+    _company: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ type: 'idle', message: '' });
 
-  const isFormValid = formData.name.trim() && formData.phone.trim();
+  const isEmailValid = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  const isPhoneValid = (value) => {
+    const cleaned = value.replace(/[^\d+]/g, '');
+    return /^\+?\d{7,15}$/.test(cleaned);
+  };
+  const isFormValid = formData.name.trim()
+    && isPhoneValid(formData.phone)
+    && isEmailValid(formData.email);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Отправка формы
-    setFormData({ name: '', phone: '' });
-    closeModal();
+    if (!isFormValid || isSubmitting) return;
+    setIsSubmitting(true);
+    setSubmitStatus({ type: 'idle', message: '' });
+
+    try {
+      const response = await fetch('/api/contact/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || 'Ошибка отправки заявки');
+      }
+
+      setSubmitStatus({
+        type: 'success',
+        message: data.message || 'Заявка успешно отправлена!'
+      });
+      setFormData({ name: '', phone: '', email: '', message: '', _company: '' });
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: error.message || 'Ошибка отправки заявки'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -239,6 +280,15 @@ function Contacts() {
         className="callback-modal"
       >
         <form className="callback-modal__form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="_company"
+            value={formData._company}
+            onChange={handleChange}
+            tabIndex="-1"
+            autoComplete="off"
+            style={{ display: 'none' }}
+          />
           <input 
             type="text" 
             name="name"
@@ -255,18 +305,37 @@ function Contacts() {
             placeholder={texts.modal.phonePlaceholder}
             className="callback-modal__input"
           />
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder={texts.modal.emailPlaceholder}
+            className="callback-modal__input"
+          />
           <textarea 
-            placeholder="Сообщение (необязательно)"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            placeholder={texts.modal.messagePlaceholder}
             className="callback-modal__textarea"
             rows="3"
           />
           <button 
             type="submit" 
             className="callback-modal__submit"
-            disabled={!isFormValid}
+            disabled={!isFormValid || isSubmitting}
           >
-            {texts.modal.submitBtn}
+            {isSubmitting ? 'Отправка...' : texts.modal.submitBtn}
           </button>
+          {submitStatus.type !== 'idle' && (
+            <p
+              className={`callback-modal__status ${submitStatus.type === 'error' ? 'callback-modal__status--error' : ''}`}
+              role="status"
+            >
+              {submitStatus.message}
+            </p>
+          )}
         </form>
 
         <div className="callback-modal__phone-section">
