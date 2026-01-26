@@ -33,13 +33,16 @@ const Calculator = ({
     phone: '',
     email: '',
     contactMethod: contactMethods[0]?.id || '',
-    consent: false
+    consent: false,
+    _company: ''
   });
 
   const [answers, setAnswers] = useState(createInitialAnswers);
   
   const [formData, setFormData] = useState(createInitialFormData);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -127,17 +130,37 @@ const Calculator = ({
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    const result = {
+    if (!canSubmit || isSubmitting) return;
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    const { _company, ...contactPayload } = formData;
+    const payload = {
       answers,
-      contact: formData
+      contact: contactPayload,
+      _company
     };
-    
-    console.log('Результаты калькулятора:', result);
-    setIsSubmitted(true);
-    setShowContactModal(false);
+
+    try {
+      const response = await fetch('/api/calculator/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || 'Ошибка отправки заявки');
+      }
+
+      setIsSubmitted(true);
+      setShowContactModal(false);
+    } catch (error) {
+      setSubmitError(error.message || 'Ошибка отправки заявки');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const canSubmit = formData.name && formData.phone && formData.email && formData.consent;
@@ -177,6 +200,15 @@ const Calculator = ({
       <form className={formClass} onSubmit={handleSubmit}>
       <input
         type="text"
+        name="_company"
+        value={formData._company}
+        onChange={handleInputChange}
+        tabIndex="-1"
+        autoComplete="off"
+        style={{ display: 'none' }}
+      />
+      <input
+        type="text"
         name="phone"
         className={inputClass}
         placeholder={placeholders.phone}
@@ -206,10 +238,15 @@ const Calculator = ({
       <button
         type="submit"
         className={`${submitClass} ${!canSubmit ? `${submitClass}--disabled` : ''}`}
-        disabled={!canSubmit}
+        disabled={!canSubmit || isSubmitting}
       >
-        {buttons.submit}
+        {isSubmitting ? 'Отправка...' : buttons.submit}
       </button>
+      {submitError && (
+        <p className="calculator__form-status" role="status">
+          {submitError}
+        </p>
+      )}
 
       {isModalVariant ? (
         <label className="calculator-modal__checkbox-label">
