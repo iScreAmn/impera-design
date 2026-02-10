@@ -6,7 +6,7 @@
 .contacts__breadcrumbs {
   width: min(1200px, 100%);
   margin: 0 auto;
-  padding-top: 100px;
+  padding-top: 110px;
 }
 
 .contacts__breadcrumbs-container {
@@ -25,7 +25,7 @@
 
 @media (max-width: 1024px) {
   .contacts__breadcrumbs {
-    padding: 100px 24px 0;
+    padding: 110px 24px 0;
   }
 }
 
@@ -460,16 +460,66 @@
   transform: translateY(0);
 }
 
-.callback-modal__submit:disabled {
+.callback-modal__submit:disabled,
+.callback-modal__submit--inactive {
   background-color: #555;
   color: #888;
   cursor: not-allowed;
   transform: none;
 }
 
-.callback-modal__submit:disabled:hover {
+.callback-modal__submit:disabled:hover,
+.callback-modal__submit--inactive:hover {
   background-color: #555;
   transform: none;
+}
+
+.callback-modal__field--invalid .callback-modal__input {
+  border-color: #e53935;
+  box-shadow: 0 0 0 1px #e53935;
+}
+
+.callback-modal__field--invalid .phone-input__country-btn,
+.callback-modal__field--invalid .phone-input__input {
+  border-color: #e53935 !important;
+  box-shadow: 0 0 0 1px #e53935;
+}
+
+.callback-modal__checkbox-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.callback-modal__checkbox {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  cursor: pointer;
+  accent-color: #b8956a;
+}
+
+.callback-modal__checkbox-label {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+}
+
+.callback-modal__checkbox-link {
+  color: #b8956a;
+  text-decoration: none;
+}
+
+.callback-modal__checkbox-link:hover {
+  text-decoration: underline;
+}
+
+.callback-modal__checkbox-wrapper--invalid {
+  border-radius: 4px;
+  outline: 2px solid #e53935;
+  outline-offset: 2px;
 }
 
 /* Phone Section */

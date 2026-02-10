@@ -30,14 +30,17 @@ function ProjectPage() {
     document.body.style.overflow = 'auto';
   };
 
-  const handleScrollToGallery = (e) => {
+  const handleScrollToVideo = (e) => {
     e.preventDefault();
-    const target = document.getElementById('project-gallery');
+    const target = document.getElementById('project-video');
     if (!target) return;
     const headerHeight = 130;
     const top = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
     window.scrollTo({ top, behavior: 'smooth' });
   };
+
+  const projectsWithVideo = ['boss-lounge', 'restaurant', 'hotel'];
+  const hasVideo = project && projectsWithVideo.includes(project.slug);
 
   useEffect(() => {
     if (!modalOpen || !project) return;
@@ -149,12 +152,17 @@ function ProjectPage() {
             </div>
 
             <div className="project-hero__actions">
-              <button className="project-hero__btn project-hero__btn--primary" onClick={handleScrollToGallery}>
+              <button className="project-hero__btn project-hero__btn--primary" onClick={() => openModal(0)}>
                 Смотреть галерею
               </button>
-              <button className="project-hero__btn project-hero__btn--ghost" onClick={() => navigate('/contacts')}>
+              <button className="project-hero__btn project-hero__btn--ghost" onClick={() => window.open('https://t.me/impera_design', '_blank', 'noopener,noreferrer')}>
                 Обсудить проект
               </button>
+              {hasVideo && (
+                <button className="project-hero__btn project-hero__btn--ghost" onClick={handleScrollToVideo}>
+                  Реализованный проект
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -163,31 +171,14 @@ function ProjectPage() {
       <section id="project-gallery" className="project-gallery-section">
         <div className="project-gallery__container">
           <div className="project__gallery">
-            {project.images.map((image, index) => {
-              const totalImages = project.images.length;
-              const isLarge = index === 0 || index === totalImages - 1 || index % 3 === 0;
-              const isFirstInPair = !isLarge && index % 3 === 1;
-
-              if (isLarge) {
-                return (
-                  <div
-                    key={index}
-                    className="project-gallery__item project-gallery__item--small"
-                    onClick={() => openModal(index)}
-                  >
-                    <img
-                      src={image}
-                      alt={`${project.title} - изображение ${index + 1}`}
-                      className="project-gallery__img"
-                    />
-                  </div>
-                );
-              } else if (isFirstInPair) {
+            {project.images.reduce((acc, image, index) => {
+              // Если индекс четный (0, 2, 4...), создаем новую пару
+              if (index % 2 === 0) {
                 const nextImage = project.images[index + 1];
-                return (
+                acc.push(
                   <div key={`pair-${index}`} className="project-gallery__pair">
                     <div
-                      className="project-gallery__item project-gallery__item--small"
+                      className="project-gallery__item"
                       onClick={() => openModal(index)}
                     >
                       <img
@@ -196,9 +187,9 @@ function ProjectPage() {
                         className="project-gallery__img"
                       />
                     </div>
-                    {nextImage && index + 1 !== totalImages - 1 && (
+                    {nextImage ? (
                       <div
-                        className="project-gallery__item project-gallery__item--small"
+                        className="project-gallery__item"
                         onClick={() => openModal(index + 1)}
                       >
                         <img
@@ -207,13 +198,14 @@ function ProjectPage() {
                           className="project-gallery__img"
                         />
                       </div>
+                    ) : (
+                      <div className="project-gallery__item" style={{ visibility: 'hidden' }} />
                     )}
                   </div>
                 );
-              } else {
-                return null;
               }
-            })}
+              return acc;
+            }, [])}
           </div>
         </div>
       </section>

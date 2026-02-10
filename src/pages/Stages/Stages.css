@@ -34,7 +34,7 @@
 }
 
 .stages-hero__breadcrumbs {
-  padding-top: 100px;
+  padding-top: 110px;
   position: relative;
   z-index: 2;
   width: min(1200px, 100%);
@@ -158,7 +158,7 @@
   position: relative;
   max-width: 1320px;
   margin: 0 auto;
-  padding: 120px 12px 80px;
+  padding: 40px 12px 80px;
   display: flex;
   gap: 32px;
 }
@@ -547,6 +547,18 @@
   display: block;
 }
 
+@media (max-width: 1261px) {
+  .stages-footer__title {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 1221px) {
+  .stages-footer__title {
+    font-size: 18px;
+  }
+}
+
 @media (max-width: 1025px) {
   .stages-aside__card-content {
     display: none;
@@ -558,7 +570,7 @@
 
   .stages-body {
     flex-direction: column;
-    padding: 100px 24px 70px;
+    padding: 40px 24px 70px;
   }
 
   .stages {
@@ -604,7 +616,7 @@
 
 @media (max-width: 1280px) {
   .stages-hero__breadcrumbs {
-    padding: 100px 48px 0;
+    padding: 110px 48px 0;
   }
 
   .stages-hero__content {
@@ -612,7 +624,7 @@
   }
 
   .stages-body {
-    padding: 120px 48px 80px;
+    padding: 40px 48px 80px;
   }
 
   .stages-footer {
@@ -680,7 +692,7 @@
 
 @media (max-width: 1024px) {
   .stages-hero__breadcrumbs {
-    padding: 100px 24px 0;
+    padding: 110px 24px 0;
   }
 }
 
@@ -717,7 +729,7 @@
   }
 
   .stages-body {
-    padding: 80px 20px 60px;
+    padding: 40px 20px 60px;
   }
 
   .stages-step {
@@ -811,7 +823,7 @@
   }
 
   .stages-body {
-    padding: 60px 16px 50px;
+    padding: 40px 16px 50px;
   }
 
   .stages-step {

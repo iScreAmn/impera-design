@@ -1,7 +1,7 @@
 .history {
   background-color: #1a1a1a;
   color: #fff;
-  padding: 50px 20px;
+  padding: 50px 0;
   position: relative;
 }
 
@@ -14,7 +14,7 @@
 
 .history__left {
   position: relative;
-  padding-right: 40px;
+  padding-left: 40px;
   flex: 0 0 calc(50% - 40px);
   align-self: flex-start;
 }
@@ -25,6 +25,7 @@
 
 .history__left-content {
   position: relative;
+  left: auto !important;
 }
 
 .history__left.is-fixed .history__left-content {
@@ -156,6 +157,7 @@
   line-height: 1.6;
   color: #b8b8b8;
   font-weight: 400;
+  white-space: pre-line;
 }
 
 @media (max-width: 1246px) {

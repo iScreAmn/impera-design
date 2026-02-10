@@ -1,16 +1,21 @@
-import { useEffect } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion as Motion } from 'motion/react';
+import { FaChevronDown } from 'react-icons/fa';
+import { CiMail } from 'react-icons/ci';
 import StickyHeader from '../../components/StickyHeader/StickyHeader';
 import Footer from '../../components/Footer/Footer';
 import Breadcrumbs from '../../components/Widgets/Breadcrumbs/Breadcrumbs';
 import { servicesData } from '../../data/servicesData';
+import { footerData } from '../../data/footerData';
 import './Services.css';
 
 const MotionArticle = Motion.article;
 
 function Services() {
   const location = useLocation();
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const dropdownRefs = useRef({});
 
   useEffect(() => {
     if (location.hash) {
@@ -35,6 +40,23 @@ function Services() {
       return () => clearTimeout(timer);
     }
   }, [location]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (openDropdown && dropdownRefs.current[openDropdown]) {
+        if (!dropdownRefs.current[openDropdown].contains(event.target)) {
+          setOpenDropdown(null);
+        }
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [openDropdown]);
+
+  const toggleDropdown = (serviceId) => {
+    setOpenDropdown(openDropdown === serviceId ? null : serviceId);
+  };
 
   return (
     <div className="services">
@@ -63,7 +85,7 @@ function Services() {
           >
             <div
               className="service-item__image"
-              style={{ backgroundImage: `linear-gradient(160deg, rgba(10,10,10,0.75), rgba(10,10,10,0.35)), url(${service.background})` }}
+              style={{ backgroundImage: `url(${service.background})` }}
               role="presentation"
             >
               <div className="service-item__badge">{service.badge}</div>
@@ -89,9 +111,48 @@ function Services() {
                   <a href="https://t.me/olga_korshow" target="_blank" rel="noreferrer" className="service-item__button service-item__button--primary">
                     {servicesData.pageTexts.buttons.discuss}
                   </a>
-                  <a href={`mailto:${servicesData.contactCard.contact.email}?subject=${encodeURIComponent(service.title)}`} className="service-item__button service-item__button--ghost">
-                    {servicesData.pageTexts.buttons.email}
-                  </a>
+                  <div 
+                    className="service-item__dropdown-wrapper"
+                    ref={(el) => dropdownRefs.current[service.id] = el}
+                  >
+                    <button 
+                      onClick={() => toggleDropdown(service.id)}
+                      className={`service-item__button service-item__button--ghost ${openDropdown === service.id ? 'active' : ''}`}
+                    >
+                      {servicesData.pageTexts.buttons.contact}
+                      <FaChevronDown className="service-item__button-icon" />
+                    </button>
+                    {openDropdown === service.id && (
+                      <div className="service-item__dropdown">
+                        {footerData.socials.map((social) => {
+                          const SocialIcon = social.icon;
+                          return (
+                            <a
+                              key={social.label}
+                              href={social.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="service-item__dropdown-item"
+                            >
+                              {social.iconType === 'img' ? (
+                                <img src={SocialIcon} alt="" className="service-item__dropdown-icon service-item__dropdown-icon--img" />
+                              ) : (
+                                <SocialIcon className="service-item__dropdown-icon" />
+                              )}
+                              <span className="service-item__dropdown-text">{social.label}</span>
+                            </a>
+                          );
+                        })}
+                        <a 
+                          href={`mailto:${servicesData.contactCard.contact.email}?subject=${encodeURIComponent(service.title)}`}
+                          className="service-item__dropdown-item"
+                        >
+                          <CiMail className="service-item__dropdown-icon" />
+                          <span className="service-item__dropdown-text">Email</span>
+                        </a>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

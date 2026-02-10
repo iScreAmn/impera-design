@@ -9,7 +9,7 @@
 .clients-breadcrumbs {
   width: min(1200px, 100%);
   margin: 0 auto;
-  padding-top: 100px;
+  padding-top: 110px;
 }
 
 .clients-breadcrumbs__container {
@@ -74,7 +74,6 @@
 
 .clients-hero__stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr));
   gap: clamp(12px, 2vw, 16px);
   margin-top: 6px;
 }
@@ -557,7 +556,7 @@
 
 @media (max-width: 1024px) {
   .clients-breadcrumbs {
-    padding: 100px 24px 0;
+    padding: 110px 24px 0;
   }
 
   .clients-hero__container {

@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import StickyHeader from '../../components/StickyHeader/StickyHeader';
 import Breadcrumbs from '../../components/Widgets/Breadcrumbs/Breadcrumbs';
 import Modal from '../../components/Widgets/Modals/Modal';
+import PhoneInput from '../../components/PhoneInput/PhoneInput';
 import Footer from '../../components/Footer/Footer';
 import useModal from '../../utils/useModal';
 import { AiOutlineGlobal } from 'react-icons/ai';
 import { contactsData, socialLinks, infoCards, texts } from '../../data/contactsData';
+import { apiFetch } from '../../utils/api';
 import './Contacts.css';
 
 function YandexMap() {
@@ -112,34 +115,43 @@ function Contacts() {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    email: '',
     message: '',
+    agree: false,
     _company: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({ type: 'idle', message: '' });
+  const [showValidationErrors, setShowValidationErrors] = useState(false);
 
-  const isEmailValid = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
   const isPhoneValid = (value) => {
-    const cleaned = value.replace(/[^\d+]/g, '');
-    return /^\+?\d{7,15}$/.test(cleaned);
+    const cleaned = (value || '').replace(/\D/g, '');
+    return cleaned.length >= 7 && (value || '').startsWith('+');
   };
   const isFormValid = formData.name.trim()
     && isPhoneValid(formData.phone)
-    && isEmailValid(formData.email);
+    && formData.agree;
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+    setShowValidationErrors(false);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!isFormValid || isSubmitting) return;
+    if (!isFormValid) {
+      setShowValidationErrors(true);
+      return;
+    }
+    if (isSubmitting) return;
     setIsSubmitting(true);
     setSubmitStatus({ type: 'idle', message: '' });
 
     try {
-      const response = await fetch('/api/contact/submit', {
+      const response = await apiFetch('/api/contact/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -154,7 +166,7 @@ function Contacts() {
         type: 'success',
         message: data.message || 'Заявка успешно отправлена!'
       });
-      setFormData({ name: '', phone: '', email: '', message: '', _company: '' });
+      setFormData({ name: '', phone: '', message: '', agree: false, _company: '' });
     } catch (error) {
       setSubmitStatus({
         type: 'error',
@@ -289,31 +301,32 @@ function Contacts() {
             autoComplete="off"
             style={{ display: 'none' }}
           />
-          <input 
-            type="text" 
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder={texts.modal.namePlaceholder}
-            className="callback-modal__input"
-          />
-          <input 
-            type="tel" 
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            placeholder={texts.modal.phonePlaceholder}
-            className="callback-modal__input"
-          />
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder={texts.modal.emailPlaceholder}
-            className="callback-modal__input"
-          />
-          <textarea 
+          <div
+            className={`callback-modal__field ${showValidationErrors && !formData.name.trim() ? 'callback-modal__field--invalid' : ''}`}
+          >
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder={texts.modal.namePlaceholder}
+              className="callback-modal__input"
+            />
+          </div>
+          <div
+            className={`callback-modal__field ${showValidationErrors && !isPhoneValid(formData.phone) ? 'callback-modal__field--invalid' : ''}`}
+          >
+            <PhoneInput
+              value={formData.phone}
+              onChange={(v) => {
+                setFormData((prev) => ({ ...prev, phone: v }));
+                setShowValidationErrors(false);
+              }}
+              placeholder={texts.modal.phonePlaceholder}
+              variant="modal"
+            />
+          </div>
+          <textarea
             name="message"
             value={formData.message}
             onChange={handleChange}
@@ -321,10 +334,29 @@ function Contacts() {
             className="callback-modal__textarea"
             rows="3"
           />
-          <button 
-            type="submit" 
-            className="callback-modal__submit"
-            disabled={!isFormValid || isSubmitting}
+          <div
+            className={`callback-modal__checkbox-wrapper ${showValidationErrors && !formData.agree ? 'callback-modal__checkbox-wrapper--invalid' : ''}`}
+          >
+            <input
+              type="checkbox"
+              id="callback-agree"
+              name="agree"
+              checked={formData.agree}
+              onChange={handleChange}
+              className="callback-modal__checkbox"
+            />
+            <label htmlFor="callback-agree" className="callback-modal__checkbox-label">
+              {texts.modal.consent.text}{' '}
+              <Link to={texts.modal.consent.href} className="callback-modal__checkbox-link">
+                {texts.modal.consent.linkText}
+              </Link>
+            </label>
+          </div>
+          <button
+            type="submit"
+            className={`callback-modal__submit ${!isFormValid ? 'callback-modal__submit--inactive' : ''}`}
+            disabled={isSubmitting}
+            aria-disabled={!isFormValid}
           >
             {isSubmitting ? 'Отправка...' : texts.modal.submitBtn}
           </button>

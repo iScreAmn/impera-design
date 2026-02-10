@@ -65,11 +65,9 @@ const AnimatedCounter = ({ value }) => {
 
 function Clients() {
   const { hero, clients, testimonials } = clientsData;
-  const breadcrumbsRef = useRef(null);
   const heroRef = useRef(null);
   const listRef = useRef(null);
   const testimonialsRef = useRef(null);
-  const isBreadcrumbsInView = useInView(breadcrumbsRef, { once: true, amount: 0.3 });
   const isHeroInView = useInView(heroRef, { once: true, amount: 0.12 });
   const isListInView = useInView(listRef, { once: true, amount: 0.1 });
   const isTestimonialsInView = useInView(testimonialsRef, { once: true, amount: 0.1 });
@@ -78,17 +76,11 @@ function Clients() {
     <div className="clients-page">
       <StickyHeader />
 
-      <motion.div
-        ref={breadcrumbsRef}
-        className="clients-breadcrumbs"
-        initial="hidden"
-        animate={isBreadcrumbsInView ? 'visible' : 'hidden'}
-        variants={itemUp}
-      >
+      <div className="clients-breadcrumbs">
         <div className="clients-breadcrumbs__container">
           <Breadcrumbs />
         </div>
-      </motion.div>
+      </div>
 
       <section ref={heroRef} className="clients-hero">
         <motion.div
