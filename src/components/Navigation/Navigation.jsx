@@ -1,15 +1,32 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
+import { FaChevronDown } from 'react-icons/fa';
+import { FaTelegramPlane } from 'react-icons/fa';
+import { CiMail } from 'react-icons/ci';
 import { navigationItems } from '../../data/navigationData';
 import { headerData } from '../../data/headerData';
-import { logoMini } from '../../assets/images';
+import { footerData } from '../../data/footerData';
+import { calculatorData } from '../../data/calculatorData';
 import Modal from '../Widgets/Modals/Modal';
 import useModal from '../../utils/useModal';
 import './Navigation.css';
 
 const MotionDiv = motion.div;
 const MotionNav = motion.nav;
+const MotionSvg = motion.svg;
+const pathTransition = { duration: 0.28, ease: [0.4, 0, 0.2, 1] };
+
+const Path = (props) => (
+  <motion.path
+    fill="transparent"
+    strokeWidth="2.6"
+    stroke="currentColor"
+    strokeLinecap="round"
+    transition={pathTransition}
+    {...props}
+  />
+);
 
 function Navigation() {
   const location = useLocation();
@@ -17,11 +34,19 @@ function Navigation() {
   const [dragOffset, setDragOffset] = useState(0);
   const drawerRef = useRef(null);
   const touchStartY = useRef(null);
-  const { socials, logoAlt, ctaLabel } = headerData;
+  const { socials, ctaLabel } = headerData;
   const { isOpen: isModalOpen, openModal, closeModal } = useModal();
-  const [formData, setFormData] = useState({ name: '', email: '', question: '' });
+  const [formData, setFormData] = useState({ name: '', contactMethod: '', question: '', agree: false });
+  const [isContactDropdownOpen, setIsContactDropdownOpen] = useState(false);
+  const contactDropdownRef = useRef(null);
 
-  const isFormValid = formData.name.trim() && formData.email.trim() && formData.question.trim();
+  const contactMethods = [
+    { value: 'telegram', label: 'Telegram', icon: FaTelegramPlane },
+    { value: 'max', label: 'Max', icon: footerData.socials.find(s => s.label === 'Max')?.icon, iconType: 'img' },
+    { value: 'email', label: 'Email', icon: CiMail }
+  ];
+
+  const isFormValid = formData.name.trim() && formData.contactMethod.trim() && formData.question.trim() && formData.agree;
 
   const closeMenu = () => {
     setIsOpen(false);
@@ -99,15 +124,42 @@ function Navigation() {
   };
 
   const handleModalChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const handleContactMethodSelect = (method) => {
+    setFormData({ ...formData, contactMethod: method.value });
+    setIsContactDropdownOpen(false);
   };
 
   const handleModalSubmit = (e) => {
     e.preventDefault();
-    setFormData({ name: '', email: '', question: '' });
+    if (!isFormValid) return;
+    setFormData({ name: '', contactMethod: '', question: '', agree: false });
+    setIsContactDropdownOpen(false);
     closeModal();
     closeMenu();
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (contactDropdownRef.current && !contactDropdownRef.current.contains(event.target)) {
+        setIsContactDropdownOpen(false);
+      }
+    };
+
+    if (isContactDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isContactDropdownOpen]);
 
   return (
     <nav className="navigation" aria-label="Основная навигация">
@@ -127,7 +179,7 @@ function Navigation() {
           ))}
         </ul>
 
-        <button
+        <a
           type="button"
           className={`navigation__burger ${isOpen ? 'navigation__burger--active' : ''}`}
           aria-label={isOpen ? 'Закрыть меню' : 'Открыть меню'}
@@ -135,12 +187,36 @@ function Navigation() {
           aria-controls="mobile-drawer"
           onClick={() => setIsOpen((prev) => !prev)}
         >
-          <span className="navigation__burger-lines" aria-hidden="true">
-            <span className="navigation__burger-line" />
-            <span className="navigation__burger-line" />
-            <span className="navigation__burger-line" />
-          </span>
-        </button>
+          <MotionSvg
+            width="23"
+            height="23"
+            viewBox="0 0 23 23"
+            initial={false}
+            animate={isOpen ? 'open' : 'closed'}
+            aria-hidden="true"
+          >
+            <Path
+              variants={{
+                closed: { d: 'M 2 2.5 L 20 2.5' },
+                open: { d: 'M 3 16.5 L 17 2.5' },
+              }}
+            />
+            <Path
+              d="M 2 9.423 L 20 9.423"
+              variants={{
+                closed: { opacity: 1 },
+                open: { opacity: 0 },
+              }}
+              transition={{ duration: 0.16, ease: [0.4, 0, 0.2, 1] }}
+            />
+            <Path
+              variants={{
+                closed: { d: 'M 2 16.346 L 20 16.346' },
+                open: { d: 'M 3 2.5 L 17 16.346' },
+              }}
+            />
+          </MotionSvg>
+        </a>
       </div>
 
       <AnimatePresence>
@@ -169,21 +245,7 @@ function Navigation() {
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
             >
-              <div className="navigation__drawer-header">
-                <Link to="/" className="navigation__brand" onClick={closeMenu}>
-                  <img src={logoMini} alt={logoAlt} className="navigation__brand-logo" />
-                  <span className="navigation__brand-text">Impera Studio</span>
-                </Link>
-                <button
-                  type="button"
-                  className="navigation__close"
-                  onClick={closeMenu}
-                  aria-label="Закрыть меню"
-                >
-                  <span />
-                  <span />
-                </button>
-              </div>
+              
 
               <ul className="navigation__drawer-list">
                 {navigationItems.map((item) => (
@@ -225,7 +287,11 @@ function Navigation() {
                         className="navigation__drawer-social"
                         aria-label={social.label}
                       >
-                        <Icon />
+                        {social.iconType === 'img' ? (
+                          <img src={Icon} alt="" className="navigation__drawer-social-icon" aria-hidden />
+                        ) : (
+                          <Icon />
+                        )}
                       </a>
                     );
                   })}
@@ -254,14 +320,42 @@ function Navigation() {
             placeholder="Ваше имя"
             className="question-modal__input"
           />
-          <input 
-            type="email" 
-            name="email"
-            value={formData.email}
-            onChange={handleModalChange}
-            placeholder="Email для ответа"
-            className="question-modal__input"
-          />
+          <div className="question-modal__dropdown-wrapper" ref={contactDropdownRef}>
+            <button
+              type="button"
+              onClick={() => setIsContactDropdownOpen(!isContactDropdownOpen)}
+              className={`question-modal__dropdown-button ${isContactDropdownOpen ? 'active' : ''} ${formData.contactMethod ? 'selected' : ''}`}
+            >
+              <span className="question-modal__dropdown-button-text">
+                {formData.contactMethod 
+                  ? contactMethods.find(m => m.value === formData.contactMethod)?.label 
+                  : 'Способ связи для ответа'}
+              </span>
+              <FaChevronDown className="question-modal__dropdown-button-icon" />
+            </button>
+            {isContactDropdownOpen && (
+              <div className="question-modal__dropdown">
+                {contactMethods.map((method) => {
+                  const Icon = method.icon;
+                  return (
+                    <button
+                      key={method.value}
+                      type="button"
+                      onClick={() => handleContactMethodSelect(method)}
+                      className={`question-modal__dropdown-item ${formData.contactMethod === method.value ? 'active' : ''}`}
+                    >
+                      {method.iconType === 'img' ? (
+                        <img src={Icon} alt="" className="question-modal__dropdown-icon question-modal__dropdown-icon--img" />
+                      ) : (
+                        <Icon className="question-modal__dropdown-icon" />
+                      )}
+                      <span className="question-modal__dropdown-text">{method.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
           <textarea 
             name="question"
             value={formData.question}
@@ -270,6 +364,22 @@ function Navigation() {
             className="question-modal__textarea"
             rows="4"
           />
+          <div className="question-modal__checkbox-wrapper">
+            <input
+              type="checkbox"
+              id="question-agree-mobile"
+              name="agree"
+              checked={formData.agree}
+              onChange={handleModalChange}
+              className="question-modal__checkbox"
+            />
+            <label htmlFor="question-agree-mobile" className="question-modal__checkbox-label">
+              {calculatorData.contactConsent.text}{' '}
+              <Link to={calculatorData.contactConsent.href} className="question-modal__checkbox-link">
+                {calculatorData.contactConsent.linkText}
+              </Link>
+            </label>
+          </div>
           <button 
             type="submit" 
             className="question-modal__submit"

@@ -1,11 +1,11 @@
-import { thanku, photo1, document, checklist } from '../assets/images';
+import { thanku, photo1, document } from '../assets/images';
 import { IoMdCheckboxOutline } from "react-icons/io";
-import { FaWhatsapp, FaTelegramPlane } from "react-icons/fa";
-import { MdOutlineEmail } from "react-icons/md";
+import { FaTelegramPlane } from "react-icons/fa";
+import { HiOutlineMail } from "react-icons/hi";
+import messengerIcon from '../assets/images/logos/max-white.webp';
 
 export const calculatorData = {
   title: 'Рассчитать стоимость услуг в калькуляторе',
-  titleAccent: '+ получить бонус',
   steps: [
     {
       field: 'area',
@@ -21,18 +21,18 @@ export const calculatorData = {
     },
     {
       field: 'services',
-      question: 'Какие услуги вас интересуют?',
+      question: 'Какие услуги Вас интересуют?',
       subtitle: 'Выберите один или несколько вариантов',
       options: [
-        'Ремонт',
         'Дизайн-проект',
-        'Меблировка помещений'
+        'Дизайн-проект + ремонт',
+        'Чертежи для ремонта',
       ],
       multiple: true
     },
     {
       field: 'style',
-      question: 'Какой стиль интерьера вам ближе?',
+      question: 'Какой стиль интерьера Вам ближе?',
       options: [
         'Современный',
         'Классический',
@@ -52,39 +52,29 @@ export const calculatorData = {
         'Пока не определился'
       ],
       multiple: false
-    },
-    {
-      field: 'timeline',
-      question: 'Когда вы планируете начать?',
-      options: [
-        'В течение месяца',
-        'Через 1-3 месяца',
-        'Через 3-6 месяцев',
-        'Интересуюсь, собираю информацию'
-      ],
-      multiple: false
     }
   ],
   contactMethods: [
-    {
-      id: 'whatsapp',
-      label: 'WhatsApp',
-      icon: FaWhatsapp
-    },
     {
       id: 'telegram',
       label: 'Telegram',
       icon: FaTelegramPlane
     },
     {
+      id: 'messenger',
+      label: 'MAX',
+      icon: messengerIcon,
+      iconType: 'img',
+    },
+    {
       id: 'email',
       label: 'Email',
-      icon: MdOutlineEmail
+      icon: HiOutlineMail
     }
   ],
   consultant: {
     name: 'Ольга Коршунова',
-    role: 'Менеджер по продажам',
+    role: 'Руководитель студии',
     photo: photo1,
     messages: {
       default: 'Определение нужных услуг позволяет нам сразу предложить комплексное решение, сэкономив ваше время и силы.',
@@ -96,11 +86,6 @@ export const calculatorData = {
       icon: IoMdCheckboxOutline,
       text: 'Коммерческое предложение',
       image: document
-    },
-    {
-      icon: IoMdCheckboxOutline,
-      text: 'Чек-лист самостоятельного ремонта',
-      image: checklist
     }
   ],
   placeholders: {
@@ -115,19 +100,18 @@ export const calculatorData = {
     repeat: 'Повторить'
   },
   contactConsent: {
-    text: 'Нажимая кнопку вы соглашаетесь с условиями',
+    text: 'Нажимая кнопку, Вы соглашаетесь с условиями',
     linkText: 'обработки персональных данных',
-    href: '#'
+    href: '/privacy'
   },
   progressTexts: {
     prefix: 'Готово',
     finalLabel: 'Остался завершающий шаг!',
     finalHeading: 'Отлично. Остался последний шаг!',
-    finalSubtitle: 'Заполните форму чтобы мы могли прислать вам результат.',
     submittedHeading: 'Наш менеджер свяжется с вами в ближайшее время',
     submittedSubtitle: 'Мы уже обрабатываем вашу заявку.'
   },
-  contactQuestion: 'Выберите куда вам отправить расчет стоимости?',
+  contactQuestion: 'Выберите удобный способ связи',
   thankYouImage: thanku,
   thankYouAlt: 'Спасибо'
 };

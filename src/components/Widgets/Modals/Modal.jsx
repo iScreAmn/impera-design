@@ -10,6 +10,7 @@ const Modal = ({
 }) => {
   const modalRef = useRef(null);
   const previousFocusRef = useRef(null);
+  const hasFocusedRef = useRef(false);
 
   // Handle Escape key press
   useEffect(() => {
@@ -21,28 +22,51 @@ const Modal = ({
 
     if (isOpen) {
       document.addEventListener('keydown', handleEscape);
-      // Prevent body scroll when modal is open
-      document.body.style.overflow = 'hidden';
       
-      // Save current focused element
-      previousFocusRef.current = document.activeElement;
+      // Save current focused element only on first open
+      if (previousFocusRef.current === null) {
+        previousFocusRef.current = document.activeElement;
+      }
       
-      // Focus modal content
-      if (modalRef.current) {
-        modalRef.current.focus();
+      // Focus first input only once when modal opens, don't refocus on re-renders
+      if (modalRef.current && !hasFocusedRef.current) {
+        const firstInput = modalRef.current.querySelector('input:not([type="checkbox"]):not([type="radio"]), textarea, select');
+        if (firstInput) {
+          // Use setTimeout to ensure DOM is ready
+          setTimeout(() => {
+            firstInput.focus();
+          }, 0);
+        } else {
+          modalRef.current.focus();
+        }
+        hasFocusedRef.current = true;
+      }
+    } else {
+      // Reset focus flag when modal closes
+      hasFocusedRef.current = false;
+
+      // Restore focus to previous element
+      if (previousFocusRef.current) {
+        previousFocusRef.current.focus();
+        previousFocusRef.current = null;
       }
     }
 
     return () => {
       document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = '';
-      
-      // Restore focus to previous element
-      if (previousFocusRef.current) {
-        previousFocusRef.current.focus();
-      }
     };
   }, [isOpen, onClose]);
+
+  // Prevent body scroll while modal is mounted/open
+  useEffect(() => {
+    if (!isOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = previousOverflow || '';
+    };
+  }, [isOpen]);
 
   // Handle focus trap
   useEffect(() => {

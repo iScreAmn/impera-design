@@ -1,4 +1,5 @@
-import { FaPhoneAlt, FaEnvelope, FaClock, FaTelegramPlane, FaWhatsapp, FaVk } from 'react-icons/fa';
+import { FaPhoneAlt, FaEnvelope, FaClock, FaTelegramPlane } from 'react-icons/fa';
+import messengerIcon from '../assets/images/logos/max.webp';
 
 // Все тексты страницы
 export const texts = {
@@ -11,20 +12,27 @@ export const texts = {
     title: 'Заказать звонок',
     namePlaceholder: 'Ваше имя',
     phonePlaceholder: 'Телефон',
+    emailPlaceholder: 'Email',
+    messagePlaceholder: 'Сообщение (необязательно)',
     submitBtn: 'Отправить',
+    consent: {
+      text: 'Нажимая кнопку, Вы соглашаетесь с условиями',
+      linkText: 'обработки персональных данных',
+      href: '/privacy'
+    }
   },
 };
 
 // Контактные данные
 export const contactsData = {
-  phone: {
-    value: '+7 (991) 776-15-59',
-    link: 'tel:+79917761559',
+    phone: {
+    value: '+7 (966) 054-50-54',
+    link: 'tel:+79960545054',
     label: 'Ежедневно на связи',
   },
   email: {
-    value: 'studio-lafee@yandex.ru',
-    link: 'mailto:studio-lafee@yandex.ru',
+    value: 'impera-design@mail.ru',
+    link: 'mailto:impera-design@mail.ru',
     label: 'Служба поддержки',
   },
   workingHours: {
@@ -45,19 +53,14 @@ export const socialLinks = [
     id: 'telegram',
     name: 'Telegram',
     icon: FaTelegramPlane,
-    url: 'https://t.me/',
+    url: 'https://t.me/impera_design',
   },
   {
-    id: 'whatsapp',
-    name: 'WhatsApp',
-    icon: FaWhatsapp,
-    url: 'https://wa.me/',
-  },
-  {
-    id: 'vk',
-    name: 'VKontakte',
-    icon: FaVk,
-    url: 'https://vk.com/lafee_remont',
+    id: 'max',
+    name: 'Max',
+    icon: messengerIcon,
+    iconType: 'img',
+    url: 'https://max.ru/u/f9LHodD0cOL32fo5oeSRksJ8PrQ-J9iQqxXimia1fe7yhMpJSQmQcDFcKlA',
   },
 ];
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { AiOutlineGlobal } from 'react-icons/ai';
 import { logo } from '../../assets/images';
 import { navigationItems } from '../../data/navigationData';
 import { footerData } from '../../data/footerData';
@@ -20,23 +21,6 @@ const Footer = () => {
             <p className="footer__description">
               {description}
             </p>
-            <div className="footer__socials">
-              {socials.map((social) => {
-                const Icon = social.icon;
-                return (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    className="footer__social-link"
-                    aria-label={social.label}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Icon className="footer__social-icon" />
-                  </a>
-                );
-              })}
-            </div>
           </div>
 
           <div className="footer__nav">
@@ -71,15 +55,47 @@ const Footer = () => {
               {contacts.map((contact, index) => {
                 const Icon = contact.icon;
                 return (
-                  <li key={index} className="footer__contact-item">
-                    <Icon className="footer__contact-icon" />
-                    <div className="footer__contact-info">
-                      <span className="footer__contact-label">{contact.label}</span>
-                      <a href={contact.href} className="footer__contact-link">
-                        {contact.text}
-                      </a>
-                    </div>
-                  </li>
+                  <React.Fragment key={index}>
+                    <li className="footer__contact-item">
+                      <Icon className="footer__contact-icon" />
+                      <div className="footer__contact-info">
+                        <span className="footer__contact-label">{contact.label}</span>
+                        <a href={contact.href} className="footer__contact-link">
+                          {contact.text}
+                        </a>
+                      </div>
+                    </li>
+                    {index === 0 && (
+                      <li className="footer__contact-item">
+                        <AiOutlineGlobal className="footer__contact-icon" />
+                        <div className="footer__contact-info">
+                          <span className="footer__contact-label">Связаться онлайн</span>
+                          <div className="footer__socials footer__socials--inline">
+                            {socials.map((social) => {
+                              const SocialIcon = social.icon;
+                              return (
+                                <a
+                                  key={social.label}
+                                  href={social.href}
+                                  className="footer__social-link footer__social-link--inline"
+                                  aria-label={social.label}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  {social.iconType === 'img' ? (
+                                    <img src={SocialIcon} alt="" className="footer__social-icon" aria-hidden />
+                                  ) : (
+                                    <SocialIcon className="footer__social-icon" />
+                                  )}
+                                  <span className="footer__social-text">{social.label}</span>
+                                </a>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </li>
+                    )}
+                  </React.Fragment>
                 );
               })}
             </ul>
@@ -87,9 +103,14 @@ const Footer = () => {
         </div>
 
         <div className="footer__bottom">
-          <p className="footer__copyright">
-            © {currentYear} {legal.companyName}. Все права защищены.
-          </p>
+          <div className="footer__copyright-block">
+            <p className="footer__copyright">
+              © {currentYear} {legal.companyName}. Все права защищены.
+            </p>
+            <p className="footer__developed">
+              Разработано: <a href="https://dj-myportfolio.vercel.app/" target="_blank" rel="noopener noreferrer" className="footer__developed-link">«Студией DJ»</a>
+            </p>
+          </div>
           <div className="footer__legal">
             <a href={legal.privacyPolicy.href} className="footer__legal-link">
               {legal.privacyPolicy.text}

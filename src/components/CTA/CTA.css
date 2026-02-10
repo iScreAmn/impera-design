@@ -141,7 +141,7 @@
   width: 100%;
   padding: 14px 16px;
   font-family: 'Mulish Medium', system-ui, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 6px;
   background-color: rgba(255, 255, 255, 0.9);
@@ -157,6 +157,85 @@
 .cta__input:focus {
   border-color: #B89968;
   background-color: #ffffff;
+}
+
+/* PhoneInput внутри CTA — светлый фон */
+.cta__content .phone-input__country-btn {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-right-color: rgba(255, 255, 255, 0.3);
+  color: #333;
+  border-radius: 6px 0 0 6px;
+}
+
+.cta__content .phone-input__country-btn:hover {
+  background-color: #ffffff;
+}
+
+.cta__content .phone-input__country-btn--open {
+  background-color: #ffffff;
+  border-color: #B89968;
+}
+
+.cta__content .phone-input__dial {
+  color: #333;
+}
+
+.cta__content .phone-input__arrow {
+  color: #666;
+}
+
+.cta__content .phone-input__input {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0 6px 6px 0;
+  color: #333;
+  padding: 14px 16px;
+}
+
+.cta__content .phone-input__input::placeholder {
+  color: #999;
+}
+
+.cta__content .phone-input__input:focus {
+  border-color: #B89968;
+  background-color: #ffffff;
+}
+
+.cta__content .phone-input__input:-webkit-autofill,
+.cta__content .phone-input__input:-webkit-autofill:hover,
+.cta__content .phone-input__input:-webkit-autofill:focus,
+.cta__content .phone-input__input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.95) inset !important;
+  -webkit-text-fill-color: #333 !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  caret-color: #333;
+}
+
+.cta__content .phone-input__dropdown {
+  background-color: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.cta__content .phone-input__country-item {
+  color: #333;
+}
+
+.cta__content .phone-input__country-item:hover {
+  background-color: rgba(184, 153, 104, 0.15);
+}
+
+.cta__content .phone-input__country-item--selected {
+  background-color: #B89968;
+  color: #fff;
+}
+
+.cta__content .phone-input__country-item--selected .phone-input__country-dial {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.cta__content .phone-input__country-dial {
+  color: #666;
 }
 
 .cta__button {
@@ -180,9 +259,37 @@
   box-shadow: 0 4px 12px rgba(184, 153, 104, 0.4);
 }
 
-.cta__button:disabled {
+.cta__button:disabled,
+.cta__button--inactive {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.cta__form-group--invalid .cta__input {
+  border-color: #e53935;
+  box-shadow: 0 0 0 1px #e53935;
+}
+
+.cta__form-group--invalid .phone-input__country-btn,
+.cta__form-group--invalid .phone-input__input {
+  border-color: #e53935 !important;
+  box-shadow: 0 0 0 1px #e53935;
+}
+
+.cta__checkbox-wrapper--invalid {
+  border-radius: 4px;
+  outline: 2px solid #e53935;
+  outline-offset: 2px;
+}
+
+.cta__status {
+  margin: 0;
+  font-size: 14px;
+  color: #2d8a3e;
+}
+
+.cta__status--error {
+  color: #c92a2a;
 }
 
 .cta__checkbox-wrapper {
@@ -206,6 +313,15 @@
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
+}
+
+.cta__checkbox-link {
+  color: #B89968;
+  text-decoration: none;
+}
+
+.cta__checkbox-link:hover {
+  text-decoration: underline;
 }
 
 /* Responsive */
@@ -276,7 +392,7 @@
 
   .cta__input {
     padding: 12px 14px;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .cta__button {

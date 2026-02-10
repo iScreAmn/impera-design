@@ -1,57 +1,76 @@
-import { useMemo } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { animate, inView } from 'motion';
+import { motion, useInView } from 'motion/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import StickyHeader from '../../components/StickyHeader/StickyHeader';
 import Breadcrumbs from '../../components/Widgets/Breadcrumbs/Breadcrumbs';
 import Footer from '../../components/Footer/Footer';
-import {
-  client1,
-  client2,
-  client3,
-  client4,
-  client5,
-  client6,
-  logo,
-} from '../../assets/images';
+import { clientsData } from '../../data/clientsData';
 import './Clients.css';
 
-const CLIENTS = [
-  { name: 'Антонов и партнеры', focus: 'Девелоперские проекты', logo: client1 },
-  { name: 'Boss Lounge', focus: 'Коммерческая недвижимость', logo: client2 },
-  { name: 'Crazy Brothers', focus: 'Рсторан', logo: client3 },
-  { name: 'Дворик Друзей', focus: 'Строительные решения', logo: client4 },
-  { name: 'Lesnoy', focus: 'Световые системы', logo: client5 },
-  { name: 'OMMA', focus: 'Ресторан', logo: client6 },
-];
+const t = { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] };
+const itemFromLeft = { hidden: { opacity: 0, x: -28 }, visible: { opacity: 1, x: 0, transition: t } };
+const itemFromRight = { hidden: { opacity: 0, x: 28 }, visible: { opacity: 1, x: 0, transition: t } };
+const itemUp = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: t } };
 
-const INITIAL_TESTIMONIALS = [
-  {
-    id: 't1',
-    name: 'Александр Воробьев',
-    company: 'CEO, Urban Impact',
-    text: 'Команда быстро предложила рабочие концепции и сопровождала согласования с девелопером без лишней бюрократии',
-  },
-  {
-    id: 't2',
-    name: 'Мария Деева',
-    company: 'COO, Gastronomy Lab',
-    text: 'Ресторан получил интерьер, который усиливает гостевой опыт. Ребята гибкие и держат сроки',
-  },
-  {
-    id: 't3',
-    name: 'Олег Савчук',
-    company: 'Партнер, Eco Frame',
-    text: 'Четкая коммуникация, современный дизайн и внимание к деталям на стройке. Сотрудничаем и дальше',
-  },
-];
+const AnimatedCounter = ({ value }) => {
+  const [current, setCurrent] = useState(0);
+  const nodeRef = useRef(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    if (!nodeRef.current) return;
+
+    const stop = inView(
+      nodeRef.current,
+      () => {
+        if (hasAnimated.current) return;
+        hasAnimated.current = true;
+
+        // Извлекаем число из строки
+        const numericValue = parseInt(value.replace(/[^0-9]/g, '')) || 0;
+
+        const controls = animate(0, numericValue, {
+          duration: 1.6,
+          onUpdate: (v) => setCurrent(Math.round(v))
+        });
+
+        return () => controls.stop();
+      },
+      { amount: 0.6 }
+    );
+
+    return () => stop();
+  }, [value]);
+
+  // Определяем префикс и суффикс из исходного значения
+  const hasPrefix = value.includes('до');
+  let suffix = '';
+  if (value.includes('+')) suffix = '+';
+  else if (value.includes('%')) suffix = '%';
+  else if (value.includes('м²')) suffix = ' м²';
+
+  return (
+    <div ref={nodeRef} className="clients-hero__stat-value">
+      {hasPrefix && 'до '}
+      {current}
+      {suffix}
+    </div>
+  );
+};
 
 function Clients() {
-  const stats = useMemo(
-    () => [
-      { label: 'дизайн-проектов', value: '300+' },
-      { label: 'средняя площадь реализованных проектов', value: '200 м²' },
-      { label: 'экономии на ремонте за счёт проекта', value: 'до 40%' },
-    ],
-    []
-  );
+  const { hero, clients, testimonials } = clientsData;
+  const heroRef = useRef(null);
+  const listRef = useRef(null);
+  const testimonialsRef = useRef(null);
+  const isHeroInView = useInView(heroRef, { once: true, amount: 0.12 });
+  const isListInView = useInView(listRef, { once: true, amount: 0.1 });
+  const isTestimonialsInView = useInView(testimonialsRef, { once: true, amount: 0.1 });
 
   return (
     <div className="clients-page">
@@ -63,86 +82,198 @@ function Clients() {
         </div>
       </div>
 
-      <section className="clients-hero">
-        <div className="clients-hero__container">
-          <div className="clients-hero__content">
-            <div className="clients-hero__eyebrow">Партнерства, которые двигают бизнес</div>
-            <h1 className="clients-hero__title">Наши клиенты</h1>
-            <p className="clients-hero__subtitle">
-              Мы проектируем пространства, которые усиливают бренды и создают измеримый эффект:
-              от девелоперов и ритейла до ресторанов и офисов
-            </p>
-            <div className="clients-hero__stats">
-              {stats.map((item) => (
-                <div key={item.label} className="clients-hero__stat">
-                  <div className="clients-hero__stat-value">{item.value}</div>
+      <section ref={heroRef} className="clients-hero">
+        <motion.div
+          className="clients-hero__container"
+          initial="hidden"
+          animate={isHeroInView ? 'visible' : 'hidden'}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } } }}
+        >
+          <motion.div
+            className="clients-hero__content"
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08, delayChildren: 0 } } }}
+          >
+            <motion.div className="clients-hero__eyebrow" variants={itemFromLeft}>{hero.eyebrow}</motion.div>
+            <motion.h1 className="clients-hero__title" variants={itemFromLeft}>{hero.title}</motion.h1>
+            <motion.p className="clients-hero__subtitle" variants={itemFromLeft}>{hero.subtitle}</motion.p>
+            <motion.div
+              className="clients-hero__stats"
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08, delayChildren: 0 } } }}
+            >
+              {hero.stats.map((item) => (
+                <motion.div key={item.label} className="clients-hero__stat" variants={itemUp}>
+                  <AnimatedCounter value={item.value} />
                   <div className="clients-hero__stat-label">{item.label}</div>
-                </div>
+                </motion.div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          <div className="clients-hero__card">
-            <img src={logo} alt="Impera Design" className="clients-hero__logo" />
+          <motion.div className="clients-hero__card" variants={itemFromRight}>
+            <img src={hero.card.logo} alt="Impera Design" className="clients-hero__logo" />
             <div className="clients-hero__card-text">
-              <p>
-                Синхронизируем архитектуру, инженерку и брендинг, чтобы каждый проект был собран
-                как продукт: быстро, прозрачно, с вниманием к деталям
-              </p>
+              <p>{hero.card.text}</p>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
-      <section className="clients-list">
-        <div className="clients-list__header">
+      <section ref={listRef} className="clients-list">
+        <motion.div
+          className="clients-list__header"
+          initial="hidden"
+          animate={isListInView ? 'visible' : 'hidden'}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } } }}
+        >
           <div>
-            <h2 className="clients-list__title">Клиенты, которые нам доверяют</h2>
-            <p className="clients-list__subtitle">
-              Двойной контроль качества и прозрачные процессы - поэтому к нам возвращаются
-              с новыми задачами
-            </p>
+            <motion.h2 className="clients-list__title" variants={itemUp}>{clients.title}</motion.h2>
+            <motion.p className="clients-list__subtitle" variants={itemUp}>{clients.subtitle}</motion.p>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="clients-list__marquee">
-          <div className="clients-list__fade clients-list__fade--left" aria-hidden />
-          <div className="clients-list__fade clients-list__fade--right" aria-hidden />
-          <div className="clients-list__track">
-            {[...CLIENTS, ...CLIENTS].map((client, index) => (
-              <article key={`${client.name}-${index}`} className="clients-list__card">
-                <div className="clients-list__logo-box">
-                  <img src={client.logo} alt={client.name} className="clients-list__logo" />
-                </div>
-                <div className="clients-list__info">
-                  <h3 className="clients-list__name">{client.name}</h3>
-                  <p className="clients-list__focus">{client.focus}</p>
-                </div>
-              </article>
-            ))}
+        {/* Desktop carousel */}
+        <motion.div
+          className="clients-list__slider-wrapper clients-list__desktop"
+          initial="hidden"
+          animate={isListInView ? 'visible' : 'hidden'}
+          variants={itemUp}
+        >
+          <button className="clients-list__nav clients-list__nav--prev" aria-label="Предыдущие клиенты">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+
+          <div className="clients-list__container">
+            <Swiper
+              modules={[Navigation, Autoplay]}
+              spaceBetween={16}
+              slidesPerView={4}
+              navigation={{
+                prevEl: '.clients-list__nav--prev',
+                nextEl: '.clients-list__nav--next',
+              }}
+              loop
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              className="clients-list__swiper"
+            >
+              {clients.list.map((client, index) => (
+                <SwiperSlide key={`${client.name}-${index}`}>
+                  <article className="clients-list__card">
+                    <div className="clients-list__logo-box">
+                      <img src={client.logo} alt={client.name} className="clients-list__logo" />
+                    </div>
+                    <div className="clients-list__info">
+                      <h3 className="clients-list__name">{client.name}</h3>
+                      {client.focus && <p className="clients-list__focus">{client.focus}</p>}
+                    </div>
+                  </article>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
-        </div>
-      </section>
 
-      <section className="clients-testimonials">
-        <div className="clients-testimonials__header">
-          <div>
-            <h2 className="clients-testimonials__title">Отзывы</h2>
-            <p className="clients-testimonials__subtitle">
-              Реальные отзывы наших клиентов
-            </p>
-          </div>
-        </div>
+          <button className="clients-list__nav clients-list__nav--next" aria-label="Следующие клиенты">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </motion.div>
 
-        <div className="clients-testimonials__grid">
-          {INITIAL_TESTIMONIALS.map((item) => (
-            <article key={item.id} className="clients-testimonials__card">
-              <div className="clients-testimonials__quote">"{item.text}"</div>
-              <div className="clients-testimonials__author">
+        {/* Mobile grid */}
+        <motion.div
+          className="clients-list__grid clients-list__mobile"
+          initial="hidden"
+          animate={isListInView ? 'visible' : 'hidden'}
+          variants={itemUp}
+        >
+          {clients.list.slice(0, 6).map((client, index) => (
+            <article key={`${client.name}-${index}`} className="clients-list__card">
+              <div className="clients-list__logo-box">
+                <img src={client.logo} alt={client.name} className="clients-list__logo" />
+              </div>
+              <div className="clients-list__info">
+                <h3 className="clients-list__name">{client.name}</h3>
+                {client.focus && <p className="clients-list__focus">{client.focus}</p>}
               </div>
             </article>
           ))}
-        </div>
+        </motion.div>
+      </section>
+
+      <section ref={testimonialsRef} className="clients-testimonials">
+        <motion.div
+          className="clients-testimonials__header"
+          initial="hidden"
+          animate={isTestimonialsInView ? 'visible' : 'hidden'}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } } }}
+        >
+          <div>
+            <motion.h2 className="clients-testimonials__title" variants={itemUp}>{testimonials.title}</motion.h2>
+            <motion.p className="clients-testimonials__subtitle" variants={itemUp}>{testimonials.subtitle}</motion.p>
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="clients-testimonials__slider-wrapper"
+          initial="hidden"
+          animate={isTestimonialsInView ? 'visible' : 'hidden'}
+          variants={itemUp}
+        >
+          <button className="clients-testimonials__nav clients-testimonials__nav--prev" aria-label="Предыдущий отзыв">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+
+          <div className="clients-testimonials__container">
+            <Swiper
+              modules={[Navigation, Pagination, Autoplay]}
+              spaceBetween={24}
+              slidesPerView={3}
+              navigation={{
+                prevEl: '.clients-testimonials__nav--prev',
+                nextEl: '.clients-testimonials__nav--next',
+              }}
+              pagination={{ clickable: true }}
+              centeredSlides
+              loop
+              loopAdditionalSlides={2}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              className="clients-testimonials__swiper"
+              breakpoints={{
+                320: { slidesPerView: 1, spaceBetween: 20, centeredSlides: false, loop: true },
+                768: { slidesPerView: 2, spaceBetween: 24, centeredSlides: true, loop: true },
+              }}
+            >
+              {testimonials.list.map((item) => (
+                <SwiperSlide key={item.id}>
+                  <article className="clients-testimonials__card">
+                    <div className="clients-testimonials__quote">«{item.text}»</div>
+                    <div className="clients-testimonials__author">
+                      {item.name && <div className="clients-testimonials__name">{item.name}</div>}
+                      {item.company && <div className="clients-testimonials__company">{item.company}</div>}
+                    </div>
+                  </article>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+
+          <button className="clients-testimonials__nav clients-testimonials__nav--next" aria-label="Следующий отзыв">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </motion.div>
       </section>
 
       <Footer />

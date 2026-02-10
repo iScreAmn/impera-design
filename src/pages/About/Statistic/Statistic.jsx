@@ -3,7 +3,7 @@ import { animate, inView } from 'motion';
 import { statisticData } from '../../../data/statisticData';
 import './Statistic.css';
 
-const AnimatedCounter = ({ value, prefix = '', suffix = '' }) => {
+const AnimatedCounter = ({ value, prefix = '', suffix = '', suffixSmall }) => {
   const [current, setCurrent] = useState(0);
   const nodeRef = useRef(null);
   const hasAnimated = useRef(false);
@@ -34,7 +34,7 @@ const AnimatedCounter = ({ value, prefix = '', suffix = '' }) => {
     <div ref={nodeRef} className="statistic__value">
       {prefix}
       {current}
-      {suffix}
+      {suffix && (suffixSmall ? <span className="statistic__value-unit">{suffix}</span> : suffix)}
     </div>
   );
 };
@@ -93,6 +93,7 @@ const Statistic = () => {
                 value={item.value}
                 prefix={item.prefix}
                 suffix={item.suffix}
+                suffixSmall={item.suffixSmall}
               />
               <p className="statistic__label">{item.label}</p>
             </div>

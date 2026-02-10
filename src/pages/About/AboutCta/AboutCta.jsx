@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { animate, inView } from 'motion';
 import { photo5 } from '../../../assets/images';
+import { aboutData } from '../../../data/aboutData';
 import './AboutCta.css';
 
 const AboutCta = () => {
+  const { title, text, primaryButton, secondaryButton } = aboutData.cta;
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const textRef = useRef(null);
@@ -88,25 +90,29 @@ const AboutCta = () => {
             className="about-cta__title"
             style={{ opacity: 0, transform: 'translateY(40px)' }}
           >
-            Готовы к новому уровню дизайна?
+            {title}
           </h2>
           <p
             ref={textRef}
             className="about-cta__text"
             style={{ opacity: 0, transform: 'translateY(30px)' }}
           >
-            Свяжитесь с нами и мы начнем работу <br /> над вашим проектом уже сегодня
+            {text}
           </p>
           <div
             ref={buttonsRef}
             className="about-cta__buttons"
             style={{ opacity: 0, transform: 'translateY(25px)' }}
           >
-            <a href="#contact" className="about-cta__button about-cta__button--primary">
-              Обсудить проект
+            <a
+              href={primaryButton.href}
+              className="about-cta__button about-cta__button--primary"
+              {...(primaryButton.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+            >
+              {primaryButton.label}
             </a>
-            <a href="#portfolio" className="about-cta__button about-cta__button--secondary">
-              Наши работы
+            <a href={secondaryButton.href} className="about-cta__button about-cta__button--secondary">
+              {secondaryButton.label}
             </a>
           </div>
         </div>

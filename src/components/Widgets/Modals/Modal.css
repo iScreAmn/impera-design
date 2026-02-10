@@ -148,8 +148,6 @@
   .modal__content {
     max-width: 100%;
     max-height: 85vh;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
   }
 
   .modal__header {

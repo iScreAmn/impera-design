@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
 import { IoIosClose } from 'react-icons/io';
 import StickyHeader from '../../components/StickyHeader/StickyHeader';
 import Breadcrumbs from '../../components/Widgets/Breadcrumbs/Breadcrumbs';
+import VideoSection from '../../components/VideoSection/VideoSection';
 import Footer from '../../components/Footer/Footer';
 import { projectsData } from '../../data/projectsData';
 import './ProjectPage.css';
@@ -15,6 +16,8 @@ function ProjectPage() {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   const openModal = (index) => {
     setCurrentImageIndex(index);
@@ -27,14 +30,44 @@ function ProjectPage() {
     document.body.style.overflow = 'auto';
   };
 
-  const handleScrollToGallery = (e) => {
+  const handleScrollToVideo = (e) => {
     e.preventDefault();
-    const target = document.getElementById('project-gallery');
+    const target = document.getElementById('project-video');
     if (!target) return;
     const headerHeight = 130;
     const top = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
     window.scrollTo({ top, behavior: 'smooth' });
   };
+
+  const projectsWithVideo = ['boss-lounge', 'restaurant', 'hotel'];
+  const hasVideo = project && projectsWithVideo.includes(project.slug);
+
+  useEffect(() => {
+    if (!modalOpen || !project) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+      }
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        setCurrentImageIndex((prev) => 
+          prev === 0 ? project.images.length - 1 : prev - 1
+        );
+      }
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        setModalOpen(false);
+        document.body.style.overflow = 'auto';
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [modalOpen, project]);
 
   if (!project) {
     return (
@@ -49,21 +82,42 @@ function ProjectPage() {
   }
 
   const nextImage = (e) => {
-    e.stopPropagation();
+    if (e) e.stopPropagation();
     setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
   };
 
   const prevImage = (e) => {
-    e.stopPropagation();
+    if (e) e.stopPropagation();
     setCurrentImageIndex((prev) => 
       prev === 0 ? project.images.length - 1 : prev - 1
     );
   };
 
-  const handleKeyDown = (e) => {
-    if (e.key === 'ArrowRight') nextImage(e);
-    if (e.key === 'ArrowLeft') prevImage(e);
-    if (e.key === 'Escape') closeModal();
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+    }
+    if (isRightSwipe) {
+      setCurrentImageIndex((prev) => 
+        prev === 0 ? project.images.length - 1 : prev - 1
+      );
+    }
   };
 
   return (
@@ -79,26 +133,36 @@ function ProjectPage() {
       <section className="project-hero">
         <div className="project-hero__container">
           <div className="project-hero__content">
-            <div className="project-hero__eyebrow">{project.type || 'Проект'}</div>
-            <h1 className="project-hero__title">{project.title}</h1>
+            <h1 className="project-hero__title">
+              {project.title.includes('\n')
+                ? project.title.split('\n').flatMap((part, i) =>
+                    i === 0 ? [part] : [<span key={`mb-${i}`} className="title-break-mobile" aria-hidden />, part]
+                  )
+                : project.title}
+            </h1>
             <p className="project-hero__subtitle">{project.description}</p>
 
             <div className="project-hero__meta">
               {project.location && (
-                <div className="project-hero__chip">Локация: {project.location}</div>
+                <div className="project-hero__chip">{project.location}</div>
               )}
-              {project.area && <div className="project-hero__chip">{project.area} м²</div>}
+              {project.area && <div className="project-hero__chip">{project.area}</div>}
               {project.designer && <div className="project-hero__chip">{project.designer}</div>}
               {project.date && <div className="project-hero__chip">{project.date}</div>}
             </div>
 
             <div className="project-hero__actions">
-              <button className="project-hero__btn project-hero__btn--primary" onClick={handleScrollToGallery}>
+              <button className="project-hero__btn project-hero__btn--primary" onClick={() => openModal(0)}>
                 Смотреть галерею
               </button>
-              <button className="project-hero__btn project-hero__btn--ghost" onClick={() => navigate('/contacts')}>
+              <button className="project-hero__btn project-hero__btn--ghost" onClick={() => window.open('https://t.me/impera_design', '_blank', 'noopener,noreferrer')}>
                 Обсудить проект
               </button>
+              {hasVideo && (
+                <button className="project-hero__btn project-hero__btn--ghost" onClick={handleScrollToVideo}>
+                  Реализованный проект
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -107,31 +171,14 @@ function ProjectPage() {
       <section id="project-gallery" className="project-gallery-section">
         <div className="project-gallery__container">
           <div className="project__gallery">
-            {project.images.map((image, index) => {
-              const totalImages = project.images.length;
-              const isLarge = index === 0 || index === totalImages - 1 || index % 3 === 0;
-              const isFirstInPair = !isLarge && index % 3 === 1;
-
-              if (isLarge) {
-                return (
-                  <div
-                    key={index}
-                    className="project-gallery__item project-gallery__item--large"
-                    onClick={() => openModal(index)}
-                  >
-                    <img
-                      src={image}
-                      alt={`${project.title} - изображение ${index + 1}`}
-                      className="project-gallery__img"
-                    />
-                  </div>
-                );
-              } else if (isFirstInPair) {
+            {project.images.reduce((acc, image, index) => {
+              // Если индекс четный (0, 2, 4...), создаем новую пару
+              if (index % 2 === 0) {
                 const nextImage = project.images[index + 1];
-                return (
+                acc.push(
                   <div key={`pair-${index}`} className="project-gallery__pair">
                     <div
-                      className="project-gallery__item project-gallery__item--small"
+                      className="project-gallery__item"
                       onClick={() => openModal(index)}
                     >
                       <img
@@ -140,9 +187,9 @@ function ProjectPage() {
                         className="project-gallery__img"
                       />
                     </div>
-                    {nextImage && (
+                    {nextImage ? (
                       <div
-                        className="project-gallery__item project-gallery__item--small"
+                        className="project-gallery__item"
                         onClick={() => openModal(index + 1)}
                       >
                         <img
@@ -151,23 +198,24 @@ function ProjectPage() {
                           className="project-gallery__img"
                         />
                       </div>
+                    ) : (
+                      <div className="project-gallery__item" style={{ visibility: 'hidden' }} />
                     )}
                   </div>
                 );
-              } else {
-                return null;
               }
-            })}
+              return acc;
+            }, [])}
           </div>
         </div>
       </section>
+
+      {project.video && <VideoSection video={project.video} />}
 
       {modalOpen && (
         <div
           className="project-modal"
           onClick={closeModal}
-          onKeyDown={handleKeyDown}
-          tabIndex={0}
           role="dialog"
           aria-modal="true"
         >
@@ -192,6 +240,9 @@ function ProjectPage() {
             alt={`${project.title} - изображение ${currentImageIndex + 1}`}
             className="project-modal__img"
             onClick={(e) => e.stopPropagation()}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
           />
           
           <button

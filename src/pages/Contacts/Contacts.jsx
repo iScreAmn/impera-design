@@ -1,10 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import StickyHeader from '../../components/StickyHeader/StickyHeader';
 import Breadcrumbs from '../../components/Widgets/Breadcrumbs/Breadcrumbs';
 import Modal from '../../components/Widgets/Modals/Modal';
+import PhoneInput from '../../components/PhoneInput/PhoneInput';
 import Footer from '../../components/Footer/Footer';
 import useModal from '../../utils/useModal';
+import { AiOutlineGlobal } from 'react-icons/ai';
 import { contactsData, socialLinks, infoCards, texts } from '../../data/contactsData';
+import { apiFetch } from '../../utils/api';
 import './Contacts.css';
 
 function YandexMap() {
@@ -94,25 +98,6 @@ function YandexMap() {
             {phone.value}
           </a>
         </div>
-        <div className="contacts__map-socials">
-          <div className="contacts__map-socials-icons">
-            {socialLinks.map((social) => {
-              const Icon = social.icon;
-              return (
-                <a 
-                  key={social.id}
-                  href={social.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="contacts__social-icon" 
-                  aria-label={social.name}
-                >
-                  <Icon />
-                </a>
-              );
-            })}
-          </div>
-        </div>
         <button className="contacts__route-btn" onClick={handleBuildRoute}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/>
@@ -127,19 +112,69 @@ function YandexMap() {
 function Contacts() {
   const { isOpen, openModal, closeModal } = useModal();
   const { phone } = contactsData;
-  const [formData, setFormData] = useState({ name: '', phone: '' });
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    message: '',
+    agree: false,
+    _company: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ type: 'idle', message: '' });
+  const [showValidationErrors, setShowValidationErrors] = useState(false);
 
-  const isFormValid = formData.name.trim() && formData.phone.trim();
+  const isPhoneValid = (value) => {
+    const cleaned = (value || '').replace(/\D/g, '');
+    return cleaned.length >= 7 && (value || '').startsWith('+');
+  };
+  const isFormValid = formData.name.trim()
+    && isPhoneValid(formData.phone)
+    && formData.agree;
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+    setShowValidationErrors(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Отправка формы
-    setFormData({ name: '', phone: '' });
-    closeModal();
+    if (!isFormValid) {
+      setShowValidationErrors(true);
+      return;
+    }
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    setSubmitStatus({ type: 'idle', message: '' });
+
+    try {
+      const response = await apiFetch('/api/contact/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || 'Ошибка отправки заявки');
+      }
+
+      setSubmitStatus({
+        type: 'success',
+        message: data.message || 'Заявка успешно отправлена!'
+      });
+      setFormData({ name: '', phone: '', message: '', agree: false, _company: '' });
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: error.message || 'Ошибка отправки заявки'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -178,6 +213,36 @@ function Contacts() {
                   </div>
                 );
               })}
+              <div className="contacts__info-card contacts__info-card--mobile-socials">
+                <div className="contacts__info-icon">
+                  <AiOutlineGlobal />
+                </div>
+                <div className="contacts__info-content contacts__info-content--socials">
+                  <div className="contacts__info-socials">
+                    {socialLinks.map((social) => {
+                      const Icon = social.icon;
+                      return (
+                        <a
+                          key={social.id}
+                          href={social.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="contacts__social-icon contacts__social-icon--inline"
+                          aria-label={social.name}
+                        >
+                          {social.iconType === 'img' ? (
+                            <img src={Icon} alt="" className="contacts__social-icon-inner" aria-hidden />
+                          ) : (
+                            <Icon className="contacts__social-icon-inner" />
+                          )}
+                          <span className="contacts__social-text">{social.name}</span>
+                        </a>
+                      );
+                    })}
+                  </div>
+                  <p className="contacts__info-label">{texts.socialsCtaLabel}</p>
+                </div>
+              </div>
             </div>
 
             <button 
@@ -186,6 +251,32 @@ function Contacts() {
             >
               {texts.ctaBtn}
             </button>
+          </div>
+
+          <div className="contacts__socials-section">
+            <div className="contacts__socials-label">Спрашивайте, отвечаем онлайн</div>
+            <div className="contacts__map-socials-icons">
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <a 
+                    key={social.id}
+                    href={social.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="contacts__social-icon contacts__social-icon--inline" 
+                    aria-label={social.name}
+                  >
+                    {social.iconType === 'img' ? (
+                      <img src={Icon} alt="" className="contacts__social-icon-inner" aria-hidden />
+                    ) : (
+                      <Icon className="contacts__social-icon-inner" />
+                    )}
+                    <span className="contacts__social-text">{social.name}</span>
+                  </a>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
@@ -201,34 +292,82 @@ function Contacts() {
         className="callback-modal"
       >
         <form className="callback-modal__form" onSubmit={handleSubmit}>
-          <input 
-            type="text" 
-            name="name"
-            value={formData.name}
+          <input
+            type="text"
+            name="_company"
+            value={formData._company}
             onChange={handleChange}
-            placeholder={texts.modal.namePlaceholder}
-            className="callback-modal__input"
+            tabIndex="-1"
+            autoComplete="off"
+            style={{ display: 'none' }}
           />
-          <input 
-            type="tel" 
-            name="phone"
-            value={formData.phone}
+          <div
+            className={`callback-modal__field ${showValidationErrors && !formData.name.trim() ? 'callback-modal__field--invalid' : ''}`}
+          >
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder={texts.modal.namePlaceholder}
+              className="callback-modal__input"
+            />
+          </div>
+          <div
+            className={`callback-modal__field ${showValidationErrors && !isPhoneValid(formData.phone) ? 'callback-modal__field--invalid' : ''}`}
+          >
+            <PhoneInput
+              value={formData.phone}
+              onChange={(v) => {
+                setFormData((prev) => ({ ...prev, phone: v }));
+                setShowValidationErrors(false);
+              }}
+              placeholder={texts.modal.phonePlaceholder}
+              variant="modal"
+            />
+          </div>
+          <textarea
+            name="message"
+            value={formData.message}
             onChange={handleChange}
-            placeholder={texts.modal.phonePlaceholder}
-            className="callback-modal__input"
-          />
-          <textarea 
-            placeholder="Сообщение (необязательно)"
+            placeholder={texts.modal.messagePlaceholder}
             className="callback-modal__textarea"
             rows="3"
           />
-          <button 
-            type="submit" 
-            className="callback-modal__submit"
-            disabled={!isFormValid}
+          <div
+            className={`callback-modal__checkbox-wrapper ${showValidationErrors && !formData.agree ? 'callback-modal__checkbox-wrapper--invalid' : ''}`}
           >
-            {texts.modal.submitBtn}
+            <input
+              type="checkbox"
+              id="callback-agree"
+              name="agree"
+              checked={formData.agree}
+              onChange={handleChange}
+              className="callback-modal__checkbox"
+            />
+            <label htmlFor="callback-agree" className="callback-modal__checkbox-label">
+              {texts.modal.consent.text}{' '}
+              <Link to={texts.modal.consent.href} className="callback-modal__checkbox-link">
+                {texts.modal.consent.linkText}
+              </Link>
+            </label>
+          </div>
+          <button
+            type="submit"
+            className={`callback-modal__submit ${!isFormValid ? 'callback-modal__submit--inactive' : ''}`}
+            disabled={isSubmitting}
+            aria-disabled={!isFormValid}
+          >
+            {isSubmitting ? 'Отправка...' : texts.modal.submitBtn}
           </button>
+          {submitStatus.type !== 'idle' && (
+            <p
+              className={`callback-modal__status ${submitStatus.type === 'error' ? 'callback-modal__status--error' : ''}`}
+              role="status"
+            >
+              {submitStatus.message}
+            </p>
+          )}
         </form>
 
         <div className="callback-modal__phone-section">

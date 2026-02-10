@@ -1,19 +1,20 @@
-import { FaTelegramPlane, FaWhatsapp, FaVk, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaTelegramPlane, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import messengerIcon from '../assets/images/logos/max.webp';
 
 export const footerData = {
-  description: 'Студия коммерческого дизайна интерьеров. Создаём стильные и функциональные пространства для бизнеса',
+  description: 'Студия коммерческого дизайна интерьера.\nСоздаём стильные и функциональные пространства для бизнеса.',
   
   contacts: [
     {
       icon: FaPhoneAlt,
-      href: 'tel:+79917761559',
-      text: '+7 (991) 776-15-59',
+      href: 'tel:+79960545054',
+      text: '+7 (966) 054-50-54',
       label: 'Позвоните нам'
     },
     {
       icon: FaEnvelope,
-      href: 'mailto:studio-lafee@yandex.ru',
-      text: 'studio-lafee@yandex.ru',
+      href: 'mailto:impera-design@mail.ru',
+      text: 'impera-design@mail.ru',
       label: 'Напишите нам'
     },
     {
@@ -28,29 +29,25 @@ export const footerData = {
     {
       icon: FaTelegramPlane,
       label: 'Telegram',
-      href: 'https://t.me/'
+      href: 'https://t.me/impera_design'
     },
     {
-      icon: FaWhatsapp,
-      label: 'WhatsApp',
-      href: 'https://wa.me/'
+      icon: messengerIcon,
+      label: 'Max',
+      href: 'https://max.ru/u/f9LHodD0cOL32fo5oeSRksJ8PrQ-J9iQqxXimia1fe7yhMpJSQmQcDFcKlA',
+      iconType: 'img',
     },
-    {
-      icon: FaVk,
-      label: 'VKontakte',
-      href: 'https://vk.com/lafee_remont'
-    }
   ],
 
   legal: {
     companyName: 'Impera Design',
     privacyPolicy: {
       text: 'Политика конфиденциальности',
-      href: '#'
+      href: '/privacy'
     },
     termsOfUse: {
       text: 'Условия использования',
-      href: '#'
+      href: '/terms'
     }
   }
 };

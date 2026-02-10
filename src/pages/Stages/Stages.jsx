@@ -1,68 +1,10 @@
-import { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView, useMotionValue } from 'framer-motion';
 import StickyHeader from '../../components/StickyHeader/StickyHeader';
 import Breadcrumbs from '../../components/Widgets/Breadcrumbs/Breadcrumbs';
 import Footer from '../../components/Footer/Footer';
-import { background3, background4 } from '../../assets/images';
+import { stagesData, stagesPageData } from '../../data/stagesData';
 import './Stages.css';
-
-const stagesData = [
-  {
-    id: 'preproject',
-    title: 'Предпроектный этап',
-    subtitle: 'эскизное проектирование',
-    lead: 'Формируем фундамент будущего интерьера и фиксируем видение с первых встреч',
-    points: [
-      'выезд на объект и профессиональный замер',
-      'заполнение детального технического задания',
-      'определение стиля, палитры и ключевых пожеланий',
-      'разработка нескольких планировочных решений с мебелью и элементами декора',
-      'коллажи/референсы по каждому помещению для согласования концепции',
-    ],
-    result:
-      'Утверждённая планировка и стиль, на основе которых строится визуализация',
-  },
-  {
-    id: 'visualization',
-    title: 'Визуализация проекта',
-    subtitle: 'фотореализм и детализация',
-    lead: 'Показываем, как будет выглядеть интерьер после ремонта - в цвете, фактуре и свете',
-    points: [
-      'визуализация каждого помещения с учётом выбранных материалов',
-      'подбор мебели, освещения и декора под стиль и бюджет',
-      'корректировки после согласования',
-    ],
-    result:
-      'Готовый визуальный образ интерьера, понятный и заказчику, и строителям',
-  },
-  {
-    id: 'documentation',
-    title: 'Рабочая документация',
-    subtitle: 'технический пакет чертежей',
-    lead: 'Даем подрядчикам точные инструкции, чтобы строить без ошибок и переделок',
-    points: [
-      'полный комплект рабочих чертежей: демонтаж/монтаж, планировка, электрика, сантехника',
-      'планы потолков, полов и развёртки стен по помещениям',
-      'спецификация материалов, мебели и оборудования с артикулами, магазинами и ценами',
-    ],
-    result:
-      'Проект получает чёткие, точные чертежи для безопасной и качественной реализации',
-  },
-  {
-    id: 'supervision',
-    title: 'Авторский надзор',
-    subtitle: 'контроль реализации',
-    lead: 'Сопровождаем ремонт, держим качество и решения в фокусе, оперативно снимаем вопросы',
-    points: [
-      'регулярные выезды на объект или в торговые точки (до 4 раз в месяц)',
-      'проверка правильности работ по чертежам и консультации подрядчиков',
-      'выезды в магазины, помощь в выборе и закупке материалов',
-      'согласование и фиксация изменений в проекте при необходимости',
-    ],
-    result:
-      'Интерьер реализуется именно так, как утверждено - без ошибок, задержек и лишних затрат',
-  },
-];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -109,18 +51,18 @@ function Stages() {
     }
   }, [isLastStepInView, progress]);
 
-  // Sticky logic for aside card
+  // Sticky logic for aside card (manual fix)
   useEffect(() => {
     const bodySection = containerRef.current;
     const asideBlock = asideRef.current;
-
-    if (!bodySection || !asideBlock) return;
-
     const cardContent = asideCardRef.current;
     const listBlock = listRef.current;
-    if (!cardContent || !listBlock) return;
 
-    // Устанавливаем высоту aside равной высоте списка
+    if (!bodySection || !asideBlock || !cardContent || !listBlock) return;
+
+    const stickyTop = 120;
+
+    // Устанавливаем минимальную высоту под высоту списка
     const setAsideHeight = () => {
       const listHeight = listBlock.offsetHeight;
       asideBlock.style.minHeight = `${listHeight}px`;
@@ -130,39 +72,38 @@ function Stages() {
       const bodyRect = bodySection.getBoundingClientRect();
       const asideRect = asideBlock.getBoundingClientRect();
       const cardHeight = cardContent.offsetHeight;
-      const stickyTop = 120;
 
-      // Секция еще не в зоне видимости
+      // Секция еще не дошла до верхнего порога
       if (bodyRect.top > stickyTop) {
-        asideBlock.classList.remove('is-fixed', 'is-bottom');
-        cardContent.style.width = '';
+        cardContent.style.position = 'relative';
+        cardContent.style.top = '';
         cardContent.style.left = '';
+        cardContent.style.width = '';
         return;
       }
 
-      // Aside достиг конца - прижимаем к низу
-      if (asideRect.bottom < stickyTop + cardHeight) {
-        asideBlock.classList.remove('is-fixed');
-        asideBlock.classList.add('is-bottom');
-        cardContent.style.width = '';
-        cardContent.style.left = '';
+      // Достигли низа списка — ставим карточку в конец aside
+      const bodyBottomSpace = bodyRect.bottom - stickyTop - cardHeight;
+      if (bodyBottomSpace <= 0) {
+        cardContent.style.position = 'absolute';
+        cardContent.style.top = `${listBlock.offsetHeight - cardHeight}px`;
+        cardContent.style.left = '0';
+        cardContent.style.width = '100%';
         return;
       }
 
-      // Секция в зоне видимости - фиксируем
-      if (!asideBlock.classList.contains('is-fixed')) {
-        const rect = asideBlock.getBoundingClientRect();
-        cardContent.style.width = `${rect.width}px`;
-        cardContent.style.left = `${rect.left}px`;
-      }
-      asideBlock.classList.add('is-fixed');
-      asideBlock.classList.remove('is-bottom');
+      // Фиксируем карточку
+      cardContent.style.position = 'fixed';
+      cardContent.style.top = `${stickyTop}px`;
+      cardContent.style.left = `${asideRect.left}px`;
+      cardContent.style.width = `${asideRect.width}px`;
     };
 
     const handleResize = () => {
-      asideBlock.classList.remove('is-fixed', 'is-bottom');
-      cardContent.style.width = '';
+      cardContent.style.position = 'relative';
+      cardContent.style.top = '';
       cardContent.style.left = '';
+      cardContent.style.width = '';
       asideBlock.style.minHeight = '';
       setAsideHeight();
       handleScroll();
@@ -179,14 +120,13 @@ function Stages() {
     };
   }, []);
 
-
   return (
     <div className="stages-page">
       <StickyHeader />
 
       <main className="stages">
         <section className="stages-hero">
-          <img src={background4} alt="" className="stages-hero__bg" />
+          <img src={stagesPageData.hero.background} alt="" className="stages-hero__bg" />
           <div className="stages-hero__overlay" />
           <div className="stages-hero__breadcrumbs">
             <div className="stages-hero__breadcrumbs-container">
@@ -200,7 +140,7 @@ function Stages() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              Процесс с вниманием к деталям
+              {stagesPageData.hero.eyebrow}
             </Motion.span>
 
             <Motion.h1
@@ -209,7 +149,7 @@ function Stages() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              Этапы работы
+              {stagesPageData.hero.title}
             </Motion.h1>
 
             <Motion.p
@@ -218,12 +158,11 @@ function Stages() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Чёткая последовательность, прозрачные шаги и контроль качества на каждом этапе,
-              чтобы вы видели путь от первой идеи до реализованного интерьера
+              {stagesPageData.hero.lead}
             </Motion.p>
 
             <div className="stages-hero__tags">
-              {['исследуем', 'проектируем', 'визуализируем', 'контролируем'].map((tag) => (
+              {stagesPageData.hero.tags.map((tag) => (
                 <Motion.span
                   key={tag}
                   className="stages-hero__tag"
@@ -244,11 +183,10 @@ function Stages() {
             <div className="stages-aside__card" ref={asideCardRef}>
               <div className="stages-aside__card-content">
                 <div className="stages-aside__meta">
-                  <span className="stages-aside__label">прозрачность процесса</span>
+                  <span className="stages-aside__label">{stagesPageData.aside.label}</span>
                 </div>
                 <p className="stages-aside__text">
-                  Каждый этап завершается понятным результатом - вы всегда знаете, что уже готово и
-                  что происходит дальше
+                  {stagesPageData.aside.text}
                 </p>
                 <div
                   className="stages-aside__progress"
@@ -261,7 +199,7 @@ function Stages() {
                   {stagesData.map((stage, index) => (
                     <div key={stage.id} className="stages-aside__tick">
                       <span className="stages-aside__tick-dot" />
-                      <span className="stages-aside__tick-label">{index + 1} шаг</span>
+                      <span className="stages-aside__tick-label">{index + 1} {stagesPageData.aside.stepPrefix}</span>
                     </div>
                   ))}
                 </div>
@@ -283,10 +221,9 @@ function Stages() {
               >
                 <div className="stages-step__header">
                   <div className="stages-step__meta">
-                    <span className="stages-step__index">{index + 1} шаг</span>
+                    <span className="stages-step__index">{index + 1} {stagesPageData.aside.stepPrefix}</span>
                     <span className="stages-step__subtitle">{stage.subtitle}</span>
                   </div>
-                  <span className="stages-step__badge">этап</span>
                 </div>
 
                 <h3 className="stages-step__title">{stage.title}</h3>
@@ -303,7 +240,7 @@ function Stages() {
                   </ul>
 
                   <div className="stages-step__result">
-                    <div className="stages-step__result-label">Результат</div>
+                    <div className="stages-step__result-label">{stagesPageData.texts.resultLabel}</div>
                     <p className="stages-step__result-text">{stage.result}</p>
                   </div>
                 </div>
@@ -321,18 +258,52 @@ function Stages() {
             transition={{ duration: 0.6 }}
           >
             <div className="stages-footer__visual">
-              <img src={background3} alt="" className="stages-footer__bg" />
+              <img src={stagesPageData.footer.background} alt="" className="stages-footer__bg" />
               <div className="stages-footer__glow" />
             </div>
             <div className="stages-footer__content">
-              <p className="stages-footer__label">готовы обсудить проект</p>
+              <p className="stages-footer__label">{stagesPageData.footer.label}</p>
               <h3 className="stages-footer__title">
-                Начнём с пространства и задачи - покажем, <br /> как вырастает концепция
+                {stagesPageData.footer.title.map((part, i, arr) => (
+                  <React.Fragment key={i}>
+                    {part.includes('\n')
+                      ? part.split('\n').flatMap((chunk, j) =>
+                          j === 0 ? [chunk] : [<span key={`mb-${i}-${j}`} className="stages-footer__title-break-mobile" aria-hidden />, chunk]
+                        )
+                      : part}
+                    {i < arr.length - 1 && <br />}
+                  </React.Fragment>
+                ))}
               </h3>
               <p className="stages-footer__text">
-                Расскажите о ваших сроках, бюджете и ощущении, которое хотите от интерьера. <br /> Мы
-                предложим сценарий шагов и зафиксируем его в плане
+                {stagesPageData.footer.text.map((part, i, arr) => (
+                  <React.Fragment key={i}>
+                    {part}
+                    {i < arr.length - 1 && <br />}
+                  </React.Fragment>
+                ))}
               </p>
+              <p className="stages-footer__cta-label">{stagesPageData.footer.ctaLabel}</p>
+              <div className="stages-footer__links">
+                {stagesPageData.footer.contactLinks.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      className="stages-footer__link"
+                      aria-label={item.label}
+                      {...(item.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    >
+                      {item.iconType === 'img' ? (
+                        <img src={Icon} alt="" className="stages-footer__link-icon" aria-hidden />
+                      ) : (
+                        <Icon className="stages-footer__link-icon" />
+                      )}
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </Motion.div>
         </section>

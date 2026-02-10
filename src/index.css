@@ -53,3 +53,7 @@ button {
   font-family: inherit;
   cursor: pointer;
 }
+
+.none {
+  display: none;
+}

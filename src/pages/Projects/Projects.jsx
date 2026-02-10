@@ -3,6 +3,7 @@ import StickyHeader from '../../components/StickyHeader/StickyHeader';
 import Breadcrumbs from '../../components/Widgets/Breadcrumbs/Breadcrumbs';
 import Footer from '../../components/Footer/Footer';
 import ProjectsCollage from '../../components/ProjectsCollage/ProjectsCollage';
+import { projectsPageData } from '../../data/projectsData';
 import './Projects.css';
 
 function Projects() {
@@ -34,23 +35,22 @@ function Projects() {
       <section className="projects-hero">
         <div className="projects-hero__container">
           <div className="projects-hero__header">
-            <h1 className="projects-hero__title">Проекты Impera Studio</h1>
+            <h1 className="projects-hero__title">{projectsPageData.title}</h1>
             <p className="projects-hero__subtitle">
-              Дизайн, который усиливает бренды: кафе и рестораны, бары и клубы, офисы, спа-комплексы. Чёткая концепция, продуманная эргономика и премиальный
-              опыт для ваших гостей и команды
+              {projectsPageData.subtitle}
             </p>
           </div>
 
           <div className="projects-hero__actions">
             <Link to="/contacts" className="projects-hero__btn projects-hero__btn--primary">
-              Обсудить проект
+              {projectsPageData.buttons.discuss}
             </Link>
             <a 
               href="#projects-collage" 
               className="projects-hero__btn projects-hero__btn--ghost"
               onClick={handleScrollToProjects}
             >
-              Смотреть кейсы
+              {projectsPageData.buttons.viewCases}
             </a>
           </div>
         </div>

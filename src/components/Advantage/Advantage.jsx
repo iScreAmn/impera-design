@@ -1,12 +1,33 @@
 import React, { useEffect, useRef } from 'react';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
+// eslint-disable-next-line no-unused-vars
+import { motion, useInView } from 'motion/react';
 import { advantageData } from '../../data/advantageData';
 import './Advantage.css';
+
+const itemFromLeft = {
+  hidden: { opacity: 0, x: -32 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
+  },
+};
+
+const itemFromTop = {
+  hidden: { opacity: 0, y: -24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
+  },
+};
 
 const Advantage = () => {
   const { title, subtitle, description, advantages } = advantageData;
   const sectionRef = useRef(null);
   const leftRef = useRef(null);
+  const isLeftInView = useInView(sectionRef, { once: true, amount: 0.15 });
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -81,17 +102,35 @@ const Advantage = () => {
     <section className="advantage" ref={sectionRef}>
       <div className="advantage__container">
         <div className="advantage__left" ref={leftRef}>
-          <div className="advantage__left-content">
-            <h2 className="advantage__title">
+          <motion.div
+            className="advantage__left-content"
+            initial="hidden"
+            animate={isLeftInView ? 'visible' : 'hidden'}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+            }}
+          >
+            <motion.h2 className="advantage__title" variants={itemFromLeft}>
               {title} <span className="advantage__title-accent">{subtitle}</span>
-            </h2>
-            <p className="advantage__text">{description}</p>
-          </div>
+            </motion.h2>
+            <motion.p className="advantage__text" variants={itemFromLeft}>
+              {description}
+            </motion.p>
+          </motion.div>
         </div>
 
-        <div className="advantage__right">
+        <motion.div
+          className="advantage__right"
+          initial="hidden"
+          animate={isLeftInView ? 'visible' : 'hidden'}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } },
+          }}
+        >
           {advantages.map((item) => (
-            <div className="advantage__item" key={item.id}>
+            <motion.div className="advantage__item" key={item.id} variants={itemFromTop}>
               <div className="advantage__item-icon">
                 <MdOutlineKeyboardArrowDown />
               </div>
@@ -102,9 +141,9 @@ const Advantage = () => {
                 </div>
                 <p className="advantage__item-description">{item.description}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

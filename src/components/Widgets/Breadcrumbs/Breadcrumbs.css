@@ -49,6 +49,7 @@
 
 .breadcrumbs__text {
   white-space: nowrap;
+  color: #888888;
 }
 
 .breadcrumbs__separator {
@@ -69,59 +70,14 @@
   max-width: 300px;
 }
 
-/* Tablet */
+/* Ниже 1024 — скрыть breadcrumbs */
 @media (max-width: 1024px) {
   .breadcrumbs {
-    padding: 14px 0;
-  }
-
-  .breadcrumbs__link,
-  .breadcrumbs__current {
-    font-size: 16px;
-  }
-
-  .breadcrumbs__icon,
-  .breadcrumbs__separator {
-    width: 20px;
-    height: 20px;
-  }
-
-  .breadcrumbs__current {
-    max-width: 250px;
+    display: none;
   }
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .breadcrumbs {
-    padding: 12px 0;
-  }
-
-  .breadcrumbs__list {
-    gap: 4px;
-  }
-
-  .breadcrumbs__item {
-    gap: 4px;
-  }
-
-  .breadcrumbs__link,
-  .breadcrumbs__current {
-    font-size: 14px;
-  }
-
-  .breadcrumbs__icon,
-  .breadcrumbs__separator {
-    width: 18px;
-    height: 18px;
-  }
-
-  .breadcrumbs__current {
-    max-width: 180px;
-  }
-}
-
-/* Small Mobile - скрытие промежуточных элементов */
+/* Small Mobile - скролл при переполнении */
 @media (max-width: 480px) {
   .breadcrumbs__list {
     flex-wrap: nowrap;

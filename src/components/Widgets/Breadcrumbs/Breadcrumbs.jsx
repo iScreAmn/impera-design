@@ -13,6 +13,8 @@ const routeLabels = {
   '/clients': 'Наши клиенты',
   '/stages': 'Этапы работ',
   '/contacts': 'Контакты',
+  '/privacy': 'Политика конфиденциальности',
+  '/terms': 'Условия использования',
 };
 
 function Breadcrumbs() {

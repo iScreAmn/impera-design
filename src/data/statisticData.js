@@ -6,9 +6,9 @@ export const statisticData = {
   stats: [
     { id: '1', value: 5, suffix: ' лет', label: 'на рынке' },
     { id: '2', value: 300, suffix: '+', label: 'дизайн-проектов' },
-    { id: '3', value: 200, suffix: ' м²', label: 'средняя площадь реализованных проектов' },
-    { id: '4', value: 40, prefix: 'до ', suffix: '%', label: 'экономии на ремонте за счёт грамотного проекта' },
-    { id: '5', value: 100, suffix: '%', label: 'индивидуальных решений' }
+    { id: '3', value: 40, prefix: 'до ', suffix: '%', label: 'экономии на ремонте за счёт грамотного проекта' },
+    { id: '4', value: 100, suffix: '%', label: 'индивидуальных решений' },
+    { id: '5', value: 12000, suffix: ' м²', suffixSmall: true, label: 'общая площадь реализованных проектов' }
   ]
 };
 

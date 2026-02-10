@@ -65,7 +65,7 @@ const Partners = () => {
       () => {
         animate(
           trackRef.current,
-          { opacity: [0, 1], y: [40, 0] },
+          { y: [40, 0] },
           {
             duration: 1,
             delay: 0.3,
@@ -98,7 +98,7 @@ const Partners = () => {
           <div 
             ref={trackRef} 
             className="partners__track"
-            style={{ opacity: 0, transform: 'translateY(40px)' }}
+            style={{ transform: 'translateY(40px)' }}
           >
             {displayPartners.map((partner, index) => (
               <a
