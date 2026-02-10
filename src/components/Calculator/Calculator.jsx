@@ -1,6 +1,9 @@
-import { useEffect, useMemo, useState, useCallback } from 'react';
+import { useEffect, useMemo, useState, useCallback, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import PhoneInput from '../PhoneInput/PhoneInput';
 import './Calculator.css';
 import Modal from '../Widgets/Modals/Modal';
+import { apiFetch } from '../../utils/api';
 
 const Calculator = ({
   title,
@@ -17,6 +20,7 @@ const Calculator = ({
   thankYouImage,
   thankYouAlt
 }) => {
+  const calculatorRef = useRef(null);
   const totalSteps = steps.length;
   const [currentStep, setCurrentStep] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
@@ -32,7 +36,7 @@ const Calculator = ({
     name: '',
     phone: '',
     email: '',
-    contactMethod: contactMethods[0]?.id || '',
+    contactMethod: '',
     consent: false,
     _company: ''
   });
@@ -43,6 +47,7 @@ const Calculator = ({
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const [highlightConsent, setHighlightConsent] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -117,21 +122,33 @@ const Calculator = ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
+    
+    if (name === 'consent' && checked) {
+      setHighlightConsent(false);
+    }
   }, []);
 
   const handleContactMethodClick = (method) => {
     setFormData({
       ...formData,
-      contactMethod: method
+      contactMethod: method,
+      email: method === 'email' ? formData.email : ''
     });
 
-    if (isMobile && !isSubmitted) {
+    if (isMobile && !isSubmitted && method) {
       setShowContactModal(true);
     }
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
+    
+    if (!formData.consent) {
+      setHighlightConsent(true);
+      setTimeout(() => setHighlightConsent(false), 2000);
+      return;
+    }
+    
     if (!canSubmit || isSubmitting) return;
     setIsSubmitting(true);
     setSubmitError('');
@@ -144,7 +161,7 @@ const Calculator = ({
     };
 
     try {
-      const response = await fetch('/api/calculator/submit', {
+      const response = await apiFetch('/api/calculator/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -156,6 +173,9 @@ const Calculator = ({
 
       setIsSubmitted(true);
       setShowContactModal(false);
+      if (isMobile) {
+        setTimeout(() => calculatorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+      }
     } catch (error) {
       setSubmitError(error.message || 'Ошибка отправки заявки');
     } finally {
@@ -163,7 +183,8 @@ const Calculator = ({
     }
   };
 
-  const canSubmit = formData.name && formData.phone && formData.email && formData.consent;
+  const canSubmit = formData.name && formData.phone && formData.contactMethod && formData.consent;
+  const showEmailInput = formData.contactMethod === 'email';
 
   const progress = Math.min(100, ((currentStep - 1) / totalSteps) * 100);
 
@@ -182,6 +203,9 @@ const Calculator = ({
     setCurrentStep(1);
     setIsSubmitted(false);
     setShowContactModal(false);
+    if (isMobile) {
+      setTimeout(() => calculatorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+    }
   };
 
   const handleCloseModal = useCallback(() => {
@@ -209,24 +233,6 @@ const Calculator = ({
       />
       <input
         type="text"
-        name="phone"
-        className={inputClass}
-        placeholder={placeholders.phone}
-        value={formData.phone}
-        onChange={handleInputChange}
-        required
-      />
-      <input
-        type="email"
-        name="email"
-        className={inputClass}
-        placeholder={placeholders.email}
-        value={formData.email}
-        onChange={handleInputChange}
-        required
-      />
-      <input
-        type="text"
         name="name"
         className={inputClass}
         placeholder={placeholders.name}
@@ -234,11 +240,29 @@ const Calculator = ({
         onChange={handleInputChange}
         required
       />
+      <PhoneInput
+        value={formData.phone}
+        onChange={(phone) => setFormData(prev => ({ ...prev, phone }))}
+        placeholder={placeholders.phone}
+        variant={isModalVariant ? 'modal' : 'default'}
+      />
+
+      {showEmailInput && (
+        <input
+          type="email"
+          name="email"
+          className={inputClass}
+          placeholder={placeholders.email || 'Email'}
+          value={formData.email}
+          onChange={handleInputChange}
+        />
+      )}
 
       <button
-        type="submit"
+        type="button"
+        onClick={handleSubmit}
         className={`${submitClass} ${!canSubmit ? `${submitClass}--disabled` : ''}`}
-        disabled={!canSubmit || isSubmitting}
+        disabled={isSubmitting}
       >
         {isSubmitting ? 'Отправка...' : buttons.submit}
       </button>
@@ -258,11 +282,11 @@ const Calculator = ({
               onChange={handleInputChange}
               className="calculator__checkbox-input"
             />
-            <span className="calculator__checkbox-custom" />
+            <span className={`calculator__checkbox-custom ${highlightConsent ? 'calculator__checkbox-custom--highlight' : ''}`} />
           </div>
           <span className="calculator-modal__checkbox-text">
             {contactConsent.text}{' '}
-            <a href={contactConsent.href} className="calculator__link">{contactConsent.linkText}</a>
+            <Link to={contactConsent.href} className="calculator__link">{contactConsent.linkText}</Link>
           </span>
         </label>
       ) : (
@@ -274,9 +298,9 @@ const Calculator = ({
             onChange={handleInputChange}
             className="calculator__checkbox-input"
           />
-          <span className="calculator__checkbox-custom" />
+          <span className={`calculator__checkbox-custom ${highlightConsent ? 'calculator__checkbox-custom--highlight' : ''}`} />
           {contactConsent.text}{' '}
-          <a href={contactConsent.href} className="calculator__link">{contactConsent.linkText}</a>
+          <Link to={contactConsent.href} className="calculator__link">{contactConsent.linkText}</Link>
         </label>
       )}
       </form>
@@ -284,7 +308,7 @@ const Calculator = ({
   };
 
   return (
-    <div className="calculator">
+    <div className="calculator" ref={calculatorRef}>
       <div className="calculator__header">
         <h2 className="calculator__title">
           {title} <span>{titleAccent}</span>
@@ -411,7 +435,7 @@ const Calculator = ({
                     })}
                   </div>
 
-                  {!isMobile && renderContactForm()}
+                  {!isMobile && formData.contactMethod && renderContactForm()}
                 </>
               )}
             </div>

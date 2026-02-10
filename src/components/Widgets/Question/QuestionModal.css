@@ -49,6 +49,16 @@
   border-color: #c4b5a0;
 }
 
+.question-modal__input--error,
+.question-modal__textarea--error {
+  border-color: #b42318;
+}
+
+.question-modal__input--error:focus,
+.question-modal__textarea--error:focus {
+  border-color: #b42318;
+}
+
 .question-modal__input::placeholder,
 .question-modal__textarea::placeholder {
   color: #666;
@@ -88,6 +98,18 @@
   transform: none;
 }
 
+.question-modal__submit--invalid {
+  background-color: #555;
+  color: #888;
+  cursor: pointer;
+}
+
+.question-modal__submit--invalid:hover {
+  background-color: #555;
+  color: #888;
+  transform: none;
+}
+
 .question-modal__status {
   margin: 8px 0 0;
   font-size: 14px;
@@ -96,6 +118,43 @@
 
 .question-modal__status--error {
   color: #b42318;
+}
+
+.question-modal__checkbox-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.question-modal__checkbox {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  cursor: pointer;
+  accent-color: #b8956a;
+}
+
+.question-modal__checkbox-label {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+}
+
+.question-modal__checkbox-link {
+  color: #b8956a;
+  text-decoration: none;
+}
+
+.question-modal__checkbox-link:hover {
+  text-decoration: underline;
+}
+
+.question-modal__checkbox-wrapper--error {
+  border-radius: 4px;
+  outline: 2px solid #b42318;
+  outline-offset: 2px;
 }
 
 /* Dropdown для выбора способа связи */
@@ -132,6 +191,10 @@
 
 .question-modal__dropdown-button.selected {
   color: #fff;
+}
+
+.question-modal__dropdown-button--error {
+  border-color: #b42318;
 }
 
 .question-modal__dropdown-button-text {

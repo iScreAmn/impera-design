@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { heroData } from '../../data/heroData';
 import './Hero.css';
@@ -30,6 +31,16 @@ function Hero() {
     ctaLabel,
     features,
   } = heroData;
+
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  const featureText = (text) => (isMobile ? text : text.replace(/\n/g, ' '));
 
   return (
     <section className="hero">
@@ -83,7 +94,7 @@ function Hero() {
                 </span>
                 <div className="hero__feature-content">
                   <h3 className="hero__feature-title">{feature.title}</h3>
-                  <p className="hero__feature-text">{feature.text}</p>
+                  <p className={`hero__feature-text${isMobile ? ' hero__feature-text--pre-line' : ''}`}>{featureText(feature.text)}</p>
                 </div>
               </motion.div>
             );

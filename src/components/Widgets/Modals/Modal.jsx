@@ -22,8 +22,6 @@ const Modal = ({
 
     if (isOpen) {
       document.addEventListener('keydown', handleEscape);
-      // Prevent body scroll when modal is open
-      document.body.style.overflow = 'hidden';
       
       // Save current focused element only on first open
       if (previousFocusRef.current === null) {
@@ -46,21 +44,29 @@ const Modal = ({
     } else {
       // Reset focus flag when modal closes
       hasFocusedRef.current = false;
+
+      // Restore focus to previous element
+      if (previousFocusRef.current) {
+        previousFocusRef.current.focus();
+        previousFocusRef.current = null;
+      }
     }
 
     return () => {
       document.removeEventListener('keydown', handleEscape);
-      if (!isOpen) {
-        document.body.style.overflow = '';
-        
-        // Restore focus to previous element
-        if (previousFocusRef.current) {
-          previousFocusRef.current.focus();
-          previousFocusRef.current = null;
-        }
-      }
     };
   }, [isOpen, onClose]);
+
+  // Prevent body scroll while modal is mounted/open
+  useEffect(() => {
+    if (!isOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = previousOverflow || '';
+    };
+  }, [isOpen]);
 
   // Handle focus trap
   useEffect(() => {

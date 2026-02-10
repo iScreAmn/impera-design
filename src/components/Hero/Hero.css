@@ -134,6 +134,9 @@
   margin: 0;
   line-height: 1.5;
   font-weight: 300;
+}
+
+.hero__feature-text--pre-line {
   white-space: pre-line;
 }
 

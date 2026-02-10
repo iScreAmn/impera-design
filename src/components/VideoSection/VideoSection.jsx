@@ -59,7 +59,7 @@ function VideoSection({ video }) {
 
   return (
     <>
-      <section className="video-section">
+      <section id="project-video" className="video-section">
         <div className="video-section__container">
           <h2 className="video-section__title">{video.title}</h2>
           
