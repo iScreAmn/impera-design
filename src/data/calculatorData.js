@@ -1,7 +1,7 @@
 import { thanku, photo1, document } from '../assets/images';
 import { IoMdCheckboxOutline } from "react-icons/io";
 import { FaTelegramPlane } from "react-icons/fa";
-import { MdOutlineEmail } from "react-icons/md";
+import { HiOutlineMail } from "react-icons/hi";
 import messengerIcon from '../assets/images/logos/max-white.webp';
 
 export const calculatorData = {
@@ -69,7 +69,7 @@ export const calculatorData = {
     {
       id: 'email',
       label: 'Email',
-      icon: MdOutlineEmail
+      icon: HiOutlineMail
     }
   ],
   consultant: {
@@ -102,7 +102,7 @@ export const calculatorData = {
   contactConsent: {
     text: 'Нажимая кнопку, Вы соглашаетесь с условиями',
     linkText: 'обработки персональных данных',
-    href: '#'
+    href: '/privacy'
   },
   progressTexts: {
     prefix: 'Готово',

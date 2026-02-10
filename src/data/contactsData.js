@@ -12,7 +12,14 @@ export const texts = {
     title: 'Заказать звонок',
     namePlaceholder: 'Ваше имя',
     phonePlaceholder: 'Телефон',
+    emailPlaceholder: 'Email',
+    messagePlaceholder: 'Сообщение (необязательно)',
     submitBtn: 'Отправить',
+    consent: {
+      text: 'Нажимая кнопку, Вы соглашаетесь с условиями',
+      linkText: 'обработки персональных данных',
+      href: '/privacy'
+    }
   },
 };
 
