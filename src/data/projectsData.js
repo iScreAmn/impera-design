@@ -1,4 +1,21 @@
 import {
+  antonovAndCo1,
+  antonovAndCo2,
+  antonovAndCo3,
+  antonovAndCo4,
+  antonovAndCo5,
+  antonovAndCo6,
+  antonovAndCo7,
+  antonovAndCo8,
+  antonovAndCo9,
+  antonovAndCo10,
+  antonovAndCo11,
+  antonovAndCo12,
+  antonovAndCo13,
+  antonovAndCo14,
+  antonovAndCo15,
+  antonovAndCo16,
+  antonovAndCo17,
   bossLounge1,
   bossLounge2,
   bossLounge3,
@@ -171,6 +188,21 @@ export const projectsPageData = {
 };
 
 export const projectsData = [
+  {
+    id: 12,
+    slug: 'antonov-and-company',
+    title: 'Антонов и партнеры',
+    location: 'г. Москва',
+    date: '2026 г.',
+    area: '230 м²',
+    studio: 'Impera Studio',
+    description: 'Современный офис юридической компании, где строгость форм сочетается с ощущением спокойствия и доверия. Лаконичная палитра, натуральные текстуры, продуманное освещение и стеклянные перегородки подчёркивают статус, прозрачность процессов и высокий уровень профессионализма. Пространство выстроено так, чтобы клиент чувствовал уверенность, а команда - комфорт и фокус на работе.',
+    features: [],
+    images: [
+      antonovAndCo10, antonovAndCo1, antonovAndCo2, antonovAndCo3, antonovAndCo4, antonovAndCo5, antonovAndCo6, antonovAndCo7, antonovAndCo8, antonovAndCo9, antonovAndCo11, antonovAndCo12, antonovAndCo13, antonovAndCo14, antonovAndCo15, antonovAndCo16, antonovAndCo17,
+    ],
+    thumbnails: [antonovAndCo10, antonovAndCo1, antonovAndCo2, antonovAndCo3],
+  },
   {
     id: 1,
     slug: 'boss-lounge',
