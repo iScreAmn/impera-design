@@ -1,21 +1,50 @@
-# Set correct MIME types
+# Set correct MIME types - MUST be first
 <IfModule mod_mime.c>
+  # JavaScript files - multiple types for compatibility
   AddType application/javascript .js
+  AddType application/javascript .jsx
+  AddType application/javascript .mjs
   AddType application/x-javascript .js
+  AddType application/x-javascript .jsx
   AddType text/javascript .js
+  AddType text/javascript .jsx
+  AddType text/javascript .mjs
+  
+  # Other types
   AddType text/css .css
   AddType video/mp4 .mp4
   AddType video/webm .webm
+  AddType application/json .json
 </IfModule>
+
+# Force JavaScript MIME type for .js files (fallback)
+<FilesMatch "\.js$">
+  ForceType application/javascript
+</FilesMatch>
+<FilesMatch "\.jsx$">
+  ForceType application/javascript
+</FilesMatch>
+<FilesMatch "\.mjs$">
+  ForceType application/javascript
+</FilesMatch>
 
 # Enable rewrite engine
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
   
+  # CRITICAL: Skip rewrite for assets directory FIRST
+  RewriteCond %{REQUEST_URI} ^/assets/ [NC]
+  RewriteRule ^ - [L]
+  
+  # Skip rewrite for static assets (files with extensions)
+  RewriteCond %{REQUEST_URI} \.(js|jsx|mjs|css|json|png|jpg|jpeg|gif|svg|webp|ico|woff|woff2|ttf|otf|mp4|webm|ogg|pdf|zip)$ [NC]
+  RewriteRule ^ - [L]
+  
   # Don't rewrite files or directories that exist
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
   
   # Rewrite everything else to index.html for SPA routing
   RewriteRule ^ index.html [QSA,L]
@@ -26,10 +55,20 @@
   Options -Indexes
 </IfModule>
 
-# Enable CORS for videos
+# Enable CORS for videos and set correct Content-Type for JS modules
 <IfModule mod_headers.c>
+  # NEVER cache HTML entrypoint (prevents stale hashed asset URLs)
+  <FilesMatch "^(index\.html)?$">
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+
   <FilesMatch "\.(mp4|webm|ogg)$">
     Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+  <FilesMatch "\.(js|jsx|mjs)$">
+    Header set Content-Type "application/javascript"
   </FilesMatch>
 </IfModule>
 
