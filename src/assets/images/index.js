@@ -11,7 +11,7 @@ export { default as background5 } from './backgrounds/impera-background-5.webp';
 export { default as background6 } from './backgrounds/impera-background-6.webp';
 
 // Web-Art
-export { default as thanku } from './other/thanku.png';
+export { default as thanku } from './photos/olga-calculator.webp';
 export { default as document } from './other/document.webp';
 export { default as checklist } from './other/checklist.webp';
 
@@ -24,23 +24,29 @@ export { default as teamPhoto } from './photos/impera-team.webp';
 // Projects
 
 // Antonov & Company
-export { default as antonovAndCo1 } from './projects/antonov/IMG_6481.webp';
-export { default as antonovAndCo2 } from './projects/antonov/IMG_6482.webp';
-export { default as antonovAndCo3 } from './projects/antonov/IMG_6483.webp';
-export { default as antonovAndCo4 } from './projects/antonov/IMG_6484.webp';
-export { default as antonovAndCo5 } from './projects/antonov/IMG_6485.webp';
-export { default as antonovAndCo6 } from './projects/antonov/IMG_6486.webp';
-export { default as antonovAndCo7 } from './projects/antonov/IMG_6487.webp';
-export { default as antonovAndCo8 } from './projects/antonov/IMG_6488.webp';
-export { default as antonovAndCo9 } from './projects/antonov/IMG_6489.webp';
-export { default as antonovAndCo10 } from './projects/antonov/IMG_6490.webp';
-export { default as antonovAndCo11 } from './projects/antonov/IMG_6491.webp';
-export { default as antonovAndCo12 } from './projects/antonov/IMG_6492.webp';
-export { default as antonovAndCo13 } from './projects/antonov/IMG_6493.webp';
-export { default as antonovAndCo14 } from './projects/antonov/IMG_6494.webp';
-export { default as antonovAndCo15 } from './projects/antonov/IMG_6495.webp';
-export { default as antonovAndCo16 } from './projects/antonov/IMG_6496.webp';
-export { default as antonovAndCo17 } from './projects/antonov/IMG_6497.webp';
+export { default as antonovAndCo1 } from './projects/antonov/1.webp';
+export { default as antonovAndCo2 } from './projects/antonov/2.jpg';
+export { default as antonovAndCo3 } from './projects/antonov/3.jpg';
+export { default as antonovAndCo4 } from './projects/antonov/4.jpg';
+export { default as antonovAndCo5 } from './projects/antonov/5.jpg';
+export { default as antonovAndCo6 } from './projects/antonov/6.jpg';
+export { default as antonovAndCo7 } from './projects/antonov/7.jpg';
+export { default as antonovAndCo8 } from './projects/antonov/8.jpg';
+export { default as antonovAndCo9 } from './projects/antonov/9.jpg';
+export { default as antonovAndCo10 } from './projects/antonov/10.jpg';
+export { default as antonovAndCo11 } from './projects/antonov/11.jpg';
+export { default as antonovAndCo12 } from './projects/antonov/12.jpg';
+export { default as antonovAndCo13 } from './projects/antonov/13.jpg';
+export { default as antonovAndCo14 } from './projects/antonov/14.jpg';
+export { default as antonovAndCo15 } from './projects/antonov/15.jpg';
+export { default as antonovAndCo16 } from './projects/antonov/16.jpg';
+export { default as antonovAndCo17 } from './projects/antonov/17.jpg';
+export { default as antonovAndCo18 } from './projects/antonov/18.jpg';
+export { default as antonovAndCo19 } from './projects/antonov/19.jpg';
+export { default as antonovAndCo20 } from './projects/antonov/20.jpg';
+export { default as antonovAndCo21 } from './projects/antonov/21.jpg';
+export { default as antonovAndCo22 } from './projects/antonov/22.jpg';
+export { default as antonovAndCo23 } from './projects/antonov/23.webp';
 
 // Boss-Lounge
 export { default as bossLounge1 } from './projects/boss-lounge/boss-1.webp';
