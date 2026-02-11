@@ -392,7 +392,9 @@ const Calculator = ({
               {isSubmitted ? (
                 <>
                   <h3 className="calculator__final-title">{progressTexts.submittedHeading}</h3>
-                  <p className="calculator__final-subtitle">{progressTexts.submittedSubtitle}</p>
+                  {progressTexts.submittedSubtitle && (
+                    <p className="calculator__final-subtitle">{progressTexts.submittedSubtitle}</p>
+                  )}
                 </>
               ) : (
                 <>
@@ -405,7 +407,9 @@ const Calculator = ({
 
               {isSubmitted ? (
                 <div className="calculator__thankyou">
-                  <img src={thankYouImage} alt={thankYouAlt} className="calculator__thankyou-image" />
+                  <div className="calculator__thankyou-image-wrap">
+                    <img src={thankYouImage} alt={thankYouAlt} className="calculator__thankyou-image" />
+                  </div>
                   <button type="button" className="calculator__repeat" onClick={handleRepeat}>
                     {buttons.repeat}
                   </button>

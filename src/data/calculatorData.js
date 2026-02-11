@@ -108,8 +108,8 @@ export const calculatorData = {
     prefix: 'Готово',
     finalLabel: 'Остался завершающий шаг!',
     finalHeading: 'Отлично. Остался последний шаг!',
-    submittedHeading: 'Наш менеджер свяжется с вами в ближайшее время',
-    submittedSubtitle: 'Мы уже обрабатываем вашу заявку.'
+    submittedHeading: 'Мы уже обрабатываем Вашу заявку и свяжемся с Вами в ближайшее время',
+    submittedSubtitle: ''
   },
   contactQuestion: 'Выберите удобный способ связи',
   thankYouImage: thanku,
