@@ -22,7 +22,7 @@ function TextoliteRedirect() {
 
 function App() {
   return (
-    <Router>
+    <Router basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
       <Routes>
         <Route path="/textolite/*" element={<TextoliteRedirect />} />
         <Route path="/" element={<Home />} />

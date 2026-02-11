@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react()],
-    base: '/',
+    base: '/impera-design/',
     server: {
       proxy: {
         '/api': {
