@@ -19,8 +19,8 @@
   line-height: 1.2;
 }
 
-.calculator__title span {
-  color: #c4a574;
+.calculator__title-nowrap {
+  white-space: nowrap;
 }
 
 .calculator__content {
@@ -314,11 +314,12 @@
 }
 
 .calculator__thankyou-image-wrap {
-  width: 280px;
-  height: 280px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
+  margin-bottom: 50px;
 }
 
 .calculator__thankyou-image {

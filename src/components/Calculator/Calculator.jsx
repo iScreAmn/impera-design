@@ -311,7 +311,7 @@ const Calculator = ({
     <div className="calculator" ref={calculatorRef}>
       <div className="calculator__header">
         <h2 className="calculator__title">
-          {title} <span>{titleAccent}</span>
+          {title}<span className="calculator__title-nowrap">{titleAccent}</span>
         </h2>
       </div>
 
