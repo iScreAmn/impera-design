@@ -11,7 +11,7 @@ export { default as background5 } from './backgrounds/impera-background-5.webp';
 export { default as background6 } from './backgrounds/impera-background-6.webp';
 
 // Web-Art
-export { default as thanku } from './photos/olga-calculator.webp';
+export { default as thanku } from './other/phone.svg';
 export { default as document } from './other/document.webp';
 export { default as checklist } from './other/checklist.webp';
 
@@ -239,6 +239,7 @@ export { default as partner4 } from './partners/partner-4.webp';
 export { default as partner5 } from './partners/partner-5.webp';
 export { default as partner6 } from './partners/partner-6.webp';
 export { default as partner7 } from './partners/partner-7.webp';
+export { default as partner8 } from './partners/partner-8.png';
 
 // Clients
 export { default as client1 } from './partners/clients/client1.webp';

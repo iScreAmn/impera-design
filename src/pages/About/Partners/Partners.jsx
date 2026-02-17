@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { animate, inView } from 'motion';
 import { 
+  partner8,
   partner1, 
   partner2, 
   partner3, 
@@ -14,9 +15,8 @@ import './Partners.css';
 const Partners = () => {
   const headerRef = useRef(null);
   const trackRef = useRef(null);
-  const [isMobile, setIsMobile] = React.useState(false);
-
   const partners = [
+    { id: 8, logo: partner8, name: 'Partner 8', link: 'https://lafee-remont.ru/' },
     { id: 1, logo: partner1, name: 'Древ Уют', link: '#!' },
     { id: 2, logo: partner2, name: 'Eco Carcas', link: '#!' },
     { id: 3, logo: partner3, name: 'ИССтрой', link: '#!' },
@@ -25,16 +25,6 @@ const Partners = () => {
     { id: 6, logo: partner6, name: 'Строим', link: '#!' },
     { id: 7, logo: partner7, name: 'Location', link: '#!' },
   ];
-
-  React.useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 480);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  // Дублируем массив для бесконечной прокрутки только на десктопе
-  const displayPartners = isMobile ? partners : [...partners, ...partners, ...partners];
 
   useEffect(() => {
     if (!headerRef.current) return;
@@ -100,12 +90,16 @@ const Partners = () => {
             className="partners__track"
             style={{ transform: 'translateY(40px)' }}
           >
-            {displayPartners.map((partner, index) => (
+            {partners.map((partner) => (
               <a
-                key={isMobile ? partner.id : `${partner.id}-${index}`}
+                key={partner.id}
                 href={partner.link}
                 className="partners__item"
                 aria-label={partner.name}
+                {...(partner.link.startsWith('http') && {
+                  target: '_blank',
+                  rel: 'noopener noreferrer',
+                })}
               >
                 <div className="partners__card">
                   <img
