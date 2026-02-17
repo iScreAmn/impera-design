@@ -23,7 +23,7 @@ const contentFromRight = {
   },
 }
 
-const Creator = ({ title, name, intro, paragraphs, quote, imageAlt }) => {
+const Creator = ({ title, name, intro, paragraphs, paragraphs2, quote, imageAlt }) => {
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: true, amount: 0.12 })
 
@@ -65,6 +65,27 @@ const Creator = ({ title, name, intro, paragraphs, quote, imageAlt }) => {
             ))}
             
             <p className="creator__quote">{quote}</p>
+
+            {paragraphs2?.map((item, index) => (
+              <p key={index}>
+                {typeof item === 'string' ? (
+                  item
+                ) : (
+                  <>
+                    {item.before}
+                    <a
+                      href={item.link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="creator__residential-link"
+                    >
+                      {item.link.label}
+                    </a>
+                    {item.after}
+                  </>
+                )}
+              </p>
+            ))}
           </div>
         </motion.div>
       </motion.div>

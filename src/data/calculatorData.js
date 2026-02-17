@@ -5,7 +5,8 @@ import { HiOutlineMail } from "react-icons/hi";
 import messengerIcon from '../assets/images/logos/max-white.webp';
 
 export const calculatorData = {
-  title: 'Рассчитать стоимость услуг в калькуляторе',
+  title: 'Рассчитать стоимость услуг ',
+  titleAccent: 'в калькуляторе',
   steps: [
     {
       field: 'area',
