@@ -6,7 +6,7 @@ import messengerIcon from '../assets/images/logos/max.webp';
 export const headerData = {
   logoImage: logo,
   logoAlt: 'Логотип KPI Studios',
-  logoTitle: 'Студия комерческого дизайна',
+  logoTitle: 'Студия коммерческого дизайна',
   contacts: [
     {
       icon: FaPhoneAlt,
