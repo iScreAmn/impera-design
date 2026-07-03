@@ -22,6 +22,28 @@ export { default as photo5 } from './photos/olga-about.webp';
 export { default as teamPhoto } from './photos/impera-team.webp';
 
 // Projects
+// Flowers-Shop
+export { default as flowersShop1 } from './projects/flowers-shop/Магазин_1.webp';
+export { default as flowersShop2 } from './projects/flowers-shop/Магазин_2.webp';
+export { default as flowersShop3 } from './projects/flowers-shop/Магазин_3.webp';
+export { default as flowersShop4 } from './projects/flowers-shop/Магазин_4.webp';
+export { default as flowersShop5 } from './projects/flowers-shop/Магазин_5.webp';
+export { default as flowersShop6 } from './projects/flowers-shop/Магазин_6.webp';
+export { default as flowersShop7 } from './projects/flowers-shop/Магазин_7.webp';
+export { default as flowersShop8 } from './projects/flowers-shop/Магазин_8.webp';
+export { default as flowersShop9 } from './projects/flowers-shop/Магазин_9.webp';
+export { default as flowersShop10 } from './projects/flowers-shop/Магазин_10.webp';
+
+// Trophi
+export { default as trophi1 } from './projects/trophi/image1.webp';
+export { default as trophi2 } from './projects/trophi/image2.webp';
+export { default as trophi3 } from './projects/trophi/image3.jpg';
+export { default as trophi5 } from './projects/trophi/image5.jpg';
+export { default as trophi6 } from './projects/trophi/image6.jpg';
+export { default as trophi7 } from './projects/trophi/image7.jpg';
+export { default as trophi8 } from './projects/trophi/image8.jpg';
+export { default as trophi9 } from './projects/trophi/image9.jpg';
+export { default as trophi11 } from './projects/trophi/image11.webp';
 
 // Antonov & Company
 export { default as antonovAndCo1 } from './projects/antonov/1.webp';
@@ -108,7 +130,6 @@ export { default as taiMassage15 } from './projects/thai/thai-15.webp';
 export { default as taiMassage16 } from './projects/thai/thai-16.webp';
 export { default as taiMassage17 } from './projects/thai/thai-17.webp';
 
-
 // Kids Room
 export { default as kidsRoom1 } from './projects/kids-room/kids-1.webp';
 export { default as kidsRoom2 } from './projects/kids-room/kids-2.webp';
@@ -163,6 +184,38 @@ export { default as office15 } from './projects/office/office-15.webp';
 export { default as office16 } from './projects/office/office-16.webp';
 export { default as office17 } from './projects/office/office-17.webp';
 
+// Office-2
+export { default as officeNext1 } from './projects/office-2/office0.webp';
+export { default as officeNext2 } from './projects/office-2/1.webp';
+export { default as officeNext3 } from './projects/office-2/2.webp';
+export { default as officeNext4 } from './projects/office-2/3.webp';
+export { default as officeNext5 } from './projects/office-2/4.webp';
+export { default as officeNext6 } from './projects/office-2/5.webp';
+export { default as officeNext7 } from './projects/office-2/6.webp';
+export { default as officeNext8 } from './projects/office-2/7.webp';
+export { default as officeNext9 } from './projects/office-2/8.webp';
+export { default as officeNext10 } from './projects/office-2/9.webp';
+export { default as officeNext11 } from './projects/office-2/10.webp';
+export { default as officeNext12 } from './projects/office-2/11.webp';
+export { default as officeNext13 } from './projects/office-2/12.webp';
+export { default as officeNext14 } from './projects/office-2/13.webp';
+export { default as officeNext15 } from './projects/office-2/14.webp';
+export { default as officeNext16 } from './projects/office-2/15.webp';
+export { default as officeNext17 } from './projects/office-2/16.webp';
+export { default as officeNext18 } from './projects/office-2/17.webp';
+export { default as officeNext19 } from './projects/office-2/18.webp';
+export { default as officeNext20 } from './projects/office-2/19.webp';
+export { default as officeNext21 } from './projects/office-2/20.webp';
+export { default as officeNext22 } from './projects/office-2/21.webp';
+export { default as officeNext23 } from './projects/office-2/22.webp';
+export { default as officeNext24 } from './projects/office-2/23.webp';
+export { default as officeNext25 } from './projects/office-2/24.webp';
+export { default as officeNext26 } from './projects/office-2/25.webp';
+export { default as officeNext27 } from './projects/office-2/26.webp';
+export { default as officeNext28 } from './projects/office-2/27.webp';
+export { default as officeNext29 } from './projects/office-2/28.webp';
+export { default as officeNext30 } from './projects/office-2/29.webp';
+
 // Dvorik
 export { default as dvorik1 } from './projects/dvorik/dvorik-1.webp';
 export { default as dvorik2 } from './projects/dvorik/dvorik-2.webp';
@@ -202,6 +255,43 @@ export { default as hotel24 } from './projects/hotel/24.webp';
 export { default as hotel25 } from './projects/hotel/25.webp';
 export { default as hotel26 } from './projects/hotel/26.webp';
 
+// Hotel-Lobna
+export { default as hotelLbn1 } from './projects/hotel-lobna/1.webp';
+export { default as hotelLbn2 } from './projects/hotel-lobna/2.webp';
+export { default as hotelLbn3 } from './projects/hotel-lobna/3.webp';
+export { default as hotelLbn4 } from './projects/hotel-lobna/4.webp';
+export { default as hotelLbn5 } from './projects/hotel-lobna/5.webp';
+export { default as hotelLbn7 } from './projects/hotel-lobna/7.webp';
+export { default as hotelLbn8 } from './projects/hotel-lobna/8.webp';
+export { default as hotelLbn9 } from './projects/hotel-lobna/9.webp';
+export { default as hotelLbn10 } from './projects/hotel-lobna/10.webp';
+export { default as hotelLbn11 } from './projects/hotel-lobna/11.webp';
+export { default as hotelLbn12 } from './projects/hotel-lobna/12.webp';
+export { default as hotelLbn13 } from './projects/hotel-lobna/13.webp';
+export { default as hotelLbn14 } from './projects/hotel-lobna/14.webp';
+export { default as hotelLbn15 } from './projects/hotel-lobna/15.webp';
+export { default as hotelLbn16 } from './projects/hotel-lobna/16.webp';
+export { default as hotelLbn17 } from './projects/hotel-lobna/17.webp';
+export { default as hotelLbn18 } from './projects/hotel-lobna/18.webp';
+export { default as hotelLbn19 } from './projects/hotel-lobna/19.webp';
+export { default as hotelLbn20 } from './projects/hotel-lobna/20.webp';
+export { default as hotelLbn21 } from './projects/hotel-lobna/21.webp';
+export { default as hotelLbn22 } from './projects/hotel-lobna/22.webp';
+export { default as hotelLbn23 } from './projects/hotel-lobna/23.webp';
+
+// Restaurant-Lobna
+export { default as restaurant1 } from './projects/restaurant/1.webp';
+export { default as restaurant2 } from './projects/restaurant/2.webp';
+export { default as restaurant3 } from './projects/restaurant/3.webp';
+export { default as restaurant4 } from './projects/restaurant/4.webp';
+export { default as restaurant5 } from './projects/restaurant/5.webp';
+export { default as restaurant6 } from './projects/restaurant/6.webp';
+export { default as restaurant7 } from './projects/restaurant/7.webp';
+export { default as restaurant8 } from './projects/restaurant/8.webp';
+export { default as restaurant9 } from './projects/restaurant/9.webp';
+export { default as restaurant10 } from './projects/restaurant/10.webp';
+export { default as restaurant11 } from './projects/restaurant/11.webp';
+
 // Paratun
 export { default as paratun1 } from './projects/paratun/1.webp';
 export { default as paratun2 } from './projects/paratun/2.webp';
@@ -230,6 +320,29 @@ export { default as crazyBrothers9 } from './projects/crazy-brothers/9.webp';
 export { default as crazyBrothers10 } from './projects/crazy-brothers/10.webp';
 export { default as crazyBrothers11 } from './projects/crazy-brothers/11.webp';
 export { default as crazyBrothers12 } from './projects/crazy-brothers/12.webp';
+
+// Beauty-Salon
+export { default as beautySalon1 } from './projects/beauty-salon/1.webp';
+export { default as beautySalon2 } from './projects/beauty-salon/2.webp';
+export { default as beautySalon3 } from './projects/beauty-salon/3.webp';
+export { default as beautySalon4 } from './projects/beauty-salon/4.webp';
+export { default as beautySalon5 } from './projects/beauty-salon/5.webp';
+export { default as beautySalon6 } from './projects/beauty-salon/6.jpg';
+export { default as beautySalon7 } from './projects/beauty-salon/7.jpg';
+export { default as beautySalon8 } from './projects/beauty-salon/8.jpg';
+export { default as beautySalon9 } from './projects/beauty-salon/9.jpg';
+export { default as beautySalon10 } from './projects/beauty-salon/10.png';
+export { default as beautySalon11 } from './projects/beauty-salon/11.png';
+export { default as beautySalon12 } from './projects/beauty-salon/12.png';
+export { default as beautySalon13 } from './projects/beauty-salon/13.png';
+export { default as beautySalon14 } from './projects/beauty-salon/14.webp';
+export { default as beautySalon15 } from './projects/beauty-salon/15.png';
+export { default as beautySalon16 } from './projects/beauty-salon/16.png';
+export { default as beautySalon17 } from './projects/beauty-salon/17.png';
+export { default as beautySalon18 } from './projects/beauty-salon/18.png';
+export { default as beautySalon19 } from './projects/beauty-salon/19.png';
+export { default as beautySalon20 } from './projects/beauty-salon/20.jpg';
+export { default as beautySalon21 } from './projects/beauty-salon/21.jpg';
 
 // Partners
 export { default as partner1 } from './partners/partner-1.webp';
