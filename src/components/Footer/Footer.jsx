@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineGlobal } from 'react-icons/ai';
 import { logo } from '../../assets/images';
@@ -9,6 +9,19 @@ import './Footer.css';
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const { description, contacts, socials, legal } = footerData;
+  const portfolioLink = useMemo(() => {
+    const url = new URL('https://dj-myportfolio.vercel.app/');
+    const sourceHost =
+      typeof window !== 'undefined'
+        ? window.location.hostname.replace(/^www\./, '')
+        : 'unknown-host';
+
+    url.searchParams.set('utm_source', sourceHost || 'unknown-host');
+    url.searchParams.set('utm_medium', 'referral');
+    url.searchParams.set('utm_campaign', 'impera_design_backup_footer_credit');
+
+    return url.toString();
+  }, []);
 
   return (
     <footer className="footer">
@@ -108,7 +121,7 @@ const Footer = () => {
               © {currentYear} {legal.companyName}. Все права защищены.
             </p>
             <p className="footer__developed">
-              Разработано: <a href="https://dj-myportfolio.vercel.app/" target="_blank" rel="noopener noreferrer" className="footer__developed-link">«Студией DJ»</a>
+              Разработано: <a href={portfolioLink} target="_blank" rel="noopener noreferrer" className="footer__developed-link">«Студией DJ»</a>
             </p>
           </div>
           <div className="footer__legal">
