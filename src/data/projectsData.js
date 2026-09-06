@@ -284,6 +284,21 @@ import {
   beautySalon19,
   beautySalon20,
   beautySalon21,
+  dental1,
+  dental2,
+  dental3,
+  dental4,
+  dental5,
+  dental6,
+  dental7,
+  dental8,
+  dental9,
+  dental10,
+  dental11,
+  dental12,
+  dental13,
+  dental14,
+  dental15,
 } from '../assets/images';
 
 export const projectsPageData = {
@@ -517,6 +532,21 @@ export const projectsData = [
       ],
       poster: dvorik1
     }
+  },
+  {
+    id: 19,
+    slug: 'dental-clinic',
+    title: 'Стоматологическая клиника «Лекарь»',
+    location: 'г. Подольск',
+    date: '2026 г.',
+    area: '100 м²',
+    studio: 'Impera Studio',
+    type: 'Для бизнеса',
+    description:
+      'Интерьер клиники разработан с акцентом на психологический комфорт пациентов и эффективное использование пространства. Спокойная палитра с пыльно-голубыми и терракотовыми тонами, мягкое освещение и премиальные материалы снимают эмоциональное напряжение, меняя представление о визите к врачу. Эстетичное и функциональное бизнес-решение, создающее высокую лояльность клиентов с первых секунд.',
+    features: [],
+    images: [dental3, dental1, dental2, dental4, dental5, dental6, dental7, dental8, dental9, dental10, dental11, dental12, dental13, dental14, dental15],
+    thumbnails: [dental3, dental1, dental2, dental4],
   },
   {
     id: 15,

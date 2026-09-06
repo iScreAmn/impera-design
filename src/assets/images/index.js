@@ -344,6 +344,23 @@ export { default as beautySalon19 } from './projects/beauty-salon/19.png';
 export { default as beautySalon20 } from './projects/beauty-salon/20.jpg';
 export { default as beautySalon21 } from './projects/beauty-salon/21.jpg';
 
+// Dental-Clinic
+export { default as dental1 } from './projects/dental-clinic/1.webp';
+export { default as dental2 } from './projects/dental-clinic/2.webp';
+export { default as dental3 } from './projects/dental-clinic/3.webp';
+export { default as dental4 } from './projects/dental-clinic/4.webp';
+export { default as dental5 } from './projects/dental-clinic/5.webp';
+export { default as dental6 } from './projects/dental-clinic/6.webp';
+export { default as dental7 } from './projects/dental-clinic/7.webp';
+export { default as dental8 } from './projects/dental-clinic/8.webp';
+export { default as dental9 } from './projects/dental-clinic/9.webp';
+export { default as dental10 } from './projects/dental-clinic/10.webp';
+export { default as dental11 } from './projects/dental-clinic/11.webp';
+export { default as dental12 } from './projects/dental-clinic/12.webp';
+export { default as dental13 } from './projects/dental-clinic/13.webp';
+export { default as dental14 } from './projects/dental-clinic/14.webp';
+export { default as dental15 } from './projects/dental-clinic/15.webp';
+
 // Partners
 export { default as partner1 } from './partners/partner-1.webp';
 export { default as partner2 } from './partners/partner-2.webp';
