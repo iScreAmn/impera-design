@@ -19,7 +19,7 @@ function ProjectsCollage({ onProjectClick, limit }) {
       {displayedProjects.map((project) => (
         <div
           key={project.id}
-          className="projects-collage__item"
+          className={`projects-collage__item${project.slug === 'dental-clinic' ? ' projects-collage__item--compact-title' : ''}`}
           onClick={() => handleProjectClick(project.slug)}
           role="button"
           tabIndex={0}
@@ -38,11 +38,19 @@ function ProjectsCollage({ onProjectClick, limit }) {
                   )
                 : project.title}
             </h3>
-            <div className="projects-collage__meta">
-              <span className="projects-collage__location">📍 {project.location}</span>
-              <span className="projects-collage__date">📅 {project.date}</span>
-              <span className="projects-collage__area">📐 {project.area}</span>
-            </div>
+            {(project.location || project.date || project.area) && (
+              <div className="projects-collage__meta">
+                {project.location && (
+                  <span className="projects-collage__location">📍 {project.location}</span>
+                )}
+                {project.date && (
+                  <span className="projects-collage__date">📅 {project.date}</span>
+                )}
+                {project.area && (
+                  <span className="projects-collage__area">📐 {project.area}</span>
+                )}
+              </div>
+            )}
           </div>
 
           <div className="projects-collage__main">

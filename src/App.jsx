@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ScrollToTop from './components/Widgets/ScrollToTop/ScrollToTop';
 import CookieConsent from './components/Widgets/CookieConsent/CookieConsent';
+import YandexMetrika from './components/Widgets/YandexMetrika/YandexMetrika';
 import Home from './components/Home/Home';
 import About from './pages/About/About';
 import Services from './pages/Services/Services';
@@ -38,6 +39,7 @@ function App() {
       </Routes>
       <ScrollToTop />
       <CookieConsent />
+      <YandexMetrika />
     </Router>
   );
 }

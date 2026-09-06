@@ -9,6 +9,8 @@
 }
 
 .projects-collage__item {
+  display: flex;
+  flex-direction: column;
   background: #fff;
   border-radius: 8px;
   overflow: hidden;
@@ -26,7 +28,8 @@
 
 .projects-collage__main {
   width: 100%;
-  height: 400px;
+  flex: 1 0 400px;
+  min-height: 400px;
   overflow: hidden;
   position: relative;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
@@ -91,6 +94,15 @@
   color: #2c2c2c;
   margin-bottom: 16px;
   line-height: 1.4;
+  /* Фиксируем высоту в одну строку обычного кегля, чтобы у карточек
+     с уменьшенным заголовком главное изображение не смещалось вверх */
+  min-height: calc(1.5rem * 1.4);
+}
+
+@media (min-width: 1221px) {
+  .projects-collage__item--compact-title .projects-collage__title {
+    font-size: 21px;
+  }
 }
 
 .projects-collage__title .title-break-mobile {
@@ -146,7 +158,8 @@
   }
 
   .projects-collage__main {
-    height: 300px;
+    flex-basis: 300px;
+    min-height: 300px;
   }
 
   .projects-collage__thumbs {
