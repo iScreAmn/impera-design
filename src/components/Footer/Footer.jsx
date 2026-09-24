@@ -10,7 +10,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   const { description, contacts, socials, legal } = footerData;
   const portfolioLink = useMemo(() => {
-    const url = new URL('https://dj-myportfolio.vercel.app/');
+    const url = new URL('https://djcode.ge/');
     const sourceHost =
       typeof window !== 'undefined'
         ? window.location.hostname.replace(/^www\./, '')
@@ -121,7 +121,7 @@ const Footer = () => {
               © {currentYear} {legal.companyName}. Все права защищены.
             </p>
             <p className="footer__developed">
-              Разработано: <a href={portfolioLink} target="_blank" rel="noopener noreferrer" className="footer__developed-link">«Студией DJ»</a>
+              Разработано студией: <a href={portfolioLink} target="_blank" rel="noopener noreferrer" className="footer__developed-link">«DJ Code»</a>
             </p>
           </div>
           <div className="footer__legal">
